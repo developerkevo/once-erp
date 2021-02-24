@@ -803,8 +803,14 @@ if (!empty($best_sales_product))
                 }
             }
         } else {
+
             $username = $this->input->post('username',TRUE);
             $password = $this->input->post('password',TRUE);
+
+//            echo "USername: ".$username;
+//            echo "<br>Password: ".$password;
+//            exit();
+
             if ($username == '' || $password == '' || $this->auth->login($username, $password) === FALSE) {
                 $error = display('wrong_username_or_password');
             }

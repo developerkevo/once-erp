@@ -381,6 +381,60 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
         <?php } ?>
             <!-- Supplier menu end -->
 
+            <!-- Herds -->
+            <?php if($this->permission1->method('add_supplier','create')->access() || $this->permission1->method('manage_supplier','read')->access() || $this->permission1->method('supplier_ledger_report','read')->access() || $this->permission1->method('supplier_sales_details_all','read')->access()){?>
+            <!-- Supplier menu start -->
+            <li class="treeview <?php
+            if ($this->uri->segment('1') == ("Cherd")) {
+                echo "active";
+            } else {
+                echo " ";
+            }
+            ?>">
+                <a href="#">
+                    <i class="ti-user"></i><span><?php echo "Herd Management" ?></span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+
+                  <?php if($this->permission1->method('manage_supplier','read')->access()){ ?>
+                    <li class="treeview <?php
+                        if ( $this->uri->segment('2') == "manage_breed") {
+                            echo "active";
+                        } else {
+                            echo " ";
+                        }
+                        ?>"><a href="<?php echo base_url('Cherd/manage_breed') ?>"><?php echo "Breed Managment" ?></a></li>
+                     <?php } ?>
+<!-- 
+                    <?php if($this->permission1->method('add_supplier','create')->access()){ ?>
+                    <li class="treeview <?php
+                        if ($this->uri->segment('1') == "Cherd" && $this->uri->segment('2') == "") {
+                            echo "active";
+                        } else {
+                            echo " ";
+                        }
+                        ?>"><a href="<?php echo base_url('Cherd/manage_route') ?>"><?php echo "Route Managment" ?></a></li>
+                    <?php }?>
+
+                    <?php if($this->permission1->method('add_supplier','create')->access()){ ?>
+                    <li class="treeview <?php
+                        if ($this->uri->segment('1') == "Cherd" && $this->uri->segment('2') == "") {
+                            echo "active";
+                        } else {
+                            echo " ";
+                        }
+                        ?>"><a href="<?php echo base_url('Cherd/manage_cow') ?>"><?php echo "Cows Managment" ?></a></li>
+                    <?php }?>
+   -->
+                
+                </ul>
+            </li>
+        <?php } ?>
+            <!-- end Herds -->
+
                      <!-- Purchase menu start -->
             <?php if($this->permission1->method('add_purchase','create')->access() || $this->permission1->method('manage_purchase','read')->access()){?>
             <li class="treeview <?php

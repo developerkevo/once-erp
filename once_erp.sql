@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Feb 23, 2021 at 06:52 AM
--- Server version: 8.0.20
--- PHP Version: 7.4.8
+-- Host: 127.0.0.1
+-- Generation Time: Feb 24, 2021 at 12:24 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `test`
+-- Database: `once_erp`
 --
 
 -- --------------------------------------------------------
@@ -28,22 +28,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `acc_coa` (
-  `HeadCode` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `HeadName` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `PHeadName` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `HeadLevel` int NOT NULL,
+  `HeadCode` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `HeadName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `PHeadName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `HeadLevel` int(11) NOT NULL,
   `IsActive` tinyint(1) NOT NULL,
   `IsTransaction` tinyint(1) NOT NULL,
   `IsGL` tinyint(1) NOT NULL,
-  `HeadType` char(1) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `HeadType` char(1) COLLATE utf8_unicode_ci NOT NULL,
   `IsBudget` tinyint(1) NOT NULL,
   `IsDepreciation` tinyint(1) NOT NULL,
-  `customer_id` int DEFAULT NULL,
-  `supplier_id` int DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `supplier_id` int(11) DEFAULT NULL,
   `DepreciationRate` decimal(18,2) NOT NULL,
-  `CreateBy` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `CreateBy` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `CreateDate` datetime NOT NULL,
-  `UpdateBy` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `UpdateBy` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `UpdateDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -86,20 +86,20 @@ INSERT INTO `acc_coa` (`HeadCode`, `HeadName`, `PHeadName`, `HeadLevel`, `IsActi
 --
 
 CREATE TABLE `acc_transaction` (
-  `ID` int NOT NULL,
-  `VNo` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Vtype` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ID` int(11) NOT NULL,
+  `VNo` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Vtype` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `VDate` date DEFAULT NULL,
-  `COAID` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Narration` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `COAID` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Narration` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `Debit` decimal(18,2) DEFAULT NULL,
   `Credit` decimal(18,2) DEFAULT NULL,
-  `IsPosted` char(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CreateBy` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `IsPosted` char(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `CreateBy` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CreateDate` datetime DEFAULT NULL,
-  `UpdateBy` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdateBy` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `UpdateDate` datetime DEFAULT NULL,
-  `IsAppove` char(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL
+  `IsAppove` char(10) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -314,7 +314,7 @@ INSERT INTO `acc_transaction` (`ID`, `VNo`, `Vtype`, `VDate`, `COAID`, `Narratio
 --
 
 CREATE TABLE `app_setting` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `localhserver` varchar(250) DEFAULT NULL,
   `onlineserver` varchar(250) DEFAULT NULL,
   `hotspot` varchar(250) DEFAULT NULL
@@ -334,8 +334,8 @@ INSERT INTO `app_setting` (`id`, `localhserver`, `onlineserver`, `hotspot`) VALU
 --
 
 CREATE TABLE `attendance` (
-  `att_id` int NOT NULL,
-  `employee_id` int NOT NULL,
+  `att_id` int(11) NOT NULL,
+  `employee_id` int(11) NOT NULL,
   `date` date NOT NULL,
   `sign_in` varchar(30) NOT NULL,
   `sign_out` varchar(30) NOT NULL,
@@ -349,15 +349,34 @@ CREATE TABLE `attendance` (
 --
 
 CREATE TABLE `bank_add` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `bank_id` varchar(255) NOT NULL,
   `bank_name` varchar(255) NOT NULL,
   `ac_name` varchar(250) DEFAULT NULL,
   `ac_number` varchar(250) DEFAULT NULL,
   `branch` varchar(250) DEFAULT NULL,
   `signature_pic` varchar(250) DEFAULT NULL,
-  `status` int DEFAULT NULL
+  `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `breeds`
+--
+
+CREATE TABLE `breeds` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `breeds`
+--
+
+INSERT INTO `breeds` (`id`, `name`) VALUES
+(2, 'Asian'),
+(3, 'Freshian');
 
 -- --------------------------------------------------------
 
@@ -372,7 +391,7 @@ CREATE TABLE `company_information` (
   `address` text NOT NULL,
   `mobile` varchar(50) NOT NULL,
   `website` varchar(50) NOT NULL,
-  `status` int NOT NULL
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -385,11 +404,26 @@ INSERT INTO `company_information` (`company_id`, `company_name`, `email`, `addre
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cows`
+--
+
+CREATE TABLE `cows` (
+  `id` int(11) NOT NULL,
+  `breed_id` int(11) NOT NULL,
+  `age` int(3) NOT NULL,
+  `route_id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `production` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `currency_tbl`
 --
 
 CREATE TABLE `currency_tbl` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `currency_name` varchar(50) NOT NULL,
   `icon` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -409,7 +443,7 @@ INSERT INTO `currency_tbl` (`id`, `currency_name`, `icon`) VALUES
 --
 
 CREATE TABLE `customer_information` (
-  `customer_id` bigint NOT NULL,
+  `customer_id` bigint(20) NOT NULL,
   `customer_name` varchar(255) DEFAULT NULL,
   `customer_address` varchar(255) NOT NULL,
   `address2` text NOT NULL,
@@ -419,12 +453,12 @@ CREATE TABLE `customer_information` (
   `contact` varchar(100) DEFAULT NULL,
   `phone` varchar(50) DEFAULT NULL,
   `fax` varchar(100) DEFAULT NULL,
-  `city` text,
-  `state` text,
+  `city` text DEFAULT NULL,
+  `state` text DEFAULT NULL,
   `zip` varchar(50) DEFAULT NULL,
   `country` varchar(250) DEFAULT NULL,
-  `status` int NOT NULL COMMENT '1=paid,2=credit',
-  `create_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL COMMENT '1=paid,2=credit',
+  `create_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `create_by` varchar(30) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -458,9 +492,9 @@ CREATE TABLE `daily_banking_add` (
   `bank_id` varchar(100) DEFAULT NULL,
   `deposit_type` varchar(255) DEFAULT NULL,
   `transaction_type` varchar(255) DEFAULT NULL,
-  `description` text,
-  `amount` int DEFAULT NULL,
-  `status` int DEFAULT NULL
+  `description` text DEFAULT NULL,
+  `amount` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -477,7 +511,7 @@ CREATE TABLE `daily_closing` (
   `date` varchar(250) NOT NULL,
   `amount` float NOT NULL,
   `adjustment` float DEFAULT NULL,
-  `status` int NOT NULL
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -487,7 +521,7 @@ CREATE TABLE `daily_closing` (
 --
 
 CREATE TABLE `designation` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `designation` varchar(150) NOT NULL,
   `details` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -499,16 +533,16 @@ CREATE TABLE `designation` (
 --
 
 CREATE TABLE `email_config` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `protocol` text NOT NULL,
   `smtp_host` text NOT NULL,
   `smtp_port` text NOT NULL,
   `smtp_user` varchar(35) NOT NULL,
   `smtp_pass` varchar(35) NOT NULL,
   `mailtype` varchar(30) DEFAULT NULL,
-  `isinvoice` tinyint NOT NULL,
-  `isservice` tinyint NOT NULL,
-  `isquotation` tinyint NOT NULL
+  `isinvoice` tinyint(4) NOT NULL,
+  `isservice` tinyint(4) NOT NULL,
+  `isquotation` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -525,18 +559,18 @@ INSERT INTO `email_config` (`id`, `protocol`, `smtp_host`, `smtp_port`, `smtp_us
 --
 
 CREATE TABLE `employee_history` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
   `designation` varchar(100) NOT NULL,
   `phone` varchar(50) NOT NULL,
-  `rate_type` int NOT NULL,
+  `rate_type` int(11) NOT NULL,
   `hrate` float NOT NULL,
   `email` varchar(50) NOT NULL,
   `blood_group` varchar(10) NOT NULL,
   `address_line_1` text NOT NULL,
   `address_line_2` text NOT NULL,
-  `image` text,
+  `image` text DEFAULT NULL,
   `country` varchar(50) NOT NULL,
   `city` varchar(50) NOT NULL,
   `zip` varchar(50) NOT NULL
@@ -561,15 +595,15 @@ INSERT INTO `employee_history` (`id`, `first_name`, `last_name`, `designation`, 
 --
 
 CREATE TABLE `employee_salary_payment` (
-  `emp_sal_pay_id` int NOT NULL,
-  `generate_id` int NOT NULL,
-  `employee_id` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `total_salary` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `total_working_minutes` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `working_period` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `payment_due` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `payment_date` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `paid_by` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `emp_sal_pay_id` int(11) NOT NULL,
+  `generate_id` int(11) NOT NULL,
+  `employee_id` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `total_salary` decimal(18,2) NOT NULL DEFAULT 0.00,
+  `total_working_minutes` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `working_period` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `payment_due` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `payment_date` varchar(50) CHARACTER SET latin1 NOT NULL,
+  `paid_by` varchar(50) CHARACTER SET latin1 NOT NULL,
   `salary_month` varchar(70) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -592,14 +626,14 @@ INSERT INTO `employee_salary_payment` (`emp_sal_pay_id`, `generate_id`, `employe
 --
 
 CREATE TABLE `employee_salary_setup` (
-  `e_s_s_id` int UNSIGNED NOT NULL,
-  `employee_id` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `e_s_s_id` int(10) UNSIGNED NOT NULL,
+  `employee_id` varchar(30) CHARACTER SET latin1 NOT NULL,
   `sal_type` varchar(30) NOT NULL,
-  `salary_type_id` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `amount` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `salary_type_id` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `amount` decimal(12,2) NOT NULL DEFAULT 0.00,
   `create_date` date DEFAULT NULL,
   `update_date` datetime(6) DEFAULT NULL,
-  `update_id` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `update_id` varchar(30) CHARACTER SET latin1 NOT NULL,
   `gross_salary` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -631,7 +665,7 @@ INSERT INTO `employee_salary_setup` (`e_s_s_id`, `employee_id`, `sal_type`, `sal
 --
 
 CREATE TABLE `expense` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `date` date NOT NULL,
   `type` varchar(100) NOT NULL,
   `voucher_no` varchar(50) NOT NULL,
@@ -653,7 +687,7 @@ INSERT INTO `expense` (`id`, `date`, `type`, `voucher_no`, `amount`) VALUES
 --
 
 CREATE TABLE `expense_item` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `expense_item_name` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -674,22 +708,22 @@ INSERT INTO `expense_item` (`id`, `expense_item_name`) VALUES
 --
 
 CREATE TABLE `invoice` (
-  `id` int NOT NULL,
-  `invoice_id` bigint NOT NULL,
-  `customer_id` bigint NOT NULL,
+  `id` int(11) NOT NULL,
+  `invoice_id` bigint(20) NOT NULL,
+  `customer_id` bigint(20) NOT NULL,
   `date` varchar(50) DEFAULT NULL,
-  `total_amount` decimal(18,2) NOT NULL DEFAULT '0.00',
-  `prevous_due` decimal(20,2) NOT NULL DEFAULT '0.00',
-  `shipping_cost` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `invoice` bigint NOT NULL,
-  `invoice_discount` decimal(10,2) DEFAULT '0.00' COMMENT 'invoice discount',
-  `total_discount` decimal(10,2) DEFAULT '0.00' COMMENT 'total invoice discount',
-  `total_tax` decimal(10,2) DEFAULT '0.00',
+  `total_amount` decimal(18,2) NOT NULL DEFAULT 0.00,
+  `prevous_due` decimal(20,2) NOT NULL DEFAULT 0.00,
+  `shipping_cost` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `invoice` bigint(20) NOT NULL,
+  `invoice_discount` decimal(10,2) DEFAULT 0.00 COMMENT 'invoice discount',
+  `total_discount` decimal(10,2) DEFAULT 0.00 COMMENT 'total invoice discount',
+  `total_tax` decimal(10,2) DEFAULT 0.00,
   `sales_by` varchar(50) NOT NULL,
   `invoice_details` text NOT NULL,
-  `status` int NOT NULL,
+  `status` int(11) NOT NULL,
   `bank_id` varchar(30) DEFAULT NULL,
-  `payment_type` int NOT NULL
+  `payment_type` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -735,7 +769,7 @@ INSERT INTO `invoice` (`id`, `invoice_id`, `customer_id`, `date`, `total_amount`
 --
 
 CREATE TABLE `invoice_details` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `invoice_details_id` varchar(100) NOT NULL,
   `invoice_id` varchar(100) NOT NULL,
   `product_id` varchar(30) NOT NULL,
@@ -750,7 +784,7 @@ CREATE TABLE `invoice_details` (
   `tax` decimal(10,2) DEFAULT NULL,
   `paid_amount` decimal(12,0) DEFAULT NULL,
   `due_amount` decimal(10,2) DEFAULT NULL,
-  `status` int NOT NULL
+  `status` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -821,14 +855,14 @@ INSERT INTO `invoice_details` (`id`, `invoice_details_id`, `invoice_id`, `produc
 --
 
 CREATE TABLE `keys` (
-  `id` int NOT NULL,
-  `key` varchar(40) COLLATE utf8mb4_general_ci NOT NULL,
-  `level` int NOT NULL,
-  `ignore_limits` tinyint(1) NOT NULL DEFAULT '0',
-  `is_private_key` tinyint(1) NOT NULL DEFAULT '0',
-  `ip_addresses` text COLLATE utf8mb4_general_ci,
-  `date_created` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` int(11) NOT NULL,
+  `key` varchar(40) NOT NULL,
+  `level` int(11) NOT NULL,
+  `ignore_limits` tinyint(1) NOT NULL DEFAULT 0,
+  `is_private_key` tinyint(1) NOT NULL DEFAULT 0,
+  `ip_addresses` text DEFAULT NULL,
+  `date_created` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -837,10 +871,10 @@ CREATE TABLE `keys` (
 --
 
 CREATE TABLE `language` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `phrase` text NOT NULL,
-  `english` text,
-  `bangla` text
+  `english` text DEFAULT NULL,
+  `bangla` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1774,17 +1808,17 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 --
 
 CREATE TABLE `leave_apply` (
-  `leave_appl_id` int NOT NULL,
+  `leave_appl_id` int(11) NOT NULL,
   `employee_id` varchar(20) NOT NULL,
-  `leave_type_id` int NOT NULL,
+  `leave_type_id` int(11) NOT NULL,
   `apply_strt_date` varchar(20) NOT NULL,
   `apply_end_date` varchar(20) NOT NULL,
-  `apply_day` int NOT NULL,
+  `apply_day` int(11) NOT NULL,
   `leave_aprv_strt_date` varchar(20) NOT NULL,
   `leave_aprv_end_date` varchar(20) NOT NULL,
   `num_aprv_day` varchar(15) NOT NULL,
   `reason` varchar(100) NOT NULL,
-  `apply_hard_copy` text,
+  `apply_hard_copy` text DEFAULT NULL,
   `apply_date` varchar(20) NOT NULL,
   `approve_date` varchar(20) NOT NULL,
   `approved_by` varchar(30) NOT NULL,
@@ -1798,9 +1832,9 @@ CREATE TABLE `leave_apply` (
 --
 
 CREATE TABLE `leave_type` (
-  `leave_type_id` int NOT NULL,
+  `leave_type_id` int(11) NOT NULL,
   `leave_type` varchar(50) NOT NULL,
-  `leave_days` int NOT NULL
+  `leave_days` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1810,16 +1844,16 @@ CREATE TABLE `leave_type` (
 --
 
 CREATE TABLE `logs` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `uri` varchar(255) NOT NULL,
   `method` varchar(6) NOT NULL,
-  `params` text,
+  `params` text DEFAULT NULL,
   `api_key` varchar(40) NOT NULL,
   `ip_address` varchar(45) NOT NULL,
-  `time` int NOT NULL,
+  `time` int(11) NOT NULL,
   `rtime` float DEFAULT NULL,
   `authorized` varchar(1) NOT NULL,
-  `response_code` smallint DEFAULT '0'
+  `response_code` smallint(6) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1829,12 +1863,12 @@ CREATE TABLE `logs` (
 --
 
 CREATE TABLE `module` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
-  `description` text,
+  `description` text DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `directory` varchar(100) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
+  `status` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1866,13 +1900,13 @@ INSERT INTO `module` (`id`, `name`, `description`, `image`, `directory`, `status
 --
 
 CREATE TABLE `payroll_holiday` (
-  `payrl_holi_id` int UNSIGNED NOT NULL,
-  `holiday_name` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `start_date` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `end_date` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `no_of_days` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `created_by` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `updated_by` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+  `payrl_holi_id` int(10) UNSIGNED NOT NULL,
+  `holiday_name` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `start_date` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `end_date` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `no_of_days` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `created_by` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `updated_by` varchar(30) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -1882,11 +1916,11 @@ CREATE TABLE `payroll_holiday` (
 --
 
 CREATE TABLE `payroll_tax_setup` (
-  `tax_setup_id` int UNSIGNED NOT NULL,
-  `start_amount` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `end_amount` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `rate` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `status` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+  `tax_setup_id` int(10) UNSIGNED NOT NULL,
+  `start_amount` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `end_amount` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `rate` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `status` varchar(30) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1904,14 +1938,14 @@ INSERT INTO `payroll_tax_setup` (`tax_setup_id`, `start_amount`, `end_amount`, `
 --
 
 CREATE TABLE `personal_loan` (
-  `per_loan_id` int NOT NULL,
+  `per_loan_id` int(11) NOT NULL,
   `transaction_id` varchar(30) NOT NULL,
   `person_id` varchar(30) NOT NULL,
-  `debit` decimal(12,2) DEFAULT '0.00',
-  `credit` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `debit` decimal(12,2) DEFAULT 0.00,
+  `credit` decimal(12,2) NOT NULL DEFAULT 0.00,
   `date` varchar(30) NOT NULL,
   `details` varchar(100) NOT NULL,
-  `status` int NOT NULL COMMENT '1=no paid,2=paid'
+  `status` int(11) NOT NULL COMMENT '1=no paid,2=paid'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1929,12 +1963,12 @@ INSERT INTO `personal_loan` (`per_loan_id`, `transaction_id`, `person_id`, `debi
 --
 
 CREATE TABLE `person_information` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `person_id` varchar(50) NOT NULL,
   `person_name` varchar(50) NOT NULL,
   `person_phone` varchar(50) NOT NULL,
   `person_address` text NOT NULL,
-  `status` int NOT NULL
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1951,14 +1985,14 @@ INSERT INTO `person_information` (`id`, `person_id`, `person_name`, `person_phon
 --
 
 CREATE TABLE `person_ledger` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `transaction_id` varchar(50) NOT NULL,
   `person_id` varchar(50) NOT NULL,
   `date` varchar(50) NOT NULL,
-  `debit` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `credit` decimal(12,2) NOT NULL DEFAULT '0.00',
+  `debit` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `credit` decimal(12,2) NOT NULL DEFAULT 0.00,
   `details` text NOT NULL,
-  `status` int NOT NULL COMMENT '1=no paid,2=paid'
+  `status` int(11) NOT NULL COMMENT '1=no paid,2=paid'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1975,12 +2009,12 @@ INSERT INTO `person_ledger` (`id`, `transaction_id`, `person_id`, `date`, `debit
 --
 
 CREATE TABLE `pesonal_loan_information` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `person_id` varchar(50) NOT NULL,
   `person_name` varchar(50) NOT NULL,
   `person_phone` varchar(30) NOT NULL,
   `person_address` text NOT NULL,
-  `status` int NOT NULL
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -1997,10 +2031,10 @@ INSERT INTO `pesonal_loan_information` (`id`, `person_id`, `person_name`, `perso
 --
 
 CREATE TABLE `product_category` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `category_id` varchar(255) DEFAULT NULL,
   `category_name` varchar(255) DEFAULT NULL,
-  `status` int NOT NULL
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -2020,7 +2054,7 @@ INSERT INTO `product_category` (`id`, `category_id`, `category_name`, `status`) 
 --
 
 CREATE TABLE `product_information` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `product_id` varchar(100) NOT NULL,
   `category_id` varchar(255) DEFAULT NULL,
   `product_name` varchar(255) NOT NULL,
@@ -2031,9 +2065,9 @@ CREATE TABLE `product_information` (
   `product_model` varchar(100) DEFAULT NULL,
   `product_details` varchar(255) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `status` int DEFAULT NULL,
-  `tax0` text,
-  `tax1` text
+  `status` int(11) DEFAULT NULL,
+  `tax0` text DEFAULT NULL,
+  `tax1` text DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -2055,19 +2089,19 @@ INSERT INTO `product_information` (`id`, `product_id`, `category_id`, `product_n
 --
 
 CREATE TABLE `product_purchase` (
-  `id` int NOT NULL,
-  `purchase_id` bigint NOT NULL,
+  `id` int(11) NOT NULL,
+  `purchase_id` bigint(20) NOT NULL,
   `chalan_no` varchar(100) NOT NULL,
-  `supplier_id` bigint NOT NULL,
-  `grand_total_amount` decimal(12,2) NOT NULL DEFAULT '0.00',
-  `paid_amount` decimal(10,2) DEFAULT '0.00',
-  `due_amount` decimal(10,2) DEFAULT '0.00',
+  `supplier_id` bigint(20) NOT NULL,
+  `grand_total_amount` decimal(12,2) NOT NULL DEFAULT 0.00,
+  `paid_amount` decimal(10,2) DEFAULT 0.00,
+  `due_amount` decimal(10,2) DEFAULT 0.00,
   `total_discount` decimal(10,2) DEFAULT NULL,
   `purchase_date` varchar(50) DEFAULT NULL,
-  `purchase_details` text,
-  `status` int NOT NULL,
+  `purchase_details` text DEFAULT NULL,
+  `status` int(11) NOT NULL,
   `bank_id` varchar(30) DEFAULT NULL,
-  `payment_type` int NOT NULL
+  `payment_type` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -2096,15 +2130,15 @@ INSERT INTO `product_purchase` (`id`, `purchase_id`, `chalan_no`, `supplier_id`,
 --
 
 CREATE TABLE `product_purchase_details` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `purchase_detail_id` varchar(100) DEFAULT NULL,
-  `purchase_id` bigint DEFAULT NULL,
+  `purchase_id` bigint(20) DEFAULT NULL,
   `product_id` varchar(30) DEFAULT NULL,
   `quantity` decimal(10,2) DEFAULT NULL,
   `rate` decimal(10,2) DEFAULT NULL,
   `total_amount` decimal(10,2) DEFAULT NULL,
   `discount` float DEFAULT NULL,
-  `status` int DEFAULT NULL
+  `status` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2114,24 +2148,24 @@ CREATE TABLE `product_purchase_details` (
 --
 
 CREATE TABLE `product_return` (
-  `return_id` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `product_id` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `invoice_id` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `purchase_id` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `date_purchase` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `date_return` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `return_id` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `product_id` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `invoice_id` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `purchase_id` varchar(30) CHARACTER SET latin1 DEFAULT NULL,
+  `date_purchase` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `date_return` varchar(30) CHARACTER SET latin1 NOT NULL,
   `byy_qty` float NOT NULL,
   `ret_qty` float NOT NULL,
-  `customer_id` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `supplier_id` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `product_rate` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `customer_id` varchar(20) CHARACTER SET latin1 NOT NULL,
+  `supplier_id` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `product_rate` decimal(10,2) NOT NULL DEFAULT 0.00,
   `deduction` float NOT NULL,
-  `total_deduct` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `total_tax` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `total_ret_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `net_total_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `reason` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `usablity` int NOT NULL
+  `total_deduct` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `total_tax` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `total_ret_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `net_total_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `reason` text CHARACTER SET latin1 NOT NULL,
+  `usablity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2141,12 +2175,12 @@ CREATE TABLE `product_return` (
 --
 
 CREATE TABLE `product_service` (
-  `service_id` int NOT NULL,
+  `service_id` int(11) NOT NULL,
   `service_name` varchar(250) NOT NULL,
   `description` text NOT NULL,
-  `charge` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `tax0` text,
-  `tax1` text
+  `charge` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `tax0` text DEFAULT NULL,
+  `tax1` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2156,27 +2190,27 @@ CREATE TABLE `product_service` (
 --
 
 CREATE TABLE `quotation` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `quotation_id` varchar(30) NOT NULL,
   `quot_description` text NOT NULL,
   `customer_id` varchar(30) NOT NULL,
   `quotdate` date NOT NULL,
   `expire_date` date DEFAULT NULL,
   `item_total_amount` decimal(12,2) NOT NULL,
-  `item_total_dicount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `item_total_tax` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `service_total_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `service_total_discount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `service_total_tax` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `quot_dis_item` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `quot_dis_service` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `item_total_dicount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `item_total_tax` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `service_total_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `service_total_discount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `service_total_tax` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `quot_dis_item` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `quot_dis_service` decimal(10,2) NOT NULL DEFAULT 0.00,
   `quot_no` varchar(50) NOT NULL,
   `create_by` varchar(30) NOT NULL,
   `create_date` date NOT NULL,
   `update_by` varchar(30) DEFAULT NULL,
   `update_date` date DEFAULT NULL,
-  `status` tinyint NOT NULL,
-  `cust_show` tinyint DEFAULT NULL
+  `status` tinyint(4) NOT NULL,
+  `cust_show` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2186,15 +2220,15 @@ CREATE TABLE `quotation` (
 --
 
 CREATE TABLE `quotation_service_used` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `quot_id` varchar(20) NOT NULL,
-  `service_id` int NOT NULL,
-  `qty` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `charge` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `discount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `discount_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `tax` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `total` decimal(10,2) NOT NULL DEFAULT '0.00'
+  `service_id` int(11) NOT NULL,
+  `qty` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `charge` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `discount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `discount_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `tax` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `total` decimal(10,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2204,13 +2238,13 @@ CREATE TABLE `quotation_service_used` (
 --
 
 CREATE TABLE `quotation_taxinfo` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `date` date NOT NULL,
-  `customer_id` int NOT NULL,
+  `customer_id` int(11) NOT NULL,
   `relation_id` varchar(30) NOT NULL,
-  `tax0` text,
-  `tax1` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `tax0` text DEFAULT NULL,
+  `tax1` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2219,7 +2253,7 @@ CREATE TABLE `quotation_taxinfo` (
 --
 
 CREATE TABLE `quot_products_used` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `quot_id` varchar(100) NOT NULL,
   `product_id` varchar(100) NOT NULL,
   `serial_no` varchar(30) DEFAULT NULL,
@@ -2240,9 +2274,9 @@ CREATE TABLE `quot_products_used` (
 --
 
 CREATE TABLE `role_permission` (
-  `id` int NOT NULL,
-  `fk_module_id` int NOT NULL,
-  `role_id` int NOT NULL,
+  `id` int(11) NOT NULL,
+  `fk_module_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
   `create` tinyint(1) DEFAULT NULL,
   `read` tinyint(1) DEFAULT NULL,
   `update` tinyint(1) DEFAULT NULL,
@@ -2252,16 +2286,27 @@ CREATE TABLE `role_permission` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `routes`
+--
+
+CREATE TABLE `routes` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `salary_sheet_generate`
 --
 
 CREATE TABLE `salary_sheet_generate` (
-  `ssg_id` int UNSIGNED NOT NULL,
-  `name` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `ssg_id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(30) CHARACTER SET latin1 DEFAULT NULL,
   `gdate` varchar(30) DEFAULT NULL,
-  `start_date` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `end_date` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `generate_by` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+  `start_date` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `end_date` varchar(30) CHARACTER SET latin1 NOT NULL,
+  `generate_by` varchar(30) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2271,7 +2316,7 @@ CREATE TABLE `salary_sheet_generate` (
 --
 
 CREATE TABLE `salary_type` (
-  `salary_type_id` int NOT NULL,
+  `salary_type_id` int(11) NOT NULL,
   `sal_name` varchar(100) NOT NULL,
   `salary_type` varchar(50) NOT NULL,
   `status` varchar(30) NOT NULL
@@ -2284,8 +2329,8 @@ CREATE TABLE `salary_type` (
 --
 
 CREATE TABLE `sec_role` (
-  `id` int NOT NULL,
-  `type` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
+  `id` int(11) NOT NULL,
+  `type` varchar(100) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -2295,10 +2340,10 @@ CREATE TABLE `sec_role` (
 --
 
 CREATE TABLE `sec_userrole` (
-  `id` int NOT NULL,
-  `user_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `roleid` int NOT NULL,
-  `createby` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL,
+  `user_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `roleid` int(11) NOT NULL,
+  `createby` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `createdate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -2309,19 +2354,19 @@ CREATE TABLE `sec_userrole` (
 --
 
 CREATE TABLE `service_invoice` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `voucher_no` varchar(30) NOT NULL,
   `date` date NOT NULL,
   `employee_id` varchar(100) DEFAULT NULL,
   `customer_id` varchar(30) NOT NULL,
-  `total_amount` decimal(20,2) NOT NULL DEFAULT '0.00',
-  `total_discount` decimal(20,2) NOT NULL DEFAULT '0.00',
-  `invoice_discount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `total_tax` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `paid_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `due_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `shipping_cost` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `previous` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `total_amount` decimal(20,2) NOT NULL DEFAULT 0.00,
+  `total_discount` decimal(20,2) NOT NULL DEFAULT 0.00,
+  `invoice_discount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `total_tax` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `paid_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `due_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `shipping_cost` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `previous` decimal(10,2) NOT NULL DEFAULT 0.00,
   `details` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -2332,14 +2377,14 @@ CREATE TABLE `service_invoice` (
 --
 
 CREATE TABLE `service_invoice_details` (
-  `id` int NOT NULL,
-  `service_id` int NOT NULL,
+  `id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
   `service_inv_id` varchar(30) NOT NULL,
-  `qty` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `charge` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `discount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `discount_amount` decimal(10,2) NOT NULL DEFAULT '0.00',
-  `total` decimal(10,2) NOT NULL DEFAULT '0.00'
+  `qty` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `charge` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `discount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `discount_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
+  `total` decimal(10,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2349,13 +2394,13 @@ CREATE TABLE `service_invoice_details` (
 --
 
 CREATE TABLE `sms_settings` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `api_key` varchar(100) DEFAULT NULL,
   `api_secret` varchar(100) DEFAULT NULL,
   `from` varchar(100) DEFAULT NULL,
-  `isinvoice` int NOT NULL DEFAULT '0',
-  `isservice` int NOT NULL DEFAULT '0',
-  `isreceive` int NOT NULL DEFAULT '0'
+  `isinvoice` int(11) NOT NULL DEFAULT 0,
+  `isservice` int(11) NOT NULL DEFAULT 0,
+  `isreceive` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -2372,12 +2417,12 @@ INSERT INTO `sms_settings` (`id`, `api_key`, `api_secret`, `from`, `isinvoice`, 
 --
 
 CREATE TABLE `sub_module` (
-  `id` int NOT NULL,
-  `mid` int NOT NULL,
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `description` text CHARACTER SET utf8 COLLATE utf8_general_ci,
-  `image` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `directory` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `mid` int(11) NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `description` text CHARACTER SET utf8 DEFAULT NULL,
+  `image` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
+  `directory` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -2509,7 +2554,7 @@ INSERT INTO `sub_module` (`id`, `mid`, `name`, `description`, `image`, `director
 --
 
 CREATE TABLE `supplier_information` (
-  `supplier_id` bigint NOT NULL,
+  `supplier_id` bigint(20) NOT NULL,
   `supplier_name` varchar(255) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `address2` text NOT NULL,
@@ -2519,12 +2564,12 @@ CREATE TABLE `supplier_information` (
   `contact` varchar(100) DEFAULT NULL,
   `phone` varchar(50) DEFAULT NULL,
   `fax` varchar(100) DEFAULT NULL,
-  `city` text,
-  `state` text,
+  `city` text DEFAULT NULL,
+  `state` text DEFAULT NULL,
   `zip` varchar(50) DEFAULT NULL,
   `country` varchar(250) DEFAULT NULL,
   `details` varchar(255) DEFAULT NULL,
-  `status` int NOT NULL
+  `status` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -2541,10 +2586,10 @@ INSERT INTO `supplier_information` (`supplier_id`, `supplier_name`, `address`, `
 --
 
 CREATE TABLE `supplier_product` (
-  `supplier_pr_id` int NOT NULL,
-  `product_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `products_model` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `supplier_id` bigint NOT NULL,
+  `supplier_pr_id` int(11) NOT NULL,
+  `product_id` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `products_model` varchar(30) CHARACTER SET latin1 DEFAULT NULL,
+  `supplier_id` bigint(20) NOT NULL,
   `supplier_price` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -2563,7 +2608,7 @@ INSERT INTO `supplier_product` (`supplier_pr_id`, `product_id`, `products_model`
 --
 
 CREATE TABLE `synchronizer_setting` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `hostname` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
@@ -2579,12 +2624,12 @@ CREATE TABLE `synchronizer_setting` (
 --
 
 CREATE TABLE `tax_collection` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `date` date NOT NULL,
   `customer_id` varchar(30) NOT NULL,
   `relation_id` varchar(30) NOT NULL,
-  `tax0` text,
-  `tax1` text
+  `tax0` text DEFAULT NULL,
+  `tax1` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -2594,12 +2639,12 @@ CREATE TABLE `tax_collection` (
 --
 
 CREATE TABLE `tax_settings` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `default_value` float NOT NULL,
   `tax_name` varchar(250) NOT NULL,
-  `nt` int NOT NULL,
+  `nt` int(11) NOT NULL,
   `reg_no` varchar(100) NOT NULL,
-  `is_show` tinyint NOT NULL DEFAULT '1'
+  `is_show` tinyint(4) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -2617,10 +2662,10 @@ INSERT INTO `tax_settings` (`id`, `default_value`, `tax_name`, `nt`, `reg_no`, `
 --
 
 CREATE TABLE `units` (
-  `id` int NOT NULL,
-  `unit_id` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `unit_name` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `status` int NOT NULL
+  `id` int(11) NOT NULL,
+  `unit_id` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `unit_name` varchar(255) CHARACTER SET latin1 NOT NULL,
+  `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -2637,17 +2682,17 @@ INSERT INTO `units` (`id`, `unit_id`, `unit_name`, `status`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `user_id` varchar(15) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `company_name` varchar(250) DEFAULT NULL,
-  `address` text,
+  `address` text DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
-  `gender` int DEFAULT NULL,
+  `gender` int(11) DEFAULT NULL,
   `date_of_birth` varchar(255) DEFAULT NULL,
   `logo` varchar(250) DEFAULT NULL,
-  `status` int NOT NULL
+  `status` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -2664,13 +2709,13 @@ INSERT INTO `users` (`id`, `user_id`, `last_name`, `first_name`, `company_name`,
 --
 
 CREATE TABLE `user_login` (
-  `id` int NOT NULL,
+  `id` int(11) NOT NULL,
   `user_id` varchar(15) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `user_type` int DEFAULT NULL,
+  `user_type` int(11) DEFAULT NULL,
   `security_code` varchar(255) DEFAULT NULL,
-  `status` int NOT NULL
+  `status` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -2687,7 +2732,7 @@ INSERT INTO `user_login` (`id`, `user_id`, `username`, `password`, `user_type`, 
 --
 
 CREATE TABLE `web_setting` (
-  `setting_id` int NOT NULL,
+  `setting_id` int(11) NOT NULL,
   `logo` varchar(255) DEFAULT NULL,
   `invoice_logo` varchar(255) DEFAULT NULL,
   `favicon` varchar(255) DEFAULT NULL,
@@ -2697,10 +2742,10 @@ CREATE TABLE `web_setting` (
   `footer_text` varchar(255) DEFAULT NULL,
   `language` varchar(255) DEFAULT NULL,
   `rtr` varchar(255) DEFAULT NULL,
-  `captcha` int DEFAULT '1' COMMENT '0=active,1=inactive',
+  `captcha` int(11) DEFAULT 1 COMMENT '0=active,1=inactive',
   `site_key` varchar(250) DEFAULT NULL,
   `secret_key` varchar(250) DEFAULT NULL,
-  `discount_type` int DEFAULT '1'
+  `discount_type` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -2717,8 +2762,8 @@ INSERT INTO `web_setting` (`setting_id`, `logo`, `invoice_logo`, `favicon`, `cur
 --
 
 CREATE TABLE `weekly_holiday` (
-  `wk_id` int NOT NULL,
-  `dayname` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL
+  `wk_id` int(11) NOT NULL,
+  `dayname` varchar(30) CHARACTER SET latin1 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -2759,6 +2804,21 @@ ALTER TABLE `attendance`
 --
 ALTER TABLE `bank_add`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `breeds`
+--
+ALTER TABLE `breeds`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cows`
+--
+ALTER TABLE `cows`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `breed_fk` (`breed_id`),
+  ADD KEY `route_id` (`route_id`),
+  ADD KEY `supplier_fk` (`supplier_id`);
 
 --
 -- Indexes for table `currency_tbl`
@@ -2983,6 +3043,12 @@ ALTER TABLE `role_permission`
   ADD KEY `fk_user_id` (`role_id`);
 
 --
+-- Indexes for table `routes`
+--
+ALTER TABLE `routes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `salary_sheet_generate`
 --
 ALTER TABLE `salary_sheet_generate`
@@ -3098,313 +3164,342 @@ ALTER TABLE `weekly_holiday`
 -- AUTO_INCREMENT for table `acc_transaction`
 --
 ALTER TABLE `acc_transaction`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
 
 --
 -- AUTO_INCREMENT for table `app_setting`
 --
 ALTER TABLE `app_setting`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `att_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `att_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `bank_add`
 --
 ALTER TABLE `bank_add`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `breeds`
+--
+ALTER TABLE `breeds`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `cows`
+--
+ALTER TABLE `cows`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `currency_tbl`
 --
 ALTER TABLE `currency_tbl`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `customer_information`
 --
 ALTER TABLE `customer_information`
-  MODIFY `customer_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `customer_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `designation`
 --
 ALTER TABLE `designation`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `email_config`
 --
 ALTER TABLE `email_config`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `employee_history`
 --
 ALTER TABLE `employee_history`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `employee_salary_payment`
 --
 ALTER TABLE `employee_salary_payment`
-  MODIFY `emp_sal_pay_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `emp_sal_pay_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `employee_salary_setup`
 --
 ALTER TABLE `employee_salary_setup`
-  MODIFY `e_s_s_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `e_s_s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `expense`
 --
 ALTER TABLE `expense`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `expense_item`
 --
 ALTER TABLE `expense_item`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `invoice`
 --
 ALTER TABLE `invoice`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `invoice_details`
 --
 ALTER TABLE `invoice_details`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=919;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=919;
 
 --
 -- AUTO_INCREMENT for table `leave_apply`
 --
 ALTER TABLE `leave_apply`
-  MODIFY `leave_appl_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `leave_appl_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `leave_type`
 --
 ALTER TABLE `leave_type`
-  MODIFY `leave_type_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `leave_type_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `module`
 --
 ALTER TABLE `module`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `payroll_holiday`
 --
 ALTER TABLE `payroll_holiday`
-  MODIFY `payrl_holi_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `payrl_holi_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payroll_tax_setup`
 --
 ALTER TABLE `payroll_tax_setup`
-  MODIFY `tax_setup_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `tax_setup_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `personal_loan`
 --
 ALTER TABLE `personal_loan`
-  MODIFY `per_loan_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `per_loan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `person_information`
 --
 ALTER TABLE `person_information`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `person_ledger`
 --
 ALTER TABLE `person_ledger`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `pesonal_loan_information`
 --
 ALTER TABLE `pesonal_loan_information`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product_category`
 --
 ALTER TABLE `product_category`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `product_information`
 --
 ALTER TABLE `product_information`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `product_purchase`
 --
 ALTER TABLE `product_purchase`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `product_purchase_details`
 --
 ALTER TABLE `product_purchase_details`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product_service`
 --
 ALTER TABLE `product_service`
-  MODIFY `service_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `service_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `quotation`
 --
 ALTER TABLE `quotation`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `quotation_service_used`
 --
 ALTER TABLE `quotation_service_used`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `quotation_taxinfo`
 --
 ALTER TABLE `quotation_taxinfo`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `quot_products_used`
 --
 ALTER TABLE `quot_products_used`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `role_permission`
 --
 ALTER TABLE `role_permission`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `routes`
+--
+ALTER TABLE `routes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `salary_sheet_generate`
 --
 ALTER TABLE `salary_sheet_generate`
-  MODIFY `ssg_id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `ssg_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `salary_type`
 --
 ALTER TABLE `salary_type`
-  MODIFY `salary_type_id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `salary_type_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sec_role`
 --
 ALTER TABLE `sec_role`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sec_userrole`
 --
 ALTER TABLE `sec_userrole`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `service_invoice`
 --
 ALTER TABLE `service_invoice`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `service_invoice_details`
 --
 ALTER TABLE `service_invoice_details`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sms_settings`
 --
 ALTER TABLE `sms_settings`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sub_module`
 --
 ALTER TABLE `sub_module`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
 -- AUTO_INCREMENT for table `supplier_information`
 --
 ALTER TABLE `supplier_information`
-  MODIFY `supplier_id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `supplier_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `supplier_product`
 --
 ALTER TABLE `supplier_product`
-  MODIFY `supplier_pr_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `supplier_pr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tax_collection`
 --
 ALTER TABLE `tax_collection`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tax_settings`
 --
 ALTER TABLE `tax_settings`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `units`
 --
 ALTER TABLE `units`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user_login`
 --
 ALTER TABLE `user_login`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `web_setting`
 --
 ALTER TABLE `web_setting`
-  MODIFY `setting_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `setting_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `weekly_holiday`
 --
 ALTER TABLE `weekly_holiday`
-  MODIFY `wk_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `wk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `cows`
+--
+ALTER TABLE `cows`
+  ADD CONSTRAINT `cows_ibfk_1` FOREIGN KEY (`breed_id`) REFERENCES `breeds` (`id`),
+  ADD CONSTRAINT `cows_ibfk_2` FOREIGN KEY (`route_id`) REFERENCES `routes` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

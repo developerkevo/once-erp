@@ -1,8 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-require (APPPATH.'/libraries/REST_Controller.php');
-use Restserver\Libraries\REST_Controller;
-class API extends REST_Controller {
+
+class Api extends CI_Controller {
 
     public function __construct()
     {
@@ -19,7 +18,7 @@ class API extends REST_Controller {
     public function index(){
          $json['response'] = array(
                 'status'  => 'ok',
-                'message' => "Welcome to Nexttech Solutions Sales rest ERP API",
+                'message' => "Welcome to Nexttech Solutions Sales ERP API",
             );
             
             echo json_encode($json,JSON_UNESCAPED_UNICODE);

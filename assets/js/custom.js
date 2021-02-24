@@ -463,6 +463,44 @@ var twelveHour = $('.timepicker-12-hr').wickedpicker();
 
     });
 
+    //breeds
+
+    $('.t-dt').DataTable({ 
+      responsive: true,
+
+      "aaSorting": [[ 0, "asc" ]],
+   
+    'lengthMenu':[[10, 25, 50,100,250,500, total_supplier], [10, 25, 50,100,250,500, "All"]],
+
+      dom:"'<'col-sm-4'l><'col-sm-4 text-center'><'col-sm-4'>Bfrtip", buttons:[ {
+         extend: "copy", className: "btn-sm prints"
+     }
+     , {
+         extend: "csv", title: "SupplierList", exportOptions: {
+                columns: [ 0, 1, 2, 3, 4,5 ] //Your Colume value those you want
+                    }, className: "btn-sm prints"
+     }
+     , {
+         extend: "excel", title: "SupplierList", exportOptions: {
+                columns: [ 0, 1, 2, 3, 4,5 ] //Your Colume value those you want
+                    },className: "btn-sm prints"
+     }
+     , {
+         extend: "pdf", title: "SupplierList",exportOptions: {
+                columns: [ 0, 1, 2, 3, 4,5 ] //Your Colume value those you want
+                    }, className: "btn-sm prints"
+     }
+     , {
+         extend: "print",exportOptions: {
+                columns: [ 0, 1, 2, 3, 4,5 ] //Your Colume value those you want
+                    },title: "<center> SupplierList</center>", className: "btn-sm prints"
+     }
+     ],
+     
+
+});
+    //end breeds
+
 
     /*product part*/
     var total_product = $("#total_product").val();
