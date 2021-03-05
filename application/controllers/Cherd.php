@@ -10,8 +10,12 @@ class Cherd extends CI_Controller {
         $this->db->query('SET SESSION sql_mode = ""');
         $this->load->library('auth');
         $this->load->library('lbreed');
+        $this->load->library('lroute');
+        $this->load->library('lcow');
         $this->load->library('session');
         $this->load->model('Breed');
+        $this->load->model('Route');
+        $this->load->model('Cow');
         $this->auth->check_admin_auth();
     }
 
@@ -19,8 +23,7 @@ class Cherd extends CI_Controller {
     public function add_breed()
     {
         $content = $this->lbreed->breed_add_form();
-        $this->template->full_admin_html_view($content);
-      
+        $this->template->full_admin_html_view($content);      
         
     }
 
@@ -42,7 +45,7 @@ class Cherd extends CI_Controller {
         $CI =& get_instance();
         $this->auth->check_admin_auth();
         $data = $this->Breed->get_breeds();
-        // print_r($data);
+        
          $content =$this->lbreed->breeds($data);
     
         $this->template->full_admin_html_view($content);
@@ -77,14 +80,76 @@ class Cherd extends CI_Controller {
     }
   
 
-    public function manage_cow()
-    {
-        echo "Manage Cow";
-    }
-
+    //routes
     public function manage_route()
     {
-        echo "Manage Route";
+        $CI =& get_instance();
+        $this->auth->check_admin_auth();
+        $data = $this->Route->get_routes();        
+        $content =$this->lroute->routes($data);    
+        $this->template->full_admin_html_view($content);
+    }
+
+
+    public function add_route()
+    {
+        $content = $this->lroute->route_add_form();
+        $this->template->full_admin_html_view($content);      
+        
+    }
+
+
+    public function save_route()
+    {
+        $name = $this->input->post('name');
+        $data = array(
+            "name" => $name,
+        );
+        if($this->Route->add_route($data))
+        {
+            redirect(base_url('Cherd/manage_route'));    
+        }else{
+            redirect(base_url('Cherd/add_route'));    
+        }
+    }
+
+    public function delete_route()
+    {
+        $id = $this->uri->segment(3);
+        
+        if($this->Route->delete_route($id)){
+            redirect(base_url('Cherd/manage_breed'));    
+        }else{
+            redirect(base_url('Cherd/add_breed'));    
+        }
+    }
+
+    public function update_route()
+    {
+        $id = $this->uri->segment(3);
+        $name = $this->input->post("name");
+        $data = array(
+            "name" => $name,
+            "id" => $id
+        );
+        if($this->Route->update_route($data))
+        {        
+           redirect(base_url('Cherd/manage_route'));    
+        }else{
+            redirect(base_url('Cherd/add_route'));    
+        }
+    }
+
+
+    
+    public function manage_cow()
+    {
+        $CI =& get_instance();
+        $this->auth->check_admin_auth();
+        $breeds = $this->Breed->get_breeds();
+        $routes = $this->Route->get_routes();
+        $content =$this->lcow->cows($data);    
+        $this->template->full_admin_html_view($content);
     }
 
 }

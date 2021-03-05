@@ -401,17 +401,17 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
 
                   <?php if($this->permission1->method('manage_supplier','read')->access()){ ?>
                     <li class="treeview <?php
-                        if ( $this->uri->segment('2') == "manage_breed") {
+                        if ( $this->uri->segment('2') == "manage_breed" || $this->uri->segment('2') == "add_breed") {
                             echo "active";
                         } else {
                             echo " ";
                         }
                         ?>"><a href="<?php echo base_url('Cherd/manage_breed') ?>"><?php echo "Breed Managment" ?></a></li>
                      <?php } ?>
-<!-- 
+
                     <?php if($this->permission1->method('add_supplier','create')->access()){ ?>
                     <li class="treeview <?php
-                        if ($this->uri->segment('1') == "Cherd" && $this->uri->segment('2') == "") {
+                        if ($this->uri->segment('1') == "Cherd" && ($this->uri->segment('2') == "manage_route" || $this->uri->segment('2') == "add_route") ) {
                             echo "active";
                         } else {
                             echo " ";
@@ -421,14 +421,14 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
 
                     <?php if($this->permission1->method('add_supplier','create')->access()){ ?>
                     <li class="treeview <?php
-                        if ($this->uri->segment('1') == "Cherd" && $this->uri->segment('2') == "") {
+                        if ($this->uri->segment('1') == "Cherd" && ($this->uri->segment('2') == "manage_cow" || $this->uri->segment('2') == "add_cow")) {
                             echo "active";
                         } else {
                             echo " ";
                         }
                         ?>"><a href="<?php echo base_url('Cherd/manage_cow') ?>"><?php echo "Cows Managment" ?></a></li>
                     <?php }?>
-   -->
+  
                 
                 </ul>
             </li>
