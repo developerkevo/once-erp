@@ -15,7 +15,7 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
             <!--<b>A</b>BD-->
             <img src="<?php
             if (isset($Web_settings[0]['favicon'])) {
-                echo html_escape($Web_settings[0]['favicon']);
+                echo base_url(html_escape($Web_settings[0]['favicon']));
             }
             ?>" alt="">
         </span>
@@ -24,7 +24,7 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
             <!--<b>Admin</b>BD-->
             <img src="<?php
             if (isset($Web_settings[0]['logo'])) {
-                echo html_escape($Web_settings[0]['logo']);
+                echo base_url(html_escape($Web_settings[0]['logo']));
             }
             ?>" alt="">
         </span>
@@ -100,7 +100,7 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
         <!-- Sidebar user panel -->
         <div class="user-panel text-center">
             <div class="image">
-                <img src="<?php echo html_escape($users[0]['logo']) ?>" class="img-circle" alt="User Image">
+                <img src="<?php echo base_url(html_escape($users[0]['logo'])) ?>" class="img-circle" alt="User Image">
             </div>
             <div class="info">
                 <p><?php echo $this->session->userdata('user_name') ?></p>
@@ -392,7 +392,7 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
             }
             ?>">
                 <a href="#">
-                    <i class="ti-user"></i><span><?php echo "Herd Management" ?></span>
+                    <i class="ti-id-badge"></i><span><?php echo "Herd Management" ?></span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>

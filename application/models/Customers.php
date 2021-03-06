@@ -26,6 +26,13 @@ class Customers extends CI_Model {
         return false;
     }
 
+    public function get_farmer_name_id(){
+        $this->db->select(["customer_id","customer_name"]);
+        $this->db->from("customer_information");
+        $this->db->order_by("customer_name","asc");
+        return $this->db->get()->result();
+    }
+
     //customer List
     public function customer_list($per_page = null, $page = null) {
         $this->db->select('*');

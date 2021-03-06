@@ -16,6 +16,7 @@ class Cherd extends CI_Controller {
         $this->load->model('Breed');
         $this->load->model('Route');
         $this->load->model('Cow');
+        $this->load->model("Customers");
         $this->auth->check_admin_auth();
     }
 
@@ -148,8 +149,99 @@ class Cherd extends CI_Controller {
         $this->auth->check_admin_auth();
         $breeds = $this->Breed->get_breeds();
         $routes = $this->Route->get_routes();
+        $farmers = $this->Customers->get_farmer_name_id();
+        $cows = $this->Cow->get_cows();
+        $cows_by_breed = $this->Cow->cows_by_breed();
+        $cows_by_route = $this->Cow->cows_by_route();      
+
+        /// chart data and lable breed;
+        $cows_by_breed_data = $cows_by_breed_lable = '';
+        foreach($cows_by_breed as $br)
+        {
+            $cows_by_breed_data .= $br->cows.",";
+            $cows_by_breed_lable .= $br->breed.",";
+        }
+
+    
+
+         /// chart data and lable route;
+         $cows_by_route_data = $cows_by_route_lable = '';
+         foreach($cows_by_route as $br)
+         {
+             $cows_by_route_data .= $br->cows.",";
+             $cows_by_route_lable .= $br->route.",";
+         }
+
+
+        $data = array("breeds" => $breeds,
+        "routes" => $routes,
+        "farmers" => $farmers, 
+        "cows" => $cows,
+        "cows_by_breed_data"=>$cows_by_breed_data,
+        "cows_by_breed_lable"=>$cows_by_breed_lable, 
+        "cows_by_route_data"=>$cows_by_route_data,
+        "cows_by_route_lable"=>$cows_by_route_lable
+    );
         $content =$this->lcow->cows($data);    
         $this->template->full_admin_html_view($content);
+    }
+
+    public function add_cow()
+    {
+        $CI =& get_instance();
+        $this->auth->check_admin_auth();
+
+        $farmer_id = $this->input->post("farmer");
+        $breed_id = $this->input->post("breed");
+        $route_id = $this->input->post("route");
+        $age = $this->input->post("age");
+        $production = $this->input->post("production");
+
+        $data = array(
+            "breed_id" => $breed_id,
+            "age" => $age,
+            "route_id" => $route_id,
+            "supplier_id" => $farmer_id,
+            "production" => $production
+
+        );
+        if($this->Cow->add_cow($data))
+        {
+            redirect(base_url('Cherd/manage_cow'));
+        }else{
+            $this->session->set_flashdata('error_message', "Error Occured");
+            redirect(base_url('Cherd/manage_cow'));
+        }
+    }
+
+
+    public function update_cow()
+    {
+
+        $id = $this->uri->segment(3);
+
+        $farmer_id = $this->input->post("farmer");
+        $breed_id = $this->input->post("breed");
+        $route_id = $this->input->post("route");
+        $age = $this->input->post("age");
+        $production = $this->input->post("production");
+
+        $data = array(
+            "breed_id" => $breed_id,
+            "age" => $age,
+            "route_id" => $route_id,
+            "supplier_id" => $farmer_id,
+            "production" => $production,
+            "id" => $id
+        );
+
+       if($this->Cow->update_cow($data))
+       {
+        redirect(base_url('Cherd/manage_cow'));
+       }
+
+       $this->session->set_flashdata('error_message', "Error Occured");
+        redirect(base_url('Cherd/manage_cow'));
     }
 
 }

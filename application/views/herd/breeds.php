@@ -75,7 +75,7 @@
                                     <tr>
                                     <td><?php echo $br->name; ?></td>
                                     <td><button  class="btn btn-info btn-xs" data-placement="left" data-toggle="modal" data-target="#exampleModal<?php echo $br->id;?>"><i class="fa fa-edit"></i></button>
-                                    <a href=" <?php echo $base_url.'delete_breed/'.$br->id?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a></td>
+                                    <!-- <a href=" <?php echo $base_url.'delete_breed/'.$br->id?>" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a></td> -->
                                 </tr>
                                     <!-- modal -->
                                     <div class="modal fade" id="exampleModal<?php echo $br->id;?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -111,6 +111,7 @@
                                 
                                   
                                 </tbody>
+                               
         
                             </table>
                           
