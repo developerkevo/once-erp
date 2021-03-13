@@ -11,7 +11,6 @@ class Cherd extends CI_Controller {
         $this->load->library('auth');
         $this->load->library('lbreed');
         $this->load->library('lroute');
-        $this->load->library('lcow');
         $this->load->library('session');
         $this->load->model('Breed');
         $this->load->model('Route');
@@ -182,8 +181,8 @@ class Cherd extends CI_Controller {
         "cows_by_route_data"=>$cows_by_route_data,
         "cows_by_route_lable"=>$cows_by_route_lable
     );
-        $content =$this->lcow->cows($data);    
-        $this->template->full_admin_html_view($content);
+
+        $this->template->full_admin_html_view($CI->parser->parse('herd/manage_cows',$data,true));
     }
 
     public function add_cow()

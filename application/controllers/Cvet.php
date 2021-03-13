@@ -1,0 +1,137 @@
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Cvet extends CI_Controller {
+
+    function __construct() {
+        parent::__construct();
+        $this->db->query('SET SESSION sql_mode = ""');
+        $this->load->library('auth');
+        $this->load->library('session');
+        $this->load->model('Route');
+        $this->load->model('Vet');
+        $this->auth->check_admin_auth();
+    }
+
+    
+    public function manage_vets()
+    {  
+        $CI =& get_instance(); 
+        $routes = $this->Route->get_routes();
+        
+        $vets = $this->Vet->get_vets();
+        $vets_by_route = $this->Vet->vets_by_route();
+        $vets_by_semen_count = $this->Vet->vets_by_semen_count();      
+
+        /// chart data and lable route;
+        $vets_by_route_data = $vets_by_route_label = '';
+        foreach($vets_by_route as $br)
+        {
+            $vets_by_route_data .= $br->vets.",";
+            $vets_by_route_label .= $br->route.",";
+        }
+
+    
+
+         /// chart data and lable semen count;
+         $vets_by_semen_count_data = $vets_by_semen_count_label = '';
+         foreach($vets_by_semen_count as $br)
+         {
+             $vets_by_semen_count_data .= $br->semens.",";
+             $vets_by_semen_count_label .= $br->name.",";
+         }
+
+
+        $data = array(
+        "routes" => $routes, 
+        "vets" => $vets,
+        "vets_by_route_label"=>$vets_by_route_label,
+        "vets_by_route_data"=>$vets_by_route_data,
+        "vets_by_semen_count_data"=>$vets_by_semen_count_data,
+        "vets_by_semen_count_label"=>$vets_by_semen_count_label,
+    );
+
+
+    
+    
+        $this->template->full_admin_html_view($CI->parser->parse('vet/manage_vets',$data,true));
+    }
+
+    public function add_vet()
+    {
+
+        $this->auth->check_admin_auth();
+
+        
+        $name = $this->input->post("name");
+        $phone = $this->input->post("phone");
+        $route_id = $this->input->post("route_id");
+        $id = $this->input->post("id");
+        $location = $this->input->post("location");
+        $semen_count = $this->input->post("semen_count");
+
+        $data = array(
+            "name" => $name,
+            "phone" => $phone,
+            "route_id" => $route_id,
+            "location" => $location,
+            "semen_count" => $semen_count,
+            "id_no" => $id
+        );
+
+        if($this->Vet->add_vet($data))
+        {
+            redirect(base_url('Cvet/manage_vets'));
+        }else{
+            $this->session->set_flashdata('error_message', "Error Occured");
+            redirect(base_url('Cvet/manage_vets'));
+        }
+    }
+
+
+    public function update_vet()
+    {
+
+        $id = $this->uri->segment(3);
+
+        $name = $this->input->post("name");
+        $phone = $this->input->post("phone");
+        $route_id = $this->input->post("route_id");
+        $id = $this->input->post("id");
+        $location = $this->input->post("location");
+        $semen_count = $this->input->post("semen_count");
+
+        $data = array(
+            "name" => $name,
+            "phone" => $phone,
+            "route_id" => $route_id,
+            "location" => $location,
+            "semen_count" => $semen_count,
+            "id_no" => $id
+        );
+
+    
+
+       if($this->Cow->update_cow($data))
+       {
+        redirect(base_url('Cvet/manage_vets'));
+       }
+
+       $this->session->set_flashdata('error_message', "Error Occured");
+        redirect(base_url('Cvet/manage_vets'));
+    }
+
+
+    public function bookings()
+    {
+        $vet_id = $this->uri->segment(3);
+        $bookings = $this->Vet->bookings($vet_id);       
+        header('Content-Type: application/json');
+        echo json_encode($bookings);
+    }
+
+}
+
+?>

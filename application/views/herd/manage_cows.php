@@ -183,12 +183,14 @@
                                 </tbody>
 
                                 <tfoot>
-                                    <th class="col-span">
-                                        Total Cows
-                                    </th>
-                                    <th>
-                                        <?php echo count($cows);?>
-                                    </th>
+                                    <tr>
+                                       <td colspan="6">
+                                            <strong>Total Cows</strong>
+                                       </td>
+                                       <td>
+                                            <?php echo "<strong>".count($cows)."</strong>";?>
+                                       </td>
+                                    </tr>
                                 </tfoot>
         
                             </table>

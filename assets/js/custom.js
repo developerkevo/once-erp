@@ -963,7 +963,6 @@ function loadCoaData(id){
         dataType: "json",
         success: function(data)
         {
-           console.log(data.rowdata);
            var headlabel = data.headlabel;
            $('#txtHeadCode').val(data.headcode);
             document.getElementById("txtHeadName").value = '';
