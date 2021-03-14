@@ -395,7 +395,7 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
                                     }
                                     ?>">
                     <a href="#">
-                        <i class="ti-id-badge"></i><span><?php echo "Herd Management" ?></span>
+                        <i class="ti-tag"></i><span><?php echo "Herd Management" ?></span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -440,8 +440,8 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
 
 
 
-               <!-- Herds -->
-               <?php if ($this->permission1->method('add_supplier', 'create')->access() || $this->permission1->method('manage_supplier', 'read')->access() || $this->permission1->method('supplier_ledger_report', 'read')->access() || $this->permission1->method('supplier_sales_details_all', 'read')->access()) { ?>
+            <!-- Vets -->
+            <?php if ($this->permission1->method('add_supplier', 'create')->access() || $this->permission1->method('manage_supplier', 'read')->access() || $this->permission1->method('supplier_ledger_report', 'read')->access() || $this->permission1->method('supplier_sales_details_all', 'read')->access()) { ?>
                 <!-- Supplier menu start -->
                 <li class="treeview <?php
                                     if ($this->uri->segment('1') == ("Cvet")) {
@@ -465,13 +465,75 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
                                                 } else {
                                                     echo " ";
                                                 }
-                                                ?>"><a href="<?php echo base_url('Cvet/manage_vets') ?>"><?php echo "Vet Managment" ?></a></li>
-                        <?php } ?>                       
+                                                ?>">
+                                <a href="<?php echo base_url('Cvet/manage_vets') ?>"><?php echo "Vet Managment" ?></a>
+                            </li>
+
+                            <li class="treeview <?php
+                                                if ($this->uri->segment('2') == "manage_bookings") {
+                                                    echo "active";
+                                                } else {
+                                                    echo " ";
+                                                }
+                                                ?>">
+                                <a href="<?php echo base_url('Cvet/manage_bookings') ?>"><?php echo "Bookings" ?></a>
+                            </li>
+                        <?php } ?>
 
                     </ul>
                 </li>
             <?php } ?>
-            <!-- end Herds -->
+            <!-- end Vets -->
+
+
+
+            <!-- Diseases -->
+            <?php if ($this->permission1->method('add_supplier', 'create')->access() || $this->permission1->method('manage_supplier', 'read')->access() || $this->permission1->method('supplier_ledger_report', 'read')->access() || $this->permission1->method('supplier_sales_details_all', 'read')->access()) { ?>
+                <!-- Supplier menu start -->
+                <li class="treeview <?php
+                                    if ($this->uri->segment('1') == ("Cdisease")) {
+                                        echo "active";
+                                    } else {
+                                        echo " ";
+                                    }
+                                    ?>">
+                    <a href="#">
+                        <i class="ti-alert"></i><span><?php echo "Disease Management" ?></span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+
+                        <?php if ($this->permission1->method('manage_supplier', 'read')->access()) { ?>
+                            <li class="treeview <?php
+                                                if ($this->uri->segment('2') == "manage_diseases") {
+                                                    echo "active";
+                                                } else {
+                                                    echo " ";
+                                                }
+                                                ?>">
+                                <a href="<?php echo base_url('Cdisease/manage_diseases') ?>"><?php echo "Disease Management" ?></a>
+                            </li>
+
+                            <!-- <li class="treeview <?php
+                                                if ($this->uri->segment('2') == "manage_diseases") {
+                                                    echo "active";
+                                                } else {
+                                                    echo " ";
+                                                }
+                                                ?>">
+                                <a href="<?php echo base_url('Cdisease/manage_disease') ?>"><?php echo "Bookings" ?></a> -->
+                            </li>
+                        <?php } ?>
+
+                    </ul>
+                </li>
+            <?php } ?>
+            <!-- end Diseases -->
+
+
+
 
             <!-- Purchase menu start -->
             <?php if ($this->permission1->method('add_purchase', 'create')->access() || $this->permission1->method('manage_purchase', 'read')->access()) { ?>

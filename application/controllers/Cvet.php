@@ -12,6 +12,7 @@ class Cvet extends CI_Controller {
         $this->load->library('session');
         $this->load->model('Route');
         $this->load->model('Vet');
+        $this->load->model("Customers");
         $this->auth->check_admin_auth();
     }
 
@@ -131,6 +132,99 @@ class Cvet extends CI_Controller {
         header('Content-Type: application/json');
         echo json_encode($bookings);
     }
+
+    public function manage_bookings()
+    {
+        $CI =& get_instance(); 
+
+        $status = $this->input->post("fstatus");
+
+        if($status == null or $status == "")
+        {
+            $status = "All";
+        }
+
+
+        $bookings = $this->Vet->all_bookings($status);  
+                
+        
+        $farmers = $this->Customers->get_farmer_name_id(); 
+        $vets = $this->Vet->get_vets();
+        $data = array(
+            "bookings" => $bookings,
+            "customers" => $farmers,
+            "vets" => $vets
+        );
+        $this->template->full_admin_html_view($CI->parser->parse('vet/bookings',$data,true));
+    }
+
+
+    public function add_booking()
+    {
+        //$CI =& get_instance(); 
+        $date  = $this->input->post("date");
+        $farmer = $this->input->post("customer");
+        $vet_id = $this->input->post("vet_id");
+
+        $data = array(
+            "vet_id" => $vet_id,
+            "farmer_id" => $farmer,
+            "date" => $date
+        );
+
+        if($this->Vet->add_booking($data))
+        {
+            redirect(base_url('Cvet/manage_bookings'));
+        }else{
+            $this->session->set_flashdata('error_message', "Error Occured");
+            redirect(base_url('Cvet/manage_bookings'));
+        }
+
+
+    }
+
+
+    public function update_booking_status()
+    {
+        $vet_id = $this->input->post("vet_id");
+        $semen_used = $this->input->post('semen_used');
+        $id = $this->input->post('bid');
+        $status = $this->input->post('status');
+
+        $data = array(
+            "id" => $id,
+            "semen_used" => $semen_used,
+            "status" => $status
+        );
+
+        $current_semen_count = $this->Vet->vet_by_id($vet_id)[0]->semen_count;
+
+        if($current_semen_count < $semen_used)
+        {
+            $this->session->set_flashdata('error_message', "Used semen is more than the current semen for the vet");
+            redirect(base_url('Cvet/manage_bookings'));
+        }else{
+            if($this->Vet->update_booking_status($data))
+            {
+                
+                $data = array("id" => $vet_id, 
+                
+                "semen_count" => ($current_semen_count - $semen_used));
+
+                if($this->Vet->update_semen_count($data))
+                {
+                    redirect(base_url('Cvet/manage_bookings'));
+                }else{
+                    $this->session->set_flashdata('error_message', "Failed");
+                    redirect(base_url('Cvet/manage_bookings'));
+                }
+            }
+        }
+
+
+        
+    }
+    
 
 }
 

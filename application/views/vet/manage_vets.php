@@ -57,8 +57,6 @@
                         </div>
                     </div>
                     <div class="panel-body">
-
-                    <input type="hidden" id="vetIdInput" value="1">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered t-dt" cellspacing="0">
                                 <thead>
@@ -277,7 +275,6 @@
             <th>Booking Date</th>
             <th>Status</th>
             <th>Semen Used</th>
-            <th>Update Status</th>
         </thead>`
 
 
@@ -296,15 +293,7 @@
                 <td>${d.customer_name}</td>
                 <td>${d.date}</td>
                 <td>${d.status}</td>
-                <td>${d.semen_used}</td>  
-                <td> 
-                <select class="form-control" name="update_status" id="updateStatus`+vetId+`" onchange="`+test(this)+`" tabindex="-1" aria-hidden="true" style="width:100%;">
-                    <option selected>---update---</option>
-                    <option value="1">Pending</option>
-                    <option value="2">Cancelled</option>
-                    <option value="3">Done</option>
-                    </select>
-                </td>          
+                <td>${d.semen_used}</td>           
             </tr>`
                 });
 
@@ -332,15 +321,5 @@
 
     }
 
-
-
-let buttonId = "#updateStatus"+$("#vetIdInput").val()
-
-
-$(buttonId).change(()=> {
-//   console.log(this.value)
-
-alert("Hello")
-});
 
 </script>

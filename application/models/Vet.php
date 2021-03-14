@@ -44,6 +44,16 @@ class Vet extends CI_Model{
         }
     }
 
+    public function vet_by_id($id)
+    {
+        $this->db->select("semen_count");
+        $this->db->from('vets');
+        $this->db->where('id',$id);
+        $this->db->limit('1');
+        return $this->db->get()->result();
+
+    }
+
     public function vets_by_semen_count()
     {
         $this->db->select("sum(semen_count) as semens, name");
@@ -70,6 +80,53 @@ class Vet extends CI_Model{
         $this->db->join('customer_information f', 'f.customer_id = b.farmer_id');
         $this->db->where('b.vet_id',$vet_id);
         return $this->db->get()->result();
+    }
+
+
+    public function all_bookings($status)
+    {
+
+
+            $this->db->select("f.customer_name, v.name as vet_name, v.id as vet_id, b.date, b.id, b.status, b.semen_used, v.semen_count");
+            $this->db->from('bookings b');
+            $this->db->join('vets v','v.id = b.vet_id');
+            $this->db->join('customer_information f', 'f.customer_id = b.farmer_id');
+      
+            if($status != "All")
+            {
+                $this->db->where('b.status',$status);
+            }
+        
+       
+        return $this->db->get()->result();
+    }
+
+    public function add_booking($data)
+    {
+        if($this->db->insert("bookings",$data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    public function update_booking_status($data)
+    {
+        $this->db->where('id', $data["id"]);
+        if($this->db->update('bookings', $data))
+        {
+            return true;
+        }
+    }
+
+    public function update_semen_count($data)
+    {
+        $this->db->where('id', $data["id"]);
+        if($this->db->update('vets', $data))
+        {
+            return true;
+        }
     }
 }
 
