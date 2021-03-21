@@ -106,11 +106,14 @@
                                             <td><?php echo ++$key; ?></td>
                                             <td><?php echo $sc->farmer; ?></td>
                                             <td><?php echo $sc->breed_name; ?></td>
-                                            <td><?php echo $sc->age; ?></td>
+                                            <td><?php echo $sc->age."yrs"; ?></td>
                                             <td><?php echo $sc->name; ?></td>
-                                            <td><?php echo $sc->status; ?></td>
-                                        
-                                            <td><button class="btn btn-xs btn-primary" onclick='updateCowStatus(<?php echo json_encode($sc); ?>)'>Update Status</button></td>
+                                            <td><?php echo $sc->status; ?></td>                                        
+                                            <td>
+                                                <button class="btn btn-xs btn-primary" onclick='updateCowStatus(<?php echo json_encode($sc); ?>)'>
+                                                    Update Status
+                                                </button>
+                                            </td>
 
                                         </tr>
                                     <?php  } ?>
@@ -149,9 +152,9 @@
 
                                         <div class="col-sm-12">
                                             <div class="form-group row">
-                                                <label for="diseaseId" class="form-label col-sm-12"><?php echo "Disease Name" ?> <i class="text-danger">*</i></label>
+                                                <label for="diseaseName" class="form-label col-sm-12"><?php echo "Disease Name" ?> <i class="text-danger">*</i></label>
                                                 <div class="col-sm-12">
-                                                    <select class="form-control" name="disease_id" id="diseaseId" tabindex="-1" aria-hidden="true" style="width:100%;">
+                                                    <select class="form-control" name="disease_id" id="diseaseName" tabindex="-1" aria-hidden="true" style="width:100%;">
                                                         <?php
                                                         foreach ($diseases as $d) {
                                                         ?>
@@ -164,9 +167,9 @@
 
                                         <div class="col-sm-12">
                                             <div class="form-group row">
-                                                <label for="diseaseId" class="form-label col-sm-12"><?php echo "Cow Details" ?> <i class="text-danger">*</i></label>
+                                                <label for="cowDetails" class="form-label col-sm-12"><?php echo "Cow Details" ?> <i class="text-danger">*</i></label>
                                                 <div class="col-sm-12">
-                                                    <select class="form-control" name="cow_id" id="diseaseId" tabindex="-1" aria-hidden="true" style="width:100%;">
+                                                    <select class="form-control" name="cow_id" id="cowDetails" tabindex="-1" aria-hidden="true" style="width:100%;">
                                                         <?php
                                                         foreach ($cows as $c) {
                                                         ?>
@@ -184,6 +187,7 @@
                             </div>
                             <?php echo form_close() ?>
                         </div>
+                    </div>
                     </div>
                     <!-- end add sick cow modal -->
 
@@ -296,6 +300,79 @@
                         </div>
                     </div>
                     <!-- end add  Booking modal -->
+
+
+
+
+                    <!-- update status Modal -->
+                    <div class="modal fade" id="updateStatusModal" tabindex="-1" role="dialog" aria-labelledby="updateStatusModalLabel" aria-hidden="true">
+                        <?php echo form_open_multipart('Cdisease/update_cow_disease_status/', array('id' => 'update_cow_disease_status', "method" => 'post')) ?>
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="updateStatusModalLabel">Cow Sickeness Status</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+
+                                    <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <input class="form-control" name="id" id="uid" type="hidden" required="" tabindex="1" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="disease" class="form-label"><?php echo "Farmer's Name" ?> <i class="text-danger">*</i></label>
+                                                <input class="form-control" name="ufarmer" id="ufarmer" type="text" required="" tabindex="1" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="disease" class="form-label"><?php echo "Breed of Cow" ?> <i class="text-danger">*</i></label>
+                                                <input class="form-control" name="ubreed" id="ubreed" type="text" required="" tabindex="1" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="disease" class="form-label"><?php echo "Diesease Name" ?> <i class="text-danger">*</i></label>
+                                                <input class="form-control" name="udisease" id="udisease" type="text" required="" tabindex="1" readonly>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="col-sm-12">
+                                            <div class="form-group row">
+                                                <label for="cowStatus" class="form-label col-sm-12"><?php echo "Status" ?> <i class="text-danger">*</i> <span id="cowStatusLabel"></span></label>
+                                                <div class="col-sm-12">
+                                                    <select class="form-control" name="cowStatus" id="cowStatus" tabindex="-1" aria-hidden="true" style="width:100%;">
+                                                        <option value="Died">Died</option>
+                                                        <option value="Sick">Sick</option>
+                                                        <option value="Improving">Improving</option>
+                                                        <option value="Healed">Healed</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php echo form_close() ?>
+                        </div>
+                    </div>
+                    <!-- end add  Booking modal -->
+
+
                 </div>
             </div>
     </section>
@@ -303,6 +380,12 @@
 
 <script>
     function updateCowStatus(d) {
-        console.log(d);
+
+        $("#ufarmer").val(d.farmer);
+        $("#ubreed").val(d.breed_name);
+        $("#udisease").val(d.name);
+        $("#uid").val(d.id);
+
+        $("#updateStatusModal").modal("show");
     }
 </script>

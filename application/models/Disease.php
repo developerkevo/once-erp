@@ -92,6 +92,15 @@ class Disease extends CI_Model{
             return true;
         }
     }
+
+    public function update_cow_disease_status($data)
+    {
+        $this->db->where("id", $data["id"]);
+        if($this->db->update('sick_cows', $data))
+        {
+            return true;
+        }
+    }
 }
 
 ?>

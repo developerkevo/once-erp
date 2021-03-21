@@ -76,11 +76,6 @@ class Cdisease extends CI_Controller {
         "sick_cows" => $sick_cows,
         "cows" => $cows
         );   
-
-
-        // echo json_encode($sick_cows);
-
-        // exit();
     
         $this->template->full_admin_html_view($CI->parser->parse('diseases/manage_diseases',$data,true));
     }
@@ -102,6 +97,24 @@ class Cdisease extends CI_Controller {
             redirect(base_url('Cdisease/manage_diseases'));
         }
 
+
+    }
+
+
+    public function update_cow_disease_status()
+    {
+        $id = $this->input->post("id");
+        $status = $this->input->post("cowStatus");
+
+        $data = array(
+            "id" => $id,
+            "status" => $status
+        );
+
+        if($this->Disease->update_cow_disease_status($data))
+        {
+            redirect(base_url('Cdisease/manage_diseases'));
+        }
 
     }
 

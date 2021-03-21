@@ -515,22 +515,59 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
                                                 ?>">
                                 <a href="<?php echo base_url('Cdisease/manage_diseases') ?>"><?php echo "Disease Management" ?></a>
                             </li>
-
-                            <!-- <li class="treeview <?php
-                                                if ($this->uri->segment('2') == "manage_diseases") {
-                                                    echo "active";
-                                                } else {
-                                                    echo " ";
-                                                }
-                                                ?>">
-                                <a href="<?php echo base_url('Cdisease/manage_disease') ?>"><?php echo "Bookings" ?></a> -->
-                            </li>
                         <?php } ?>
 
                     </ul>
                 </li>
             <?php } ?>
             <!-- end Diseases -->
+
+
+
+            <!-- Manfucturing Module -->
+            <?php if ($this->permission1->method('add_supplier', 'create')->access() || $this->permission1->method('manage_supplier', 'read')->access() || $this->permission1->method('supplier_ledger_report', 'read')->access() || $this->permission1->method('supplier_sales_details_all', 'read')->access()) { ?>
+                <!-- Supplier menu start -->
+                <li class="treeview <?php
+                                    if ($this->uri->segment('1') == ("Cmanufucturing")) {
+                                        echo "active";
+                                    } else {
+                                        echo " ";
+                                    }
+                                    ?>">
+                    <a href="#">
+                        <i class="ti-ruler-pencil"></i><span><?php echo "Manufucturing" ?></span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+
+                        <?php if ($this->permission1->method('manage_supplier', 'read')->access()) { ?>
+                            <li class="treeview <?php
+                                                if ($this->uri->segment('2') == "manage_raw_materials") {
+                                                    echo "active";
+                                                } else {
+                                                    echo " ";
+                                                }
+                                                ?>">
+                                <a href="<?php echo base_url('Cmanufucturing/manage_raw_materials') ?>"><?php echo "Manage Raw Materials" ?></a>
+                            </li>
+
+                            <li class="treeview <?php
+                                                if ($this->uri->segment('2') == "manage_products") {
+                                                    echo "active";
+                                                } else {
+                                                    echo " ";
+                                                }
+                                                ?>">
+                                <a href="<?php echo base_url('Cmanufucturing/manage_products') ?>"><?php echo "Manage Products" ?></a>
+                            </li>
+                        <?php } ?>
+
+                    </ul>
+                </li>
+            <?php } ?>
+            <!-- end Manfucturing Module -->
 
 
 
@@ -573,6 +610,8 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
                 </li>
             <?php } ?>
             <!-- Purchase menu end -->
+
+
             <!-- Quotation Menu Start -->
             <?php if ($this->permission1->method('add_quotation', 'create')->access() || $this->permission1->method('manage_quotation', 'read')->access()) { ?>
                 <li class="treeview <?php
