@@ -146,8 +146,11 @@ class Lcustomer {
     public function customer_add_form() {
         $CI = & get_instance();
         $CI->load->model('Customers');
+        $CI->load->model('Route');
+        $routes = $CI->Route->get_routes();    
         $data = array(
-            'title' => display('add_customer')
+            'title' => display('add_customer'),
+            'routes' => $routes
         );
         $customerForm = $CI->parser->parse('customer/add_customer_form', $data, true);
         return $customerForm;

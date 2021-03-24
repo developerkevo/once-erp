@@ -254,6 +254,16 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
                                                 }
                                                 ?>"><a href="<?php echo base_url('Ccustomer/customer_advance') ?>"><?php echo display('customer_advance') ?></a></li>
                         <?php } ?>
+
+                        <?php if ($this->permission1->method('customer_advance', 'create')->access()) { ?>
+                            <li class="treeview <?php
+                                                if ($this->uri->segment('2') == ("collections")) {
+                                                    echo "active";
+                                                } else {
+                                                    echo " ";
+                                                }
+                                                ?>"><a href="<?php echo base_url('Ccustomer/collections') ?>"><?php echo display('customer_collections') ?></a></li>
+                        <?php } ?>
                     </ul>
                 </li>
             <?php } ?>
@@ -330,7 +340,7 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
             <!-- --- supplier menu start -->
             <?php if ($this->permission1->method('add_supplier', 'create')->access() || $this->permission1->method('manage_supplier', 'read')->access() || $this->permission1->method('supplier_ledger_report', 'read')->access() || $this->permission1->method('supplier_sales_details_all', 'read')->access()) { ?>
                 <!-- Supplier menu start -->
-                <li class="treeview <?php
+                 <!-- <li class="treeview <?php
                                     if ($this->uri->segment('1') == ("Csupplier")) {
                                         echo "active";
                                     } else {
@@ -380,7 +390,7 @@ $out_of_stock = $CI->Reports->out_of_stock_count();
                                                 } ?>"><a href="<?php echo base_url('Csupplier/supplier_advance') ?>"><?php echo display('supplier_advance') ?></a></li>
                         <?php } ?>
                     </ul>
-                </li>
+                </li>  -->
             <?php } ?>
             <!-- Supplier menu end -->
 

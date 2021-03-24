@@ -75,16 +75,18 @@
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-responsive table-striped table-bordered" cellspacing="0"  id="customerLIst"> 
+                            <table class="table table-responsive table-striped table-bordered" cellspacing="0"  id="customerList"> 
                                 <thead>
                                     <tr>
                                         <th><?php echo display('sl') ?></th>
                                         <th><?php echo display('customer_name') ?></th>
-                                        <th><?php echo display('address1'); ?></th>
-                                        <th><?php echo display('address2'); ?></th>
-                                        <th><?php echo display('mobile') ?></th>
+                                        <th><?php echo display('address'); ?></th>
+                                        <th><?php echo display('contact'); ?></th>
+                                        <th><?php echo display('customer_mobile') ?></th>
                                         <th><?php echo display('phone'); ?></th>
-                                        <th><?php echo display('email'); ?></th>
+                                        <th><?php echo display('bank_account'); ?></th>
+                                        <th><?php echo display('customer_type'); ?></th>
+                                        <th><?php echo display('route'); ?></th>
                                         <th><?php echo display('balance') ?></th>
                                         <th><?php echo display('action') ?> </th> 
                                         

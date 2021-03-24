@@ -136,7 +136,7 @@ var twelveHour = $('.timepicker-12-hr').wickedpicker();
    var base_url = $("#base_url").val();
    var total_customer = $("#total_customer").val();
    var currency = $("#currency").val();
-    $('#customerLIst').DataTable({ 
+    $('#customerList').DataTable({ 
              responsive: true,
 
              "aaSorting": [[ 1, "asc" ]],
@@ -186,10 +186,12 @@ var twelveHour = $('.timepicker-12-hr').wickedpicker();
              { data: 'sl' },
              { data: 'customer_name' },
              { data: 'address'},
-             { data: 'address2'},
-             { data: 'mobile' },
+             { data: 'contact'},
+             { data: 'customer_mobile' },
              { data: 'phone'},
-             { data: 'email'},
+             { data: 'bank_account'},
+             { data: 'customer_type'},
+             { data: 'route'},
              { data: 'balance',class:"balance",render: $.fn.dataTable.render.number( ',', '.', 2, currency ) },
              { data: 'button'},
           ],
@@ -268,10 +270,12 @@ var twelveHour = $('.timepicker-12-hr').wickedpicker();
              { data: 'sl' },
              { data: 'customer_name' },
              { data: 'address'},
-             { data: 'address2'},
-             { data: 'mobile' },
+             { data: 'contact'},
+             { data: 'customer_mobile' },
              { data: 'phone'},
-             { data: 'email'},
+             { data: 'bank_account'},
+             { data: 'customer_type'},
+             { data: 'route'},
              { data: 'balance',class:"balance",render: $.fn.dataTable.render.number( ',', '.', 2, currency ) },
              { data: 'button'},
           ],
@@ -347,13 +351,15 @@ var twelveHour = $('.timepicker-12-hr').wickedpicker();
                }
             },
           'columns': [
-             { data: 'sl' },
+            { data: 'sl' },
              { data: 'customer_name' },
              { data: 'address'},
-             { data: 'address2'},
-             { data: 'mobile' },
+             { data: 'contact'},
+             { data: 'customer_mobile' },
              { data: 'phone'},
-             { data: 'email'},
+             { data: 'bank_account'},
+             { data: 'customer_type'},
+             { data: 'route'},
              { data: 'balance',class:"balance",render: $.fn.dataTable.render.number( ',', '.', 2, currency ) },
              { data: 'button'},
           ],
