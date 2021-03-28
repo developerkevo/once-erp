@@ -17,9 +17,9 @@ class Suppliers extends CI_Model {
     //supplier List
     public function supplier_list_pag($per_page, $page) {
         $this->db->select('*');
-        $this->db->from('supplier_information');
+        $this->db->from('customer_information');
+        $this->db->order_by('create_date', 'desc');
         $this->db->limit($per_page, $page);
-        $this->db->order_by('id', 'desc');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -30,112 +30,109 @@ class Suppliers extends CI_Model {
 
     public function getSupplierList($postData=null){
 
-         $response = array();
+        $response = array();
 
-         ## Read value
-         $draw = $postData['draw'];
-         $start = $postData['start'];
-         $rowperpage = $postData['length']; // Rows display per page
-         $columnIndex = $postData['order'][0]['column']; // Column index
-         $columnName = $postData['columns'][$columnIndex]['data']; // Column name
-         $columnSortOrder = $postData['order'][0]['dir']; // asc or desc
-         $searchValue = $postData['search']['value']; // Search value
+        ## Read value
+        $draw = $postData['draw'];
+        $start = $postData['start'];
+        $rowperpage = $postData['length']; // Rows display per page
+        $columnIndex = $postData['order'][0]['column']; // Column index
+        $columnName = $postData['columns'][$columnIndex]['data']; // Column name
+        $columnSortOrder = $postData['order'][0]['dir']; // asc or desc
+        $searchValue = $postData['search']['value']; // Search value
 
-         ## Search 
-         $searchQuery = "";
-         if($searchValue != ''){
-            $searchQuery = " (a.supplier_name like '%".$searchValue."%' or a.mobile like '%".$searchValue."%' or a.country like '%".$searchValue."%' or a.state like '%".$searchValue."%' or a.zip like '%".$searchValue."%' or a.city like '%".$searchValue."%') ";
-         }
+        ## Search 
+        $searchQuery = "";
+        if ($searchValue != '') {
+            $searchQuery = " (a.customer_name like '%" . $searchValue . "%' or a.customer_mobile like '%" . $searchValue . "%' or a.customer_email like '%" . $searchValue . "%'or a.phone like '%" . $searchValue . "%' or a.customer_address like '%" . $searchValue . "%' or a.country like '%" . $searchValue . "%' or a.state like '%" . $searchValue . "%' or a.zip like '%" . $searchValue . "%' or a.city like '%" . $searchValue . "%')";
+        }
 
-         ## Total number of records without filtering
-         $this->db->select('count(*) as allcount');
-         $this->db->from('supplier_information a');
-         $this->db->join('acc_coa b','a.supplier_id = b.supplier_id','left');
-         $this->db->group_by('a.supplier_id');
-          if($searchValue != '')
-         $this->db->where($searchQuery);
-         $records = $this->db->get()->num_rows();
-         $totalRecords = $records;
-
-         ## Total number of record with filtering
-         $this->db->select('count(*) as allcount');
-         $this->db->from('supplier_information a');
-         $this->db->join('acc_coa b','a.supplier_id = b.supplier_id','left');
-         $this->db->group_by('a.supplier_id');
-         if($searchValue != '')
+        ## Total number of records without filtering
+        $this->db->select('count(*) as allcount');
+        $this->db->from('customer_information a');
+        $this->db->join('acc_coa b', 'a.customer_id = b.customer_id', 'left');
+        $this->db->group_by('a.customer_id');
+        if ($searchValue != '')
             $this->db->where($searchQuery);
-         $records = $this->db->get()->num_rows();
-         $totalRecordwithFilter = $records;
+        $records = $this->db->get()->num_rows();
+        $totalRecords = $records;
 
-         ## Fetch records
-         $this->db->select("a.*,b.HeadCode,((select ifnull(sum(Debit),0) from acc_transaction where COAID= `b`.`HeadCode` AND IsAppove = 1)-(select ifnull(sum(Credit),0) from acc_transaction where COAID= `b`.`HeadCode` AND IsAppove = 1)) as balance");
-         $this->db->from('supplier_information a');
-         $this->db->join('acc_coa b','a.supplier_id = b.supplier_id','left');
-         $this->db->group_by('a.supplier_id');
-         if($searchValue != '')
-         $this->db->where($searchQuery);
-         $this->db->order_by($columnName, $columnSortOrder);
-         $this->db->limit($rowperpage, $start);
-         $records = $this->db->get()->result();
-         $data = array();
-         $sl =1;
-  
-         foreach($records as $record ){
-          $button = '';
-          $base_url = base_url();
-          $jsaction = "return confirm('Are You Sure ?')";
+        ## Total number of record with filtering
+        $this->db->select('count(*) as allcount');
+        $this->db->from('customer_information a');
+        $this->db->join('acc_coa b', 'a.customer_id = b.customer_id', 'left');
+        $this->db->group_by('a.customer_id');
+        if ($searchValue != '')
+            $this->db->where($searchQuery);
+        $records = $this->db->get()->num_rows();
+        $totalRecordwithFilter = $records;
 
-       
-        $balance = $record->balance;
+        ## Fetch records
+        $this->db->select("a.customer_name, a.customer_address, a.contact,a.customer_mobile,a.phone,a.customer_type,a.bank_account,r.name as route,b.HeadCode,((select ifnull(sum(Debit),0) from acc_transaction where COAID= `b`.`HeadCode` AND IsAppove = 1)-(select ifnull(sum(Credit),0) from acc_transaction where COAID= `b`.`HeadCode` AND IsAppove = 1)) as balance");
+        $this->db->from('customer_information a');
+        $this->db->join('routes r', 'r.id = a.route_id');
+        $this->db->join('acc_coa b', 'a.customer_id = b.customer_id', 'left');
+        $this->db->order_by('a.create_date',"desc");
+        $this->db->group_by('a.customer_id');
+        if ($searchValue != '')
+            $this->db->where($searchQuery);
+        $this->db->order_by($columnName, $columnSortOrder);
+        $this->db->limit($rowperpage, $start);
+        $records = $this->db->get()->result();
+        $data = array();
+        $sl = 1;
 
-        
-   if($this->permission1->method('manage_supplier','update')->access()){
-    $button .='<a href="'.$base_url.'Csupplier/supplier_update_form/'.$record->supplier_id.'" class="btn btn-info btn-xs"  data-placement="left" title="'. display('update').'"><i class="fa fa-edit"></i></a> ';
-}
-   if($this->permission1->method('manage_supplier','delete')->access()){
-     $button .='<a href="'.$base_url.'Csupplier/supplier_delete/'.$record->supplier_id.'" class="btn btn-danger btn-xs" onclick="'.$jsaction.'"><i class="fa fa-trash"></i></a>';
- }
+        foreach ($records as $record) {
+            $button = '';
+            $base_url = base_url();
+            $jsaction = "return confirm('Are You Sure ?')";
 
-               
-            $data[] = array( 
-                'sl'               =>$sl,
-                'supplier_name'    =>html_escape($record->supplier_name),
-                'address'          =>html_escape($record->address),
-                'address2'         =>html_escape($record->address2),
-                'mobile'           =>html_escape($record->mobile),
-                'emailnumber'      =>html_escape($record->emailnumber),
-                'email_address'    =>html_escape($record->email_address),
-                'contact'          =>html_escape($record->contact),
-                'phone'            =>html_escape($record->phone),
-                'fax'              =>html_escape($record->fax),
-                'city'             =>html_escape($record->city),
-                'state'            =>html_escape($record->state),
-                'zip'              =>html_escape($record->zip),
-                'country'          =>html_escape($record->country),
-                'details'          =>html_escape($record->details),
-                'balance'          =>(!empty($balance)?$balance:0),
-                'button'           =>$button,
-                
-            ); 
+
+
+            if ($this->permission1->method('manage_customer', 'update')->access()) {
+                $button .= '<a href="' . $base_url . 'Ccustomer/customer_update_form/' . $record->customer_id . '" class="btn btn-info btn-xs"  data-placement="left" title="' . display('update') . '"><i class="fa fa-edit"></i></a> ';
+            }
+            if ($this->permission1->method('manage_customer', 'delete')->access()) {
+                $button .= '<a href="' . $base_url . 'Ccustomer/customer_delete/' . $record->customer_id . '" class="btn btn-danger btn-xs " onclick="' . $jsaction . '"><i class="fa fa-trash"></i></a>';
+            }
+
+
+
+
+            $data[] = array(
+                'sl'               => $sl,
+                'customer_name'    => html_escape($record->customer_name),
+                'address'          => html_escape($record->customer_address),
+                'contact'          => html_escape($record->contact),
+                'phone'            => html_escape($record->phone),
+                'customer_mobile'  => html_escape($record->customer_mobile),            
+                'phone'            => html_escape($record->phone),
+                'bank_account'     => html_escape($record->bank_account),
+                'customer_type'     => html_escape($record->customer_type),
+                'route'            => html_escape($record->route),
+                'balance'          => (!empty($record->balance) ? $record->balance : 0),
+                'button'           => $button,
+
+            );
             $sl++;
-         }
+        }
 
-         ## Response
-         $response = array(
+        ## Response
+        $response = array(
             "draw" => intval($draw),
             "iTotalRecords" => $totalRecordwithFilter,
             "iTotalDisplayRecords" => $totalRecords,
             "aaData" => $data
-         );
+        );
 
-         return $response; 
+        return $response;
     }
 
     // supplier search
     public function supplier_search($supplier_id) {
         $this->db->select('*');
-        $this->db->from('supplier_information');
-        $this->db->where('supplier_id', $supplier_id);
+        $this->db->from('customer_information');
+        $this->db->where('customer_id', $supplier_id);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -146,8 +143,8 @@ class Suppliers extends CI_Model {
     //supplier list
     public function supplier_list() {
         $this->db->select('*');
-        $this->db->from('supplier_information');
-        $this->db->order_by('supplier_id', 'desc');
+        $this->db->from('customer_information');
+        $this->db->order_by('customer_id', 'desc');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -158,8 +155,8 @@ class Suppliers extends CI_Model {
     //supplier List For Report
     public function supplier_list_report() {
         $this->db->select('*');
-        $this->db->from('supplier_information');
-        $this->db->order_by('supplier_id', 'desc');
+        $this->db->from('customer_information');
+        $this->db->order_by('customer_id', 'desc');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -170,7 +167,7 @@ class Suppliers extends CI_Model {
     //supplier List
     public function supplier_list_count() {
         $this->db->select('*');
-        $this->db->from('supplier_information');
+        $this->db->from('customer_information');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->num_rows();
@@ -193,8 +190,8 @@ class Suppliers extends CI_Model {
     //supplier Search List
     public function supplier_search_item($supplier_id) {
         $this->db->select('*');
-        $this->db->from('supplier_information');
-        $this->db->where('supplier_id', $supplier_id);
+        $this->db->from('customer_information');
+        $this->db->where('customer_id', $supplier_id);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -241,18 +238,18 @@ class Suppliers extends CI_Model {
     public function supplier_entry($data) {
 
         $this->db->select('*');
-        $this->db->from('supplier_information');
+        $this->db->from('customer_information');
         $this->db->where('supplier_name', $data['supplier_name']);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return FALSE;
         } else {
 
-            $this->db->insert('supplier_information', $data);
+            $this->db->insert('customer_information', $data);
             //Data is sending for syncronizing
 
             $this->db->select('*');
-            $this->db->from('supplier_information');
+            $this->db->from('customer_information');
             $this->db->where('status', 1);
             $query = $this->db->get();
             foreach ($query->result() as $row) {
@@ -309,8 +306,8 @@ class Suppliers extends CI_Model {
     //Retrieve supplier Edit Data
     public function retrieve_supplier_editdata($supplier_id) {
         $this->db->select('*');
-        $this->db->from('supplier_information');
-        $this->db->where('supplier_id', $supplier_id);
+        $this->db->from('customer_information');
+        $this->db->where('customer_id', $supplier_id);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -320,10 +317,10 @@ class Suppliers extends CI_Model {
 
     //Update Categories
     public function update_supplier($data, $supplier_id) {
-        $this->db->where('supplier_id', $supplier_id);
-        $this->db->update('supplier_information', $data);
+        $this->db->where('customer_id', $supplier_id);
+        $this->db->update('customer_information', $data);
         $this->db->select('*');
-        $this->db->from('supplier_information');
+        $this->db->from('customer_information');
         $this->db->where('status', 1);
         $query = $this->db->get();
         foreach ($query->result() as $row) {
@@ -341,16 +338,16 @@ class Suppliers extends CI_Model {
     // Delete supplier from transection 
     // Delete supplier Item
     public function delete_supplier($supplier_id) {
-        $supplier_info = $this->db->select('supplier_name')->from('supplier_information')->where('supplier_id',$supplier_id)->get()->row();
+        $supplier_info = $this->db->select('customer_name')->from('customer_information')->where('customer_id',$supplier_id)->get()->row();
         $supplier_head = $supplier_id.'-'.$supplier_info->supplier_name;
         $this->db->where('HeadName', $supplier_head);
         $this->db->delete('acc_coa');
         
-        $this->db->where('supplier_id', $supplier_id);
-        $this->db->delete('supplier_information');
+        $this->db->where('customer_id', $supplier_id);
+        $this->db->delete('customer_information');
 
         $this->db->select('*');
-        $this->db->from('supplier_information');
+        $this->db->from('customer_information');
         $this->db->where('status', 1);
         $query = $this->db->get();
         foreach ($query->result() as $row) {
@@ -365,7 +362,7 @@ class Suppliers extends CI_Model {
     //Retrieve supplier Personal Data 
     public function supplier_personal_data($supplier_id) {
         $this->db->select('*');
-        $this->db->from('supplier_information');
+        $this->db->from('customer_information');
         $this->db->where('supplier_id', $supplier_id);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
@@ -377,7 +374,7 @@ class Suppliers extends CI_Model {
     /// Supplier person data all
     public function supplier_personal_data_all() {
         $this->db->select('*');
-        $this->db->from('supplier_information');
+        $this->db->from('customer_information');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -388,7 +385,7 @@ class Suppliers extends CI_Model {
     // second
     public function supplier_personal_data1() {
         $this->db->select('*');
-        $this->db->from('supplier_information');
+        $this->db->from('customer_information');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -535,7 +532,7 @@ class Suppliers extends CI_Model {
 						e.product_name,
 						e.product_model,
 						e.product_id,
-            d.supplier_name,
+            d.customer_name,
 						a.quantity,
 						c.supplier_price as supplier_rate,
             CAST(a.quantity*c.supplier_price AS DECIMAL(16,2) ) as total
@@ -544,7 +541,7 @@ class Suppliers extends CI_Model {
         $this->db->join('product_information e','e.product_id = a.product_id','left');
         $this->db->join('invoice b','b.invoice_id = a.invoice_id','left');
         $this->db->join('supplier_product c','c.product_id = a.product_id','left');
-        $this->db->join('supplier_information d','d.supplier_id = c.supplier_id','left');
+        $this->db->join('customer_information d','d.customer_id = c.supplier_id','left');
         $this->db->order_by('b.date', 'desc');
         $this->db->limit($per_page, $page);
         $query = $this->db->get();
@@ -563,7 +560,7 @@ class Suppliers extends CI_Model {
             e.product_name,
             e.product_model,
             e.product_id,
-            d.supplier_name,
+            d.customer_name,
             a.quantity,
             c.supplier_price as supplier_rate,
             CAST(a.quantity*c.supplier_price AS DECIMAL(16,2) ) as total
@@ -572,7 +569,7 @@ class Suppliers extends CI_Model {
         $this->db->join('product_information e','e.product_id = a.product_id','left');
         $this->db->join('invoice b','b.invoice_id = a.invoice_id','left');
         $this->db->join('supplier_product c','c.product_id = a.product_id','left');
-        $this->db->join('supplier_information d','d.supplier_id = c.supplier_id','left');
+        $this->db->join('customer_information d','d.customer_id = c.supplier_id','left');
         $this->db->where(array('b.date >=' => $fromdate, 'b.date <=' => $todate));
         $this->db->order_by('b.date', 'desc');
         $this->db->limit($per_page, $page);
@@ -592,7 +589,7 @@ class Suppliers extends CI_Model {
             e.product_name,
             e.product_model,
             e.product_id,
-            d.supplier_name,
+            d.customer_name,
             a.quantity,
             c.supplier_price as supplier_rate,
             CAST(a.quantity*c.supplier_price AS DECIMAL(16,2) ) as total
@@ -601,7 +598,7 @@ class Suppliers extends CI_Model {
         $this->db->join('product_information e','e.product_id = a.product_id','left');
         $this->db->join('invoice b','b.invoice_id = a.invoice_id','left');
         $this->db->join('supplier_product c','c.product_id = a.product_id','left');
-        $this->db->join('supplier_information d','d.supplier_id = c.supplier_id','left');
+        $this->db->join('customer_information d','d.customer_id = c.supplier_id','left');
         $this->db->where(array('b.date >=' => $fromdate, 'b.date <=' => $todate));
         $this->db->order_by('b.date', 'desc');
         $query = $this->db->get();
@@ -647,7 +644,7 @@ class Suppliers extends CI_Model {
         $this->db->join('product_information e','e.product_id = a.product_id','left');
         $this->db->join('invoice b','b.invoice_id = a.invoice_id','left');
         $this->db->join('supplier_product c','c.product_id = a.product_id','left');
-        $this->db->join('supplier_information d','d.supplier_id = c.supplier_id','left');
+        $this->db->join('customer_information d','d.customer_id = c.supplier_id','left');
         $this->db->order_by('b.date', 'desc');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
@@ -719,7 +716,7 @@ class Suppliers extends CI_Model {
         $this->db->select('a.*,b.HeadName');
         $this->db->from('acc_transaction a');
         $this->db->join('acc_coa b','a.COAID=b.HeadCode');
-        $this->db->where('b.supplier_id',$supplier_id);
+        $this->db->where('b.customer_id',$supplier_id);
         $this->db->where('a.IsAppove',1);
         $this->db->order_by('a.VDate','desc');
         $query = $this->db->get();
@@ -740,7 +737,7 @@ class Suppliers extends CI_Model {
       // Supplier list
     public function supplier_list_advance(){
         $this->db->select('*');
-        $this->db->from('supplier_information');
+        $this->db->from('customer_information');
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -749,7 +746,7 @@ class Suppliers extends CI_Model {
     }
 
     public function advance_details($receiptid,$supplier_id){
-        $headcode = $this->db->select('HeadCode')->from('acc_coa')->where('supplier_id',$supplier_id)->get()->row();
+        $headcode = $this->db->select('HeadCode')->from('acc_coa')->where('customer_id',$supplier_id)->get()->row();
         return $this->db->select('*')
                         ->from('acc_transaction')
                         ->where('VNo',$receiptid)

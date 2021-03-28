@@ -563,7 +563,7 @@ var twelveHour = $('.timepicker-12-hr').wickedpicker();
              { data: 'sl' },
              { data: 'product_name' },
              { data: 'product_model'},
-             { data: 'supplier_name' },
+             { data: 'customer_name' },
              { data: 'price' },
              { data: 'purchase_p' },
              { data: 'image'},

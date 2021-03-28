@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 28, 2021 at 07:59 AM
+-- Generation Time: Mar 28, 2021 at 08:05 PM
 -- Server version: 10.3.23-MariaDB-1
 -- PHP Version: 7.4.15
 
@@ -94,7 +94,10 @@ INSERT INTO `acc_transaction` (`ID`, `VNo`, `Vtype`, `VDate`, `COAID`, `Narratio
 (213, 'OWNJGK1VF6', 'Debit', '2021-03-28', '102030000001', 'Add raw material to production OWNJGK1VF6', '1200.00', '0.00', '1', '1', '2021-03-28 06:00:09', NULL, NULL, '1'),
 (214, '746OXWK7N8', 'Credit', '2021-03-28', '102030000003', 'Customer Milk Collection - 746OXWK7N8', '600.00', '0.00', '1', '1', '2021-03-28 06:20:13', NULL, NULL, '1'),
 (215, 'ZXYCPI9X91', 'Debit', '2021-03-28', '102030000001', 'Add raw material to production ZXYCPI9X91', '150.00', '0.00', '1', '1', '2021-03-28 06:21:53', NULL, NULL, '1'),
-(220, 'W4XKEQIBRY', 'Credit', '2021-03-28', '102030000002', 'Sell Product to Farmer W4XKEQIBRY', '0.00', '1500.00', '1', '1', '2021-03-28 07:39:36', NULL, NULL, '1');
+(220, 'W4XKEQIBRY', 'Credit', '2021-03-28', '102030000002', 'Sell Product to Farmer W4XKEQIBRY', '0.00', '1500.00', '1', '1', '2021-03-28 07:39:36', NULL, NULL, '1'),
+(221, '20210328195345', 'Purchase', '2021-03-28', '10107', 'Inventory Debit For Supplier James Wingi', '1800.00', '0.00', '1', '1', '2021-03-28 19:53:45', NULL, NULL, '1'),
+(222, '20210328195345', 'Purchase', '2021-03-28', '402', 'Company Credit For  James Wingi', '1800.00', '0.00', '1', '1', '2021-03-28 19:53:45', NULL, NULL, '1'),
+(223, '20210328195345', 'Purchase', '2021-03-28', '1020101', 'Cash in Hand For Supplier James Wingi', '0.00', '1800.00', '1', '1', '2021-03-28 19:53:45', NULL, NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -783,7 +786,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (36, 'supplier_ledger', 'Farmer Ledger', NULL),
 (37, 'manage_supplier', 'Manage Farmer->s', NULL),
 (38, 'add_supplier', 'Add Farmer ->s', NULL),
-(39, 'supplier', 'Farmer -> s', NULL),
+(39, 'supplier', 'Farmer', NULL),
 (40, 'product_statement', 'Product Statement', NULL),
 (41, 'manage_product', 'Manage Product', NULL),
 (42, 'add_product', 'Add Product', NULL),
@@ -2007,9 +2010,9 @@ INSERT INTO `product_information` (`id`, `product_id`, `category_id`, `product_n
 (1, '44944985', 'S9O8FKM58NDHDTB', 'Haas Avocado', 600, 'Boxes', 0, '12112121', 'Hass', '', 'https://srp.abcsofpregnancy.com/my-assets/image/product/5c62dbfb4f7281c25a3e758fb08dd5dc.jpg', 1, '0.14', '0.06'),
 (2, '81345531', 'YK4OKJY5PGDHNXS', 'Mango', 200, 'Boxes', 0, '110110110', 'Ngowe', 'Ngowe Market Crates', 'https://srp.abcsofpregnancy.com/./my-assets/image/product/f9de1c33535197ce686aa18c746bfc52.jpg', 1, NULL, NULL),
 (8, '24631788', 'YK4OKJY5PGDHNXS', 'Mango (Kent)', 500, 'Boxes', 0, '12345', 'Kent', '', 'https://srp.abcsofpregnancy.com/my-assets/image/product.png', 1, '0.16', '0.06'),
-(4, '21212121', 'S9O8FKM58NDHDTB', 'Avocado', 600, 'Boxes', 0, '111111110', 'Hass Avocado', '', 'https://srp.abcsofpregnancy.com/my-assets/image/product.png', 1, '0.16', '0.05'),
+(4, '21212121', 'S9O8FKM58NDHDTB', 'Avocado', 600, '', 0, '111111110', 'Hass Avocado', '', 'https://srp.abcsofpregnancy.com/my-assets/image/product.png', 1, '0.16', '0.05'),
 (5, '8826592', 'YK4OKJY5PGDHNXS', 'Mango', 300, '', 0, '2345654', 'Ngowe', '', 'https://srp.abcsofpregnancy.com/my-assets/image/product.png', 1, NULL, NULL),
-(9, '18682532', 'KY7EDBJQDJV2QHX', 'Cartons', 1, '1', 0, '100100100', 'Cartons', '', 'https://srp.abcsofpregnancy.com/my-assets/image/product.png', 1, '0.14', '0');
+(9, '18682532', 'KY7EDBJQDJV2QHX', 'Cartons', 1, '', 0, '100100100', 'Cartons', '', 'https://srp.abcsofpregnancy.com/my-assets/image/product.png', 1, '0.14', '0');
 
 -- --------------------------------------------------------
 
@@ -2033,6 +2036,13 @@ CREATE TABLE `product_purchase` (
   `payment_type` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `product_purchase`
+--
+
+INSERT INTO `product_purchase` (`id`, `purchase_id`, `chalan_no`, `supplier_id`, `grand_total_amount`, `paid_amount`, `due_amount`, `total_discount`, `purchase_date`, `purchase_details`, `status`, `bank_id`, `payment_type`) VALUES
+(16, 20210328195345, '44669Y', 16, '1800.00', '1800.00', '0.00', '0.00', '2021-03-28', 'fine Buying', 1, '', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -2050,6 +2060,13 @@ CREATE TABLE `product_purchase_details` (
   `discount` float DEFAULT NULL,
   `status` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `product_purchase_details`
+--
+
+INSERT INTO `product_purchase_details` (`id`, `purchase_detail_id`, `purchase_id`, `product_id`, `quantity`, `rate`, `total_amount`, `discount`, `status`) VALUES
+(1, 'RsLBzuy4KNQtsNH', 20210328195345, '18682532', '12.00', '150.00', '1800.00', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -2563,7 +2580,9 @@ CREATE TABLE `supplier_product` (
 
 INSERT INTO `supplier_product` (`supplier_pr_id`, `product_id`, `products_model`, `supplier_id`, `supplier_price`) VALUES
 (1, '29892925', NULL, 0, 0),
-(2, '42242176', NULL, 0, 0);
+(2, '42242176', NULL, 0, 0),
+(3, '21212121', NULL, 17, 20),
+(4, '18682532', NULL, 16, 150);
 
 -- --------------------------------------------------------
 
@@ -3218,7 +3237,7 @@ ALTER TABLE `weekly_holiday`
 -- AUTO_INCREMENT for table `acc_transaction`
 --
 ALTER TABLE `acc_transaction`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=224;
 
 --
 -- AUTO_INCREMENT for table `app_setting`
@@ -3422,13 +3441,13 @@ ALTER TABLE `product_information`
 -- AUTO_INCREMENT for table `product_purchase`
 --
 ALTER TABLE `product_purchase`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `product_purchase_details`
 --
 ALTER TABLE `product_purchase_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product_service`
@@ -3542,7 +3561,7 @@ ALTER TABLE `supplier_information`
 -- AUTO_INCREMENT for table `supplier_product`
 --
 ALTER TABLE `supplier_product`
-  MODIFY `supplier_pr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `supplier_pr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tax_collection`

@@ -90,11 +90,11 @@ class Products extends CI_Model {
                 a.image,
                 c.supplier_price,
                 c.supplier_id,
-                m.supplier_name
+                m.customer_name
                 ");
          $this->db->from('product_information a');
          $this->db->join('supplier_product c','c.product_id = a.product_id','left');
-         $this->db->join('supplier_information m','m.supplier_id = c.supplier_id','left');
+         $this->db->join('customer_information m','m.customer_id = c.supplier_id','left');
          if($searchValue != '')
          $this->db->where($searchQuery);
          $this->db->order_by($columnName, $columnSortOrder);
@@ -121,13 +121,13 @@ class Products extends CI_Model {
      }
 
          $product_name = '<a href="'.$base_url.'Cproduct/product_details/'.$record->product_id.'">'.$record->product_name.'</a>';
-         $supplier = '<a href="'.$base_url.'Csupplier/supplier_ledger_info/'.$record->supplier_id.'">'.$record->supplier_name.'</a>';
+         $supplier = '<a href="#">'.$record->customer_name.'</a>';
                
             $data[] = array( 
                 'sl'               =>$sl,
                 'product_name'     =>$product_name,
                 'product_model'    =>$record->product_model,
-                'supplier_name'    =>$supplier,
+                'customer_name'    =>$supplier,
                 'price'            =>$record->price,
                 'purchase_p'       =>$record->supplier_price,
                 'image'            =>$image,

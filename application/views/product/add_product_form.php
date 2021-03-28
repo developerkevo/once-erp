@@ -198,7 +198,7 @@
                                                 <option value=""> select Supplier</option>
                                                 <?php if ($supplier) { ?>
                                                     {supplier}
-                                                    <option value="{supplier_id}">{supplier_name}</option>
+                                                    <option value="{customer_id}">{customer_name}</option>
                                                     {/supplier}
                                                 <?php } ?>
                                             </select>

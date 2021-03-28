@@ -69,10 +69,10 @@
                                         <select name="supplier_id" id="supplier_id" class="form-control " required=""> 
                                           
                                             {supplier_list}
-                                            <option value="{supplier_id}">{supplier_name}</option>
+                                            <option value="{supplier_id}">{customer_name}</option>
                                             {/supplier_list} 
                                             {supplier_selected}
-                                            <option value="{supplier_id}" selected="">{supplier_name}</option>
+                                            <option value="{supplier_id}" selected="">{customer_name}</option>
                                             {/supplier_selected}
                                         </select>
                                     </div>

@@ -57,7 +57,7 @@
                             <h4><?php echo display('add_purchase') ?></h4>
                         </div>
                     </div>
-
+                
                     <div class="panel-body">
                     <?php echo form_open_multipart('Cpurchase/insert_purchase',array('class' => 'form-vertical', 'id' => 'insert_purchase','name' => 'insert_purchase'))?>
                         
@@ -72,13 +72,15 @@
                                         <select name="supplier_id" id="supplier_id" class="form-control " required="" tabindex="1"> 
                                             <option value=" "><?php echo display('select_one') ?></option>
                                             {all_supplier}
-                                            <option value="{supplier_id}">{supplier_name}</option>
+                                            <option value="{customer_id}">{customer_name}</option>
                                             {/all_supplier}
                                         </select>
+
+                                      
                                     </div>
                                   <?php if($this->permission1->method('add_supplier','create')->access()){ ?>
                                     <div class="col-sm-2">
-                                        <a class="btn btn-success" title="Add New Supplier" href="<?php echo base_url('Csupplier'); ?>"><i class="fa fa-user"></i></a>
+                                        <a class="btn btn-success" title="Add New Farmer" href="<?php echo base_url('Ccustomer'); ?>"><i class="fa fa-user"></i></a>
                                     </div>
                                 <?php }?>
                                 </div> 

@@ -11,9 +11,9 @@ class Purchases extends CI_Model {
 
     //Count purchase
     public function count_purchase() {
-        $this->db->select('a.*,b.supplier_name');
+        $this->db->select('a.*,b.customer_name');
         $this->db->from('product_purchase a');
-        $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id');
+        $this->db->join('customer_information b', 'b.customer_id = a.supplier_id');
         $this->db->order_by('a.purchase_date', 'desc');
         $this->db->order_by('purchase_id', 'desc');
         $query = $this->db->get();
@@ -50,13 +50,13 @@ class Purchases extends CI_Model {
          ## Search 
          $searchQuery = "";
          if($searchValue != ''){
-            $searchQuery = " (b.supplier_name like '%".$searchValue."%' or a.chalan_no like '%".$searchValue."%' or a.purchase_date like'%".$searchValue."%')";
+            $searchQuery = " (b.customer_name like '%".$searchValue."%' or a.chalan_no like '%".$searchValue."%' or a.purchase_date like'%".$searchValue."%')";
          }
 
          ## Total number of records without filtering
         $this->db->select('count(*) as allcount');
         $this->db->from('product_purchase a');
-        $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id','left');
+        $this->db->join('customer_information b', 'b.customer_id = a.supplier_id','left');
           if(!empty($fromdate) && !empty($todate)){
              $this->db->where($datbetween);
          }
@@ -69,7 +69,7 @@ class Purchases extends CI_Model {
          ## Total number of record with filtering
          $this->db->select('count(*) as allcount');
         $this->db->from('product_purchase a');
-        $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id','left');
+        $this->db->join('customer_information b', 'b.customer_id = a.supplier_id','left');
          if(!empty($fromdate) && !empty($todate)){
              $this->db->where($datbetween);
          }
@@ -80,9 +80,9 @@ class Purchases extends CI_Model {
          $totalRecordwithFilter = $records[0]->allcount;
 
          ## Fetch records
-        $this->db->select('a.*,b.supplier_name');
+        $this->db->select('a.*,b.customer_name');
         $this->db->from('product_purchase a');
-        $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id','left');
+        $this->db->join('customer_information b', 'b.customer_id = a.supplier_id','left');
           if(!empty($fromdate) && !empty($todate)){
              $this->db->where($datbetween);
          }
@@ -115,7 +115,7 @@ class Purchases extends CI_Model {
                 'sl'               =>$sl,
                 'chalan_no'        =>$record->chalan_no,
                 'purchase_id'      =>$purchase_ids,
-                'supplier_name'    =>$record->supplier_name,
+                'supplier_name'    =>$record->customer_name,
                 'purchase_date'    =>$this->occational->dateConvert($record->purchase_date),
                 'total_amount'     =>$record->grand_total_amount,
                 'button'           =>$button,
@@ -138,9 +138,9 @@ class Purchases extends CI_Model {
 
     //purchase List
     public function purchase_list($per_page, $page) {
-        $this->db->select('a.*,b.supplier_name');
+        $this->db->select('a.*,b.customer_name');
         $this->db->from('product_purchase a');
-        $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id');
+        $this->db->join('customer_information b', 'b.customer_id = a.supplier_id');
         $this->db->order_by('a.purchase_date', 'desc');
         $this->db->order_by('purchase_id', 'desc');
         $this->db->limit($per_page, $page);
@@ -155,9 +155,9 @@ class Purchases extends CI_Model {
 
     // purchase search by suppplier
     public function purchase_search($supplier_id, $per_page, $page) {
-        $this->db->select('a.*,b.supplier_name');
+        $this->db->select('a.*,b.customer_name');
         $this->db->from('product_purchase a');
-        $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id');
+        $this->db->join('customer_information b', 'b.customer_id = a.supplier_id');
         $this->db->where('a.supplier_id', $supplier_id);
         $this->db->order_by('a.purchase_date', 'desc');
         $this->db->limit($per_page, $page);
@@ -172,9 +172,9 @@ class Purchases extends CI_Model {
 
     // purchase search count
     public function count_purchase_seach($supplier_id) {
-        $this->db->select('a.*,b.supplier_name');
+        $this->db->select('a.*,b.customer_name');
         $this->db->from('product_purchase a');
-        $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id');
+        $this->db->join('customer_information b', 'b.customer_id = a.supplier_id');
         $this->db->where('a.supplier_id', $supplier_id);
         $query = $this->db->get();
 
@@ -187,9 +187,9 @@ class Purchases extends CI_Model {
 
 //purchase info by invoice id
     public function purchase_list_invoice_id($invoice_no) {
-        $this->db->select('a.*,b.supplier_name');
+        $this->db->select('a.*,b.customer_name');
         $this->db->from('product_purchase a');
-        $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id');
+        $this->db->join('customer_information b', 'b.customer_id = a.supplier_id');
         $this->db->where('a.chalan_no', $invoice_no);
         $this->db->order_by('a.purchase_date', 'desc');
         $this->db->order_by('purchase_id', 'desc');
@@ -205,8 +205,7 @@ class Purchases extends CI_Model {
     //Select All Supplier List
     public function select_all_supplier() {
         $query = $this->db->select('*')
-                ->from('supplier_information')
-                ->where('status', '1')
+                ->from('customer_information')
                 ->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -216,10 +215,10 @@ class Purchases extends CI_Model {
 
     //purchase Search  List
     public function purchase_by_search($supplier_id) {
-        $this->db->select('a.*,b.supplier_name');
+        $this->db->select('a.*,b.customer_name');
         $this->db->from('product_purchase a');
-        $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id');
-        $this->db->where('b.supplier_id', $supplier_id);
+        $this->db->join('custmer_information b', 'b.customer_id = a.supplier_id');
+        $this->db->where('b.customer_id', $supplier_id);
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
             return $query->result_array();
@@ -233,8 +232,8 @@ class Purchases extends CI_Model {
 
         $p_id = $this->input->post('product_id',TRUE);
         $supplier_id = $this->input->post('supplier_id',TRUE);
-        $supinfo =$this->db->select('*')->from('supplier_information')->where('supplier_id',$supplier_id)->get()->row();
-        $sup_head = $supinfo->supplier_id.'-'.$supinfo->supplier_name;
+        $supinfo =$this->db->select('*')->from('customer_information')->where('customer_id',$supplier_id)->get()->row();
+        $sup_head = $supinfo->supplier_id.'-'.$supinfo->customer_name;
         $sup_coa = $this->db->select('*')->from('acc_coa')->where('HeadName',$sup_head)->get()->row();
          $receive_by=$this->session->userdata('user_id');
         $receive_date=date('Y-m-d');
@@ -282,7 +281,7 @@ class Purchases extends CI_Model {
           'Vtype'          =>  'Purchase',
           'VDate'          =>  $this->input->post('purchase_date',TRUE),
           'COAID'          =>  $sup_coa->HeadCode,
-          'Narration'      =>  'Supplier .'.$supinfo->supplier_name,
+          'Narration'      =>  'Supplier .'.$supinfo->customer_name,
           'Debit'          =>  0,
           'Credit'         =>  $this->input->post('grand_total_price',TRUE),
           'IsPosted'       =>  1,
@@ -296,7 +295,7 @@ class Purchases extends CI_Model {
       'Vtype'          =>  'Purchase',
       'VDate'          =>  $this->input->post('purchase_date',TRUE),
       'COAID'          =>  10107,
-      'Narration'      =>  'Inventory Debit For Supplier '.$supinfo->supplier_name,
+      'Narration'      =>  'Inventory Debit For Supplier '.$supinfo->customer_name,
       'Debit'          =>  $this->input->post('grand_total_price',TRUE),
       'Credit'         =>  0,//purchase price asbe
       'IsPosted'       => 1,
@@ -313,7 +312,7 @@ class Purchases extends CI_Model {
       'Vtype'          => 'Purchase',
       'VDate'          => $this->input->post('purchase_date',TRUE),
       'COAID'          => 402,
-      'Narration'      => 'Company Credit For  '.$supinfo->supplier_name,
+      'Narration'      => 'Company Credit For  '.$supinfo->customer_name,
       'Debit'          => $this->input->post('grand_total_price',TRUE),
       'Credit'         => 0,//purchase price asbe
       'IsPosted'       => 1,
@@ -326,7 +325,7 @@ class Purchases extends CI_Model {
       'Vtype'          =>  'Purchase',
       'VDate'          =>  $this->input->post('purchase_date',TRUE),
       'COAID'          =>  1020101,
-      'Narration'      =>  'Cash in Hand For Supplier '.$supinfo->supplier_name,
+      'Narration'      =>  'Cash in Hand For Supplier '.$supinfo->customer_name,
       'Debit'          =>  0,
       'Credit'         =>  $paid_amount,
       'IsPosted'       =>  1,
@@ -340,7 +339,7 @@ class Purchases extends CI_Model {
           'Vtype'          =>  'Purchase',
           'VDate'          =>  $this->input->post('purchase_date',TRUE),
           'COAID'          =>  $sup_coa->HeadCode,
-          'Narration'      =>  'Supplier .'.$supinfo->supplier_name,
+          'Narration'      =>  'Supplier .'.$supinfo->customer_name,
           'Debit'          =>  $paid_amount,
           'Credit'         =>  0,
           'IsPosted'       =>  1,
@@ -355,7 +354,7 @@ class Purchases extends CI_Model {
       'Vtype'          =>  'Purchase',
       'VDate'          =>  $this->input->post('purchase_date',TRUE),
       'COAID'          =>  $bankcoaid,
-      'Narration'      =>  'Paid amount for Supplier  '.$supinfo->supplier_name,
+      'Narration'      =>  'Paid amount for Supplier  '.$supinfo->customer_name,
       'Debit'          =>  0,
       'Credit'         =>  $paid_amount,
       'IsPosted'       =>  1,
@@ -424,13 +423,13 @@ class Purchases extends CI_Model {
 						c.product_id,
 						c.product_name,
 						c.product_model,
-						d.supplier_id,
-						d.supplier_name'
+						d.customer_id,
+						d.customer_name'
         );
         $this->db->from('product_purchase a');
         $this->db->join('product_purchase_details b', 'b.purchase_id =a.purchase_id');
         $this->db->join('product_information c', 'c.product_id =b.product_id');
-        $this->db->join('supplier_information d', 'd.supplier_id = a.supplier_id');
+        $this->db->join('customer_information d', 'd.customer_id = a.supplier_id');
         $this->db->where('a.purchase_id', $purchase_id);
         $this->db->order_by('a.purchase_details', 'asc');
         $query = $this->db->get();
@@ -465,8 +464,8 @@ class Purchases extends CI_Model {
    }
         $p_id = $this->input->post('product_id',TRUE);
         $supplier_id = $this->input->post('supplier_id',TRUE);
-        $supinfo =$this->db->select('*')->from('supplier_information')->where('supplier_id',$supplier_id)->get()->row();
-        $sup_head = $supinfo->supplier_id.'-'.$supinfo->supplier_name;
+        $supinfo =$this->db->select('*')->from('customer_information')->where('supplier_id',$supplier_id)->get()->row();
+        $sup_head = $supinfo->supplier_id.'-'.$supinfo->customer_name;
         $sup_coa = $this->db->select('*')->from('acc_coa')->where('HeadName',$sup_head)->get()->row();
        $receive_by=$this->session->userdata('user_id');
         $receive_date=date('Y-m-d');
@@ -491,7 +490,7 @@ class Purchases extends CI_Model {
       'Vtype'          =>  'Purchase',
       'VDate'          =>  $this->input->post('purchase_date',TRUE),
       'COAID'          =>  1020101,
-      'Narration'      =>  'Cash in Hand For Supplier '.$supinfo->supplier_name,
+      'Narration'      =>  'Cash in Hand For Supplier '.$supinfo->customer_name,
       'Debit'          =>  0,
       'Credit'         =>  $paid_amount,
       'IsPosted'       =>  1,
@@ -505,7 +504,7 @@ class Purchases extends CI_Model {
       'Vtype'          =>  'Purchase',
       'VDate'          =>  $this->input->post('purchase_date',TRUE),
       'COAID'          =>  $bankcoaid,
-      'Narration'      =>  'Paid amount for Supplier  '.$supinfo->supplier_name,
+      'Narration'      =>  'Paid amount for Supplier  '.$supinfo->customer_name,
       'Debit'          =>  0,
       'Credit'         =>  $paid_amount,
       'IsPosted'       =>  1,
@@ -520,7 +519,7 @@ class Purchases extends CI_Model {
           'Vtype'          =>  'Purchase',
           'VDate'          =>  $this->input->post('purchase_date',TRUE),
           'COAID'          =>  $sup_coa->HeadCode,
-          'Narration'      =>  'Supplier -'.$supinfo->supplier_name,
+          'Narration'      =>  'Supplier -'.$supinfo->customer_name,
           'Debit'          =>  0,
           'Credit'         =>  $this->input->post('grand_total_price',TRUE),
           'IsPosted'       =>  1,
@@ -534,7 +533,7 @@ class Purchases extends CI_Model {
       'Vtype'          =>  'Purchase',
       'VDate'          =>  $this->input->post('purchase_date',TRUE),
       'COAID'          =>  10107,
-      'Narration'      =>  'Inventory Devit Supplier '.$supinfo->supplier_name,
+      'Narration'      =>  'Inventory Devit Supplier '.$supinfo->customer_name,
       'Debit'          =>  $this->input->post('grand_total_price',TRUE),
       'Credit'         =>  0,//purchase price asbe
       'IsPosted'       => 1,
@@ -548,7 +547,7 @@ class Purchases extends CI_Model {
       'Vtype'          => 'Purchase',
       'VDate'          => $this->input->post('purchase_date',TRUE),
       'COAID'          => 402,
-      'Narration'      => 'Company Credit For Supplier'.$supinfo->supplier_name,
+      'Narration'      => 'Company Credit For Supplier'.$supinfo->customer_name,
       'Debit'          => $this->input->post('grand_total_price',TRUE),
       'Credit'         => 0,//purchase price asbe
       'IsPosted'       => 1,
@@ -562,7 +561,7 @@ class Purchases extends CI_Model {
           'Vtype'          =>  'Purchase',
           'VDate'          =>  $this->input->post('purchase_date',TRUE),
           'COAID'          =>  $sup_coa->HeadCode,
-          'Narration'      =>  'Supplier . '.$supinfo->supplier_name,
+          'Narration'      =>  'Supplier . '.$supinfo->customer_name,
           'Debit'          =>  $paid_amount,
           'Credit'         =>  0,
           'IsPosted'       =>  1,
@@ -655,7 +654,7 @@ class Purchases extends CI_Model {
     public function purchase_details_data($purchase_id) {
         $this->db->select('a.*,b.*,c.*,e.purchase_details,d.product_id,d.product_name,d.product_model');
         $this->db->from('product_purchase a');
-        $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id');
+        $this->db->join('customer_information b', 'b.customer_id = a.supplier_id');
         $this->db->join('product_purchase_details c', 'c.purchase_id = a.purchase_id');
         $this->db->join('product_information d', 'd.product_id = c.product_id');
         $this->db->join('product_purchase e', 'e.purchase_id = c.purchase_id');
@@ -718,9 +717,9 @@ class Purchases extends CI_Model {
 
 //purchase list date to date
     public function purchase_list_date_to_date($start, $end) {
-        $this->db->select('a.*,b.supplier_name');
+        $this->db->select('a.*,b.customer_name');
         $this->db->from('product_purchase a');
-        $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id');
+        $this->db->join('customer_information b', 'b.customer_id = a.supplier_id');
         $this->db->order_by('a.purchase_date', 'desc');
         $this->db->where('a.purchase_date >=', $start);
         $this->db->where('a.purchase_date <=', $end);
@@ -734,9 +733,9 @@ class Purchases extends CI_Model {
     }
 // purchase list for pdf
      public function pdf_purchase_list() {
-        $this->db->select('a.*,b.supplier_name');
+        $this->db->select('a.*,b.customer_name');
         $this->db->from('product_purchase a');
-        $this->db->join('supplier_information b', 'b.supplier_id = a.supplier_id');
+        $this->db->join('customer_information b', 'b.customer_id = a.supplier_id');
         $this->db->order_by('a.purchase_date', 'desc');
         $query = $this->db->get();
 
@@ -748,9 +747,9 @@ class Purchases extends CI_Model {
     }
     // csv upload purchase list
         public function purchase_csv_file() {
-         $query = $this->db->select('a.chalan_no,a.purchase_id,b.supplier_name,a.purchase_date,a.grand_total_amount')
+         $query = $this->db->select('a.chalan_no,a.purchase_id,b.customer_name,a.purchase_date,a.grand_total_amount')
                 ->from('product_purchase a')
-                ->join('supplier_information b', 'b.supplier_id = a.supplier_id', 'left')
+                ->join('customer_information b', 'b.customer_id = a.supplier_id', 'left')
                 ->order_by('a.purchase_date','desc')
                 ->get();
         if ($query->num_rows() > 0) {
