@@ -2,9 +2,9 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 24, 2021 at 12:24 PM
--- Server version: 10.4.17-MariaDB
+-- Host: localhost
+-- Generation Time: Mar 28, 2021 at 07:59 AM
+-- Server version: 10.3.23-MariaDB-1
 -- PHP Version: 7.4.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -52,32 +52,9 @@ CREATE TABLE `acc_coa` (
 --
 
 INSERT INTO `acc_coa` (`HeadCode`, `HeadName`, `PHeadName`, `HeadLevel`, `IsActive`, `IsTransaction`, `IsGL`, `HeadType`, `IsBudget`, `IsDepreciation`, `customer_id`, `supplier_id`, `DepreciationRate`, `CreateBy`, `CreateDate`, `UpdateBy`, `UpdateDate`) VALUES
-('502000006', '0-', 'Account Payable', 3, 1, 1, 0, 'L', 0, 0, NULL, NULL, '0.00', '1', '2019-12-19 11:39:48', '', '0000-00-00 00:00:00'),
-('502000007', '1-Farmtest', 'Account Payable', 3, 1, 1, 0, 'L', 0, 0, NULL, 1, '0.00', '1', '2021-02-13 10:14:05', '', '0000-00-00 00:00:00'),
-('102030000001', '1-Walking Customer', 'Customer Receivable', 4, 1, 1, 0, 'A', 0, 0, 1, NULL, '0.00', '1', '2019-11-16 08:44:42', '', '0000-00-00 00:00:00'),
-('50202', 'Account Payable', 'Current Liabilities', 2, 1, 0, 1, 'L', 0, 0, NULL, NULL, '0.00', 'admin', '2015-10-15 19:50:43', '', '2019-09-05 00:00:00'),
-('10203', 'Account Receivable', 'Current Asset', 2, 1, 0, 0, 'A', 0, 0, NULL, NULL, '0.00', '', '2019-09-05 00:00:00', 'admin', '2013-09-18 15:29:35'),
-('1', 'Assets', 'COA', 0, 1, 0, 0, 'A', 0, 0, NULL, NULL, '0.00', '', '2019-09-05 00:00:00', '', '2019-09-05 00:00:00'),
-('10201', 'Cash & Cash Equivalent', 'Current Asset', 2, 1, 0, 1, 'A', 0, 0, NULL, NULL, '0.00', '1', '2019-06-25 13:47:29', 'admin', '2015-10-15 15:57:55'),
-('1020102', 'Cash At Bank', 'Cash & Cash Equivalent', 3, 1, 0, 1, 'A', 0, 0, NULL, NULL, '0.00', '1', '2019-03-18 06:08:18', 'admin', '2015-10-15 15:32:42'),
-('1020101', 'Cash In Hand', 'Cash & Cash Equivalent', 3, 1, 1, 0, 'A', 0, 0, NULL, NULL, '0.00', '1', '2019-01-26 07:38:48', 'admin', '2016-05-23 12:05:43'),
-('102', 'Current Asset', 'Assets', 1, 1, 0, 0, 'A', 0, 0, NULL, NULL, '0.00', '', '2019-09-05 00:00:00', 'admin', '2018-07-07 11:23:00'),
-('502', 'Current Liabilities', 'Liabilities', 1, 1, 0, 0, 'L', 0, 0, NULL, NULL, '0.00', 'anwarul', '2014-08-30 13:18:20', 'admin', '2015-10-15 19:49:21'),
-('1020301', 'Customer Receivable', 'Account Receivable', 3, 1, 0, 1, 'A', 0, 0, NULL, NULL, '0.00', '1', '2019-01-24 12:10:05', 'admin', '2018-07-07 12:31:42'),
-('401', 'Default expense', 'Expence', 1, 1, 1, 0, 'E', 1, 1, NULL, NULL, '1.00', '1', '2019-12-21 09:00:55', '', '0000-00-00 00:00:00'),
-('50204', 'Employee Ledger', 'Current Liabilities', 2, 1, 0, 1, 'L', 0, 0, NULL, NULL, '0.00', '1', '2019-04-08 10:36:32', '', '2019-09-05 00:00:00'),
-('403', 'Employee Salary', 'Expence', 1, 1, 1, 0, 'E', 0, 1, NULL, NULL, '1.00', '1', '2019-06-17 11:44:52', '', '2019-09-05 00:00:00'),
-('2', 'Equity', 'COA', 0, 1, 0, 0, 'L', 0, 0, NULL, NULL, '0.00', '', '2019-09-05 00:00:00', '', '2019-09-05 00:00:00'),
-('4', 'Expence', 'COA', 0, 1, 0, 0, 'E', 0, 0, NULL, NULL, '0.00', '', '2019-09-05 00:00:00', '', '2019-09-05 00:00:00'),
-('3', 'Income', 'COA', 0, 1, 0, 0, 'I', 0, 0, NULL, NULL, '0.00', '', '2019-09-05 00:00:00', '', '2019-09-05 00:00:00'),
-('10107', 'Inventory', 'Non Current Assets', 1, 1, 0, 0, 'A', 0, 0, NULL, NULL, '0.00', '2', '2018-07-07 15:21:58', '', '2019-09-05 00:00:00'),
-('5', 'Liabilities', 'COA', 0, 1, 0, 0, 'L', 0, 0, NULL, NULL, '0.00', 'admin', '2013-07-04 12:32:07', 'admin', '2015-10-15 19:46:54'),
-('1020302', 'Loan Receivable', 'Account Receivable', 3, 1, 0, 1, 'A', 0, 0, NULL, NULL, '0.00', '1', '2019-01-26 07:37:20', '', '2019-09-05 00:00:00'),
-('101', 'Non Current Assets', 'Assets', 1, 1, 0, 0, 'A', 0, 0, NULL, NULL, '0.00', '', '2019-09-05 00:00:00', 'admin', '2015-10-15 15:29:11'),
-('501', 'Non Current Liabilities', 'Liabilities', 1, 1, 0, 0, 'L', 0, 0, NULL, NULL, '0.00', 'anwarul', '2014-08-30 13:18:20', 'admin', '2015-10-15 19:49:21'),
-('402', 'Product Purchase', 'Expence', 1, 1, 0, 0, 'E', 0, 0, NULL, NULL, '0.00', '2', '2018-07-07 14:00:16', 'admin', '2015-10-15 18:37:42'),
-('303', 'Product Sale', 'Income', 1, 1, 1, 0, 'I', 0, 0, NULL, NULL, '0.00', '1', '2019-06-17 08:22:42', '', '2019-09-05 00:00:00'),
-('304', 'Service Income', 'Income', 1, 1, 1, 0, 'I', 0, 0, NULL, NULL, '0.00', '1', '2019-06-17 11:31:11', '', '2019-09-05 00:00:00');
+('102030000001', '1-Next Tech Vet', 'Customer Receivable', 4, 1, 1, 0, 'A', 0, 0, 1, NULL, '0.00', '1', '2021-03-27 18:56:30', '', '0000-00-00 00:00:00'),
+('102030000003', '16-James Wingi', 'Customer Receivable', 4, 1, 1, 0, 'A', 0, 0, 16, NULL, '0.00', '1', '2021-03-27 14:54:37', '', '0000-00-00 00:00:00'),
+('102030000002', '17-Allan Namu', 'Customer Receivable', 4, 1, 1, 0, 'A', 0, 0, 17, NULL, '0.00', '1', '2021-03-27 14:56:26', '', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -107,205 +84,17 @@ CREATE TABLE `acc_transaction` (
 --
 
 INSERT INTO `acc_transaction` (`ID`, `VNo`, `Vtype`, `VDate`, `COAID`, `Narration`, `Debit`, `Credit`, `IsPosted`, `CreateBy`, `CreateDate`, `UpdateBy`, `UpdateDate`, `IsAppove`) VALUES
-(1, 'XQYZRQASW1', 'Advance', '2020-08-11', '502000007', 'supplier Advance For Bendo Farm', '1000000.00', '0.00', '1', '1', '2020-08-11 15:43:41', NULL, NULL, '1'),
-(2, 'XQYZRQASW1', 'Advance', '2020-08-11', '1020101', 'Cash in Hand  For Bendo Farm Advance', '1000000.00', '0.00', '1', '1', '2020-08-11 15:43:41', NULL, NULL, '1'),
-(3, '20200811161123', 'Purchase', '2020-08-11', '10107', 'Inventory Debit For Supplier DK farm', '500000000.00', '0.00', '1', '1', '2020-08-11 16:11:23', NULL, NULL, '1'),
-(4, '20200811161123', 'Purchase', '2020-08-11', '502000008', 'Supplier .DK farm', '0.00', '500000000.00', '1', '1', '2020-08-11 00:00:00', NULL, NULL, '1'),
-(5, '20200811161123', 'Purchase', '2020-08-11', '402', 'Company Credit For  DK farm', '500000000.00', '0.00', '1', '1', '2020-08-11 16:11:23', NULL, NULL, '1'),
-(6, '3448475757', 'INV', '2020-08-11', '10107', 'Inventory credit For Invoice No1000', '0.00', '50000000.00', '1', '1', '2020-08-11 16:17:25', NULL, NULL, '1'),
-(7, '3448475757', 'INV', '2020-08-11', '102030000004', 'Customer debit For Invoice No -  1000 Customer England Fruits', '200000000.00', '0.00', '1', '1', '2020-08-11 16:17:25', NULL, NULL, '1'),
-(8, '3448475757', 'INVOICE', '2020-08-11', '303', 'Sale Income For Invoice NO - 1000 Customer England Fruits', '0.00', '200000000.00', '1', '1', '2020-08-11 16:17:25', NULL, NULL, '1'),
-(9, '4774625818', 'INV', '2020-08-12', '10107', 'Inventory credit For Invoice No1001', '0.00', '50000.00', '1', '1', '2020-08-12 03:37:10', NULL, NULL, '1'),
-(10, '4774625818', 'INV', '2020-08-12', '102030000001', 'Customer debit For Invoice No -  1001 Customer Spain Fruits', '200000.00', '0.00', '1', '1', '2020-08-12 03:37:10', NULL, NULL, '1'),
-(11, '4774625818', 'INVOICE', '2020-08-12', '303', 'Sale Income For Invoice NO - 1001 Customer Spain Fruits', '0.00', '200000.00', '1', '1', '2020-08-12 03:37:10', NULL, NULL, '1'),
-(12, 'PM-1', 'PM', '2020-08-12', '502000008', '', '250000.00', '0.00', '1', '1', '2020-08-12 03:51:42', NULL, NULL, '1'),
-(13, 'PM-1', 'PM', '2020-08-12', '1020101', 'Paid to DK farm', '0.00', '250000.00', '1', '1', '2020-08-12 03:51:42', NULL, NULL, '1'),
-(14, 'August 2020', 'Salary', '2020-08-12', '502040001', 'Employee Salary Generate Month ofAugust 2020', '0.00', '80000.00', '1', '1', '2020-08-12 04:03:19', NULL, NULL, '1'),
-(15, '1', 'Salary', '2020-08-12', '1020101', 'Cash in hand Credit For Employee Salary for ClarisseWambui', '0.00', '80000.00', '1', 'Mo  Farm', '2020-08-12 04:03:43', NULL, NULL, '1'),
-(16, '1', 'Salary', '2020-08-12', '403', 'Salary paid For ClarisseWambui', '80000.00', '0.00', '1', 'Mo  Farm', '2020-08-12 04:03:43', NULL, NULL, '1'),
-(17, '1', 'Salary', '2020-08-12', '502040001', 'Salary paid For ClarisseWambui', '80000.00', '0.00', '1', 'Mo  Farm', '2020-08-12 04:03:43', NULL, NULL, '1'),
-(18, '20200812041323', 'Expense', '2020-08-12', '404', 'Cartons Expense 20200812041323', '1000.00', '0.00', '1', '1', '2020-08-12 04:13:23', NULL, NULL, '1'),
-(19, '20200812041323', 'Expense', '2020-08-12', '1020101', 'Cartons Expense20200812041323', '0.00', '1000.00', '1', '1', '2020-08-12 04:13:23', NULL, NULL, '1'),
-(23, '20200812043018', 'Purchase', '2020-08-12', '10107', 'Inventory Debit For Supplier DK farm', '50000000.00', '0.00', '1', '1', '2020-08-12 04:30:18', NULL, NULL, '1'),
-(24, '20200812043018', 'Purchase', '2020-08-12', '502000008', 'Supplier .DK farm', '0.00', '50000000.00', '1', '1', '2020-08-12 00:00:00', NULL, NULL, '1'),
-(25, '20200812043018', 'Purchase', '2020-08-12', '402', 'Company Credit For  DK farm', '50000000.00', '0.00', '1', '1', '2020-08-12 04:30:18', NULL, NULL, '1'),
-(26, '20200812043935', 'Purchase', '2020-08-12', '10107', 'Inventory Debit For Supplier Bendo Farm', '30000.00', '0.00', '1', '1', '2020-08-12 04:39:35', NULL, NULL, '1'),
-(27, '20200812043935', 'Purchase', '2020-08-12', '502000007', 'Supplier .Bendo Farm', '0.00', '30000.00', '1', '1', '2020-08-12 00:00:00', NULL, NULL, '1'),
-(28, '20200812043935', 'Purchase', '2020-08-12', '402', 'Company Credit For  Bendo Farm', '30000.00', '0.00', '1', '1', '2020-08-12 04:39:35', NULL, NULL, '1'),
-(29, '9934555513', 'INV', '2020-08-12', '10107', 'Inventory credit For Invoice No1002', '0.00', '120000.00', '1', '1', '2020-08-12 04:53:43', NULL, NULL, '1'),
-(30, '9934555513', 'INVOICE', '2020-08-12', '303', 'Sale Income For Invoice NO - 1002 Customer ', '0.00', '1440000.00', '1', '1', '2020-08-12 04:53:43', NULL, NULL, '1'),
-(31, '9934555513', 'INV', '2020-08-12', '1020101', 'Cash in Hand in Sale for Invoice No - 1002 customer', '1440000.00', '0.00', '1', '1', '2020-08-12 04:53:43', NULL, NULL, '1'),
-(32, '4316985914', 'INV', '2020-08-12', '10107', 'Inventory credit For Invoice No1003', '0.00', '420000.00', '1', '1', '2020-08-12 04:56:08', NULL, NULL, '1'),
-(33, '4316985914', 'INVOICE', '2020-08-12', '303', 'Sale Income For Invoice NO - 1003 Customer ', '0.00', '1440000.00', '1', '1', '2020-08-12 04:56:08', NULL, NULL, '1'),
-(34, '4316985914', 'INV', '2020-08-12', '1020101', 'Cash in Hand in Sale for Invoice No - 1003 customer', '1440000.00', '0.00', '1', '1', '2020-08-12 04:56:08', NULL, NULL, '1'),
-(35, '5289394423', 'INV', '2020-08-12', '10107', 'Inventory credit For Invoice No1004', '0.00', '120000.00', '1', '1', '2020-08-12 04:58:02', NULL, NULL, '1'),
-(36, '5289394423', 'INV', '2020-08-12', '102030000005', 'Customer debit For Invoice No -  1004 Customer Clarisse Importers', '1440000.00', '0.00', '1', '1', '2020-08-12 04:58:02', NULL, NULL, '1'),
-(37, '5289394423', 'INVOICE', '2020-08-12', '303', 'Sale Income For Invoice NO - 1004 Customer Clarisse Importers', '0.00', '1440000.00', '1', '1', '2020-08-12 04:58:02', NULL, NULL, '1'),
-(38, '5289394423', 'INV', '2020-08-12', '102030000005', 'Customer credit for Paid Amount For Customer Invoice NO- 1004 Customer Clarisse Importers', '0.00', '1440000.00', '1', '1', '2020-08-12 04:58:02', NULL, NULL, '1'),
-(39, '5289394423', 'INV', '2020-08-12', '1020101', 'Cash in Hand in Sale for Invoice No - 1004 customerClarisse Importers', '1440000.00', '0.00', '1', '1', '2020-08-12 04:58:02', NULL, NULL, '1'),
-(40, '20200812050524', 'Purchase', '2020-08-12', '10107', 'Inventory Debit For Supplier Bendo Farm', '250000.00', '0.00', '1', '1', '2020-08-12 05:05:24', NULL, NULL, '1'),
-(41, '20200812050524', 'Purchase', '2020-08-12', '502000007', 'Supplier .Bendo Farm', '0.00', '250000.00', '1', '1', '2020-08-12 00:00:00', NULL, NULL, '1'),
-(42, '20200812050524', 'Purchase', '2020-08-12', '402', 'Company Credit For  Bendo Farm', '250000.00', '0.00', '1', '1', '2020-08-12 05:05:24', NULL, NULL, '1'),
-(43, '20200812050644', 'Purchase', '2020-08-12', '10107', 'Inventory Debit For Supplier Bendo Farm', '1500000.00', '0.00', '1', '1', '2020-08-12 05:06:44', NULL, NULL, '1'),
-(44, '20200812050644', 'Purchase', '2020-08-12', '502000007', 'Supplier .Bendo Farm', '0.00', '1500000.00', '1', '1', '2020-08-12 00:00:00', NULL, NULL, '1'),
-(45, '20200812050644', 'Purchase', '2020-08-12', '402', 'Company Credit For  Bendo Farm', '1500000.00', '0.00', '1', '1', '2020-08-12 05:06:44', NULL, NULL, '1'),
-(46, 'PM-2', 'PM', '2020-08-12', '502000007', '', '1000000.00', '0.00', '1', '1', '2020-08-12 05:20:55', NULL, NULL, '1'),
-(47, 'PM-2', 'PM', '2020-08-12', '1020101', 'Paid to Bendo Farm', '0.00', '1000000.00', '1', '1', '2020-08-12 05:20:55', NULL, NULL, '1'),
-(48, '20200812053009', 'Expense', '2020-08-12', '406', 'Crates Expense 20200812053009', '7200000.00', '0.00', '1', '1', '2020-08-12 05:30:09', NULL, NULL, '1'),
-(49, '20200812053009', 'Expense', '2020-08-12', '1020101', 'Crates Expense20200812053009', '0.00', '7200000.00', '1', '1', '2020-08-12 05:30:09', NULL, NULL, '1'),
-(50, 'September 2020', 'Salary', '2020-08-12', '502040001', 'Employee Salary Generate Month ofSeptember 2020', '0.00', '80000.00', '1', '1', '2020-08-12 05:45:11', NULL, NULL, '1'),
-(51, 'September 2020', 'Salary', '2020-08-12', '502040005', 'Employee Salary Generate Month ofSeptember 2020', '0.00', '80500.00', '1', '1', '2020-08-12 05:45:11', NULL, NULL, '1'),
-(52, '3', 'Salary', '2020-08-12', '1020101', 'Cash in hand Credit For Employee Salary for EmilyGitonga', '0.00', '80500.00', '1', 'Mo  Farm', '2020-08-12 05:45:35', NULL, NULL, '1'),
-(53, '3', 'Salary', '2020-08-12', '403', 'Salary paid For EmilyGitonga', '80500.00', '0.00', '1', 'Mo  Farm', '2020-08-12 05:45:35', NULL, NULL, '1'),
-(54, '3', 'Salary', '2020-08-12', '502040005', 'Salary paid For EmilyGitonga', '80500.00', '0.00', '1', 'Mo  Farm', '2020-08-12 05:45:35', NULL, NULL, '1'),
-(55, '20200812055040', 'Purchase', '2020-08-12', '10107', 'Inventory Debit For Supplier DK farm', '230000.00', '0.00', '1', '1', '2020-08-12 05:50:40', NULL, NULL, '1'),
-(56, '20200812055040', 'Purchase', '2020-08-12', '502000008', 'Supplier .DK farm', '0.00', '230000.00', '1', '1', '2020-08-12 00:00:00', NULL, NULL, '1'),
-(57, '20200812055040', 'Purchase', '2020-08-12', '402', 'Company Credit For  DK farm', '230000.00', '0.00', '1', '1', '2020-08-12 05:50:40', NULL, NULL, '1'),
-(58, '4955416239', 'INV', '2020-08-12', '10107', 'Inventory credit For Invoice No1005', '0.00', '115000.00', '1', '1', '2020-08-12 05:52:22', NULL, NULL, '1'),
-(59, '4955416239', 'INVOICE', '2020-08-12', '303', 'Sale Income For Invoice NO - 1005 Customer ', '0.00', '300000.00', '1', '1', '2020-08-12 05:52:22', NULL, NULL, '1'),
-(60, '4955416239', 'INV', '2020-08-12', '1020101', 'Cash in Hand in Sale for Invoice No - 1005 customer', '300000.00', '0.00', '1', '1', '2020-08-12 05:52:22', NULL, NULL, '1'),
-(61, '7193232912', 'INV', '2020-08-12', '10107', 'Inventory credit For Invoice No1006', '0.00', '165000.00', '1', '1', '2020-08-12 05:58:57', NULL, NULL, '1'),
-(62, '7193232912', 'INV', '2020-08-12', '102030000005', 'Customer debit For Invoice No -  1006 Customer Clarisse Importers', '900000.00', '0.00', '1', '1', '2020-08-12 05:58:57', NULL, NULL, '1'),
-(63, '7193232912', 'INVOICE', '2020-08-12', '303', 'Sale Income For Invoice NO - 1006 Customer Clarisse Importers', '0.00', '900000.00', '1', '1', '2020-08-12 05:58:57', NULL, NULL, '1'),
-(64, '7193232912', 'INV', '2020-08-12', '102030000005', 'Customer credit for Paid Amount For Customer Invoice NO- 1006 Customer Clarisse Importers', '0.00', '900000.00', '1', '1', '2020-08-12 05:58:57', NULL, NULL, '1'),
-(65, '7193232912', 'INV', '2020-08-12', '1020101', 'Cash in Hand in Sale for Invoice No - 1006 customerClarisse Importers', '900000.00', '0.00', '1', '1', '2020-08-12 05:58:57', NULL, NULL, '1'),
-(66, '4481368838', 'INV', '2020-08-13', '10107', 'Inventory credit For Invoice No1007', '0.00', '144000.00', '1', '1', '2020-08-13 00:18:18', NULL, NULL, '1'),
-(67, '4481368838', 'INVOICE', '2020-08-13', '303', 'Sale Income For Invoice NO - 1007 Customer ', '0.00', '960000.00', '1', '1', '2020-08-13 00:18:18', NULL, NULL, '1'),
-(68, '4481368838', 'INV', '2020-08-13', '1020101', 'Cash in Hand in Sale for Invoice No - 1007 customer', '960000.00', '0.00', '1', '1', '2020-08-13 00:18:18', NULL, NULL, '1'),
-(69, '8322889664', 'INV', '2020-08-13', '10107', 'Inventory credit For Invoice No1008', '0.00', '6000.00', '1', '1', '2020-08-13 00:26:30', NULL, NULL, '1'),
-(70, '8322889664', 'INV', '2020-08-13', '102030000006', 'Customer debit For Invoice No -  1008 Customer France Importers', '80000.00', '0.00', '1', '1', '2020-08-13 00:26:30', NULL, NULL, '1'),
-(71, '8322889664', 'INVOICE', '2020-08-13', '303', 'Sale Income For Invoice NO - 1008 Customer France Importers', '0.00', '80000.00', '1', '1', '2020-08-13 00:26:30', NULL, NULL, '1'),
-(72, '20200813005516', 'Purchase', '2020-08-13', '10107', 'Inventory Debit For Supplier Bendo Farm', '259000000.00', '0.00', '1', '1', '2020-08-13 00:55:16', NULL, NULL, '1'),
-(73, '20200813005516', 'Purchase', '2020-08-13', '502000007', 'Supplier .Bendo Farm', '0.00', '259000000.00', '1', '1', '2020-08-13 00:00:00', NULL, NULL, '1'),
-(74, '20200813005516', 'Purchase', '2020-08-13', '402', 'Company Credit For  Bendo Farm', '259000000.00', '0.00', '1', '1', '2020-08-13 00:55:16', NULL, NULL, '1'),
-(75, '3399842522', 'INV', '2020-08-13', '10107', 'Inventory credit For Invoice No1009', '0.00', '940000.00', '1', '1', '2020-08-13 00:58:02', NULL, NULL, '1'),
-(76, '3399842522', 'INV', '2020-08-13', '102030000005', 'Customer debit For Invoice No -  1009 Customer Clarisse Importers', '3940000.00', '0.00', '1', '1', '2020-08-13 00:58:02', NULL, NULL, '1'),
-(77, '3399842522', 'INVOICE', '2020-08-13', '303', 'Sale Income For Invoice NO - 1009 Customer Clarisse Importers', '0.00', '3940000.00', '1', '1', '2020-08-13 00:58:02', NULL, NULL, '1'),
-(78, '3399842522', 'INV', '2020-08-13', '102030000005', 'Customer credit for Paid Amount For Customer Invoice NO- 1009 Customer Clarisse Importers', '0.00', '3940000.00', '1', '1', '2020-08-13 00:58:02', NULL, NULL, '1'),
-(79, '3399842522', 'INV', '2020-08-13', '1020101', 'Cash in Hand in Sale for Invoice No - 1009 customerClarisse Importers', '3940000.00', '0.00', '1', '1', '2020-08-13 00:58:02', NULL, NULL, '1'),
-(80, 'PM-3', 'PM', '2020-08-13', '502000007', '', '10000000.00', '0.00', '1', '1', '2020-08-13 00:59:44', NULL, NULL, '1'),
-(81, 'PM-3', 'PM', '2020-08-13', '1020101', 'Paid to Bendo Farm', '0.00', '10000000.00', '1', '1', '2020-08-13 00:59:44', NULL, NULL, '1'),
-(82, 'CV-1', 'CV', '2020-08-13', '502040001', '', '0.00', '100000000.00', '1', NULL, '2020-08-13 01:00:38', NULL, NULL, '0'),
-(83, 'CV-1', 'CV', '2020-08-13', '1020101', 'Credit Vourcher from Cash In Hand', '100000000.00', '0.00', '1', NULL, '2020-08-13 01:00:38', NULL, NULL, '0'),
-(84, 'Deposit', 'Bank Transaction', '2020-08-13', '102010201', 'Cash Payment', '120000000000.00', '0.00', '1', '1', '2020-08-13 01:05:54', NULL, NULL, '1'),
-(85, 'Withdrwal', 'Bank Transaction', '2020-08-13', '102010201', 'Wire Transfer', '0.00', '780000000.00', '1', '1', '2020-08-13 01:06:51', NULL, NULL, '1'),
-(86, 'Deposit', 'Bank Transaction', '2020-08-13', '102010202', 'Deposit', '7800000000.00', '0.00', '1', '1', '2020-08-13 01:07:36', NULL, NULL, '1'),
-(87, '5245945138', 'INV', '2020-08-13', '10107', 'Inventory credit For Invoice No1010', '0.00', '420000.00', '1', '1', '2020-08-13 01:14:17', NULL, NULL, '1'),
-(88, '5245945138', 'INVOICE', '2020-08-13', '303', 'Sale Income For Invoice NO - 1010 Customer ', '0.00', '15840000.00', '1', '1', '2020-08-13 01:14:17', NULL, NULL, '1'),
-(89, '5245945138', 'INVOICE', '2020-08-13', '102010201', 'Paid amount for customer  Invoice No - 1010 customer -', '15840000.00', '0.00', '1', '1', '2020-08-13 01:14:17', NULL, NULL, '1'),
-(90, '8799364365', 'INV', '2020-08-13', '10107', 'Inventory credit For Invoice No1011', '0.00', '420000.00', '1', '1', '2020-08-13 01:16:04', NULL, NULL, '1'),
-(91, '8799364365', 'INVOICE', '2020-08-13', '303', 'Sale Income For Invoice NO - 1011 Customer ', '0.00', '2880000.00', '1', '1', '2020-08-13 01:16:04', NULL, NULL, '1'),
-(92, '6241166159', 'INV', '2020-08-13', '10107', 'Inventory credit For Invoice No1012', '0.00', '420000.00', '1', '1', '2020-08-13 01:18:45', NULL, NULL, '1'),
-(93, '6241166159', 'INV', '2020-08-13', '102030000001', 'Customer debit For Invoice No -  1012 Customer Spain Fruits', '2880000.00', '0.00', '1', '1', '2020-08-13 01:18:45', NULL, NULL, '1'),
-(94, '6241166159', 'INVOICE', '2020-08-13', '303', 'Sale Income For Invoice NO - 1012 Customer Spain Fruits', '0.00', '2880000.00', '1', '1', '2020-08-13 01:18:45', NULL, NULL, '1'),
-(95, '20200813012426', 'Purchase', '2020-08-13', '10107', 'Inventory Debit For Supplier Bendo Farm', '2300000000.00', '0.00', '1', '1', '2020-08-13 01:24:26', NULL, NULL, '1'),
-(96, '20200813012426', 'Purchase', '2020-08-13', '502000007', 'Supplier .Bendo Farm', '0.00', '2300000000.00', '1', '1', '2020-08-13 00:00:00', NULL, NULL, '1'),
-(97, '20200813012426', 'Purchase', '2020-08-13', '402', 'Company Credit For  Bendo Farm', '2300000000.00', '0.00', '1', '1', '2020-08-13 01:24:26', NULL, NULL, '1'),
-(98, '9872541527', 'INV', '2020-08-13', '10107', 'Inventory credit For Invoice No1013', '0.00', '34500000.00', '1', '1', '2020-08-13 01:27:15', NULL, NULL, '1'),
-(99, '9872541527', 'INV', '2020-08-13', '102030000006', 'Customer debit For Invoice No -  1013 Customer France Importers', '120000000.00', '0.00', '1', '1', '2020-08-13 01:27:15', NULL, NULL, '1'),
-(100, '9872541527', 'INVOICE', '2020-08-13', '303', 'Sale Income For Invoice NO - 1013 Customer France Importers', '0.00', '120000000.00', '1', '1', '2020-08-13 01:27:15', NULL, NULL, '1'),
-(101, '9872541527', 'INV', '2020-08-13', '102030000006', 'Customer credit for Paid Amount For Customer Invoice NO- 1013 Customer France Importers', '0.00', '120080000.00', '1', '1', '2020-08-13 01:27:15', NULL, NULL, '1'),
-(102, '9872541527', 'INV', '2020-08-13', '1020101', 'Cash in Hand in Sale for Invoice No - 1013 customerFrance Importers', '120080000.00', '0.00', '1', '1', '2020-08-13 01:27:15', NULL, NULL, '1'),
-(103, '20200812043018', 'Return', '2020-08-13', '502000008', 'Supplier Return to .DK farm', '5000.00', '0.00', '1', '1', '2020-08-13 00:00:00', NULL, NULL, '1'),
-(104, '3399842522', 'Return', '2020-08-13', '102030000005', 'Customer debit For Return Clarisse Importers', '0.00', '110000.00', '1', '1', '2020-08-13 01:33:01', NULL, NULL, '1'),
-(105, '3752613857', 'INV', '2020-08-13', '10107', 'Inventory credit For Invoice No1014', '0.00', '828000.00', '1', '1', '2020-08-13 01:43:06', NULL, NULL, '1'),
-(106, '3752613857', 'INVOICE', '2020-08-13', '303', 'Sale Income For Invoice NO - 1014 Customer ', '0.00', '2880000.00', '1', '1', '2020-08-13 01:43:06', NULL, NULL, '1'),
-(107, '3752613857', 'INV', '2020-08-13', '1020101', 'Cash in Hand in Sale for Invoice No - 1014 customer', '2880000.00', '0.00', '1', '1', '2020-08-13 01:43:06', NULL, NULL, '1'),
-(108, '7276739431', 'INV', '2020-08-13', '10107', 'Inventory credit For Invoice No1015', '0.00', '828000.00', '1', '1', '2020-08-13 01:45:09', NULL, NULL, '1'),
-(109, '7276739431', 'INVOICE', '2020-08-13', '303', 'Sale Income For Invoice NO - 1015 Customer ', '0.00', '2880000.00', '1', '1', '2020-08-13 01:45:09', NULL, NULL, '1'),
-(110, '7276739431', 'INV', '2020-08-13', '1020101', 'Cash in Hand in Sale for Invoice No - 1015 customer', '2880000.00', '0.00', '1', '1', '2020-08-13 01:45:09', NULL, NULL, '1'),
-(111, '4772683262', 'INV', '2020-08-13', '10107', 'Inventory credit For Invoice No1016', '0.00', '875000.00', '1', '1', '2020-08-13 02:05:16', NULL, NULL, '1'),
-(112, '4772683262', 'INVOICE', '2020-08-13', '303', 'Sale Income For Invoice NO - 1016 Customer ', '0.00', '4800000.00', '1', '1', '2020-08-13 02:05:16', NULL, NULL, '1'),
-(113, '4772683262', 'INV', '2020-08-13', '1020101', 'Cash in Hand in Sale for Invoice No - 1016 customer', '4800000.00', '0.00', '1', '1', '2020-08-13 02:05:16', NULL, NULL, '1'),
-(114, '4355843356', 'INV', '2020-08-13', '10107', 'Inventory credit For Invoice No1017', '0.00', '960000.00', '1', '1', '2020-08-13 02:07:03', NULL, NULL, '1'),
-(115, '4355843356', 'INVOICE', '2020-08-13', '303', 'Sale Income For Invoice NO - 1017 Customer ', '0.00', '2880000.00', '1', '1', '2020-08-13 02:07:03', NULL, NULL, '1'),
-(116, '4355843356', 'INV', '2020-08-13', '1020101', 'Cash in Hand in Sale for Invoice No - 1017 customer', '2880000.00', '0.00', '1', '1', '2020-08-13 02:07:03', NULL, NULL, '1'),
-(117, '6149517258', 'INVOICE', '2020-08-16', '10107', 'Inventory credit For Invoice No6149517258', '0.00', '27200.00', '1', '1', '2020-08-16 09:28:35', NULL, NULL, '1'),
-(118, '6149517258', 'INVOICE', '2020-08-16', '102030000007', 'Customer debit For  Kevin Kihara', '81000.00', '0.00', '1', '1', '2020-08-16 09:28:35', NULL, NULL, '1'),
-(119, '6149517258', 'INVOICE', '2020-08-16', '303', 'Sale Income For Kevin Kihara', '0.00', '81000.00', '1', '1', '2020-08-16 09:28:35', NULL, NULL, '1'),
-(120, '6149517258', 'INVOICE', '2020-08-16', '102030000007', 'Customer credit for Paid Amount For Customer Kevin Kihara', '0.00', '81000.00', '1', '1', '2020-08-16 09:28:35', NULL, NULL, '1'),
-(121, '6149517258', 'INVOICE', '2020-08-16', '1020101', 'Cash in Hand in Sale for Kevin Kihara', '81000.00', '0.00', '1', '1', '2020-08-16 09:28:35', NULL, NULL, '1'),
-(122, '6149517258', 'SERVICE', '2020-08-16', '304', 'Service Income For SERVICE No6149517258', '0.00', '0.00', '1', '1', '2020-08-16 09:28:35', NULL, NULL, '1'),
-(123, '6149517258', 'SERVICE', '2020-08-16', '102030000007', 'Customer debit For service No6149517258', '0.00', '0.00', '1', '1', '2020-08-16 09:28:35', NULL, NULL, '1'),
-(124, '6149517258', 'SERVICE', '2020-08-16', '102030000007', 'Customer credit for Paid Amount For Service No6149517258', '0.00', '0.00', '1', '1', '2020-08-16 09:28:35', NULL, NULL, '1'),
-(125, '6149517258', 'SERVICE', '2020-08-16', '1020101', 'Cash in Hand For SERVICE No6149517258', '0.00', '0.00', '1', '1', '2020-08-16 09:28:35', NULL, NULL, '1'),
-(126, '6226797299', 'INV', '2020-08-16', '10107', 'Inventory credit For Invoice No1019', '0.00', '420010.00', '1', '1', '2020-08-16 12:09:26', NULL, NULL, '1'),
-(127, '6226797299', 'INV', '2020-08-16', '102030000005', 'Customer debit For Invoice No -  1019 Customer Clarisse Importers', '1550200.00', '0.00', '1', '1', '2020-08-16 12:09:26', NULL, NULL, '1'),
-(128, '6226797299', 'INVOICE', '2020-08-16', '303', 'Sale Income For Invoice NO - 1019 Customer Clarisse Importers', '0.00', '1550200.00', '1', '1', '2020-08-16 12:09:26', NULL, NULL, '1'),
-(129, '20200816155013', 'Purchase', '2020-08-16', '10107', 'Inventory Debit For Supplier Juja Avocado Farm', '4940000000.00', '0.00', '1', '1', '2020-08-16 15:50:13', NULL, NULL, '1'),
-(130, '20200816155013', 'Purchase', '2020-08-16', '502000012', 'Supplier .Juja Avocado Farm', '0.00', '4940000000.00', '1', '1', '2020-08-16 00:00:00', NULL, NULL, '1'),
-(131, '20200816155013', 'Purchase', '2020-08-16', '402', 'Company Credit For  Juja Avocado Farm', '4940000000.00', '0.00', '1', '1', '2020-08-16 15:50:13', NULL, NULL, '1'),
-(132, '6593258729', 'INVOICE', '2020-08-16', '10107', 'Inventory credit For Invoice No6593258729', '0.00', '686585.00', '1', '1', '2020-08-16 15:53:24', NULL, NULL, '1'),
-(133, '6593258729', 'INVOICE', '2020-08-16', '102030000005', 'Customer debit For  Clarisse Importers', '2880000.00', '0.00', '1', '1', '2020-08-16 15:53:24', NULL, NULL, '1'),
-(134, '6593258729', 'INVOICE', '2020-08-16', '303', 'Sale Income For Clarisse Importers', '0.00', '2880000.00', '1', '1', '2020-08-16 15:53:24', NULL, NULL, '1'),
-(135, '6593258729', 'INVOICE', '2020-08-16', '102030000005', 'Customer credit for Paid Amount For Customer Clarisse Importers', '0.00', '2880000.00', '1', '1', '2020-08-16 15:53:24', NULL, NULL, '1'),
-(136, '6593258729', 'INVOICE', '2020-08-16', '1020101', 'Cash in Hand in Sale for Clarisse Importers', '2880000.00', '0.00', '1', '1', '2020-08-16 15:53:24', NULL, NULL, '1'),
-(137, '6593258729', 'SERVICE', '2020-08-16', '304', 'Service Income For SERVICE No6593258729', '0.00', '0.00', '1', '1', '2020-08-16 15:53:24', NULL, NULL, '1'),
-(138, '6593258729', 'SERVICE', '2020-08-16', '102030000005', 'Customer debit For service No6593258729', '0.00', '0.00', '1', '1', '2020-08-16 15:53:24', NULL, NULL, '1'),
-(139, '6593258729', 'SERVICE', '2020-08-16', '102030000005', 'Customer credit for Paid Amount For Service No6593258729', '0.00', '0.00', '1', '1', '2020-08-16 15:53:24', NULL, NULL, '1'),
-(140, '6593258729', 'SERVICE', '2020-08-16', '1020101', 'Cash in Hand For SERVICE No6593258729', '0.00', '0.00', '1', '1', '2020-08-16 15:53:24', NULL, NULL, '1'),
-(141, '6132938343', 'INV', '2020-08-16', '10107', 'Inventory credit For Invoice No1021', '0.00', '996000.00', '1', '1', '2020-08-16 15:54:55', NULL, NULL, '1'),
-(142, '6132938343', 'INV', '2020-08-16', '102030000005', 'Customer debit For Invoice No -  1021 Customer Clarisse Importers', '2880000.00', '0.00', '1', '1', '2020-08-16 15:54:55', NULL, NULL, '1'),
-(143, '6132938343', 'INVOICE', '2020-08-16', '303', 'Sale Income For Invoice NO - 1021 Customer Clarisse Importers', '0.00', '2880000.00', '1', '1', '2020-08-16 15:54:55', NULL, NULL, '1'),
-(144, '5136861534', 'INV', '2020-08-16', '10107', 'Inventory credit For Invoice No1022', '0.00', '998400.00', '1', '1', '2020-08-16 15:59:11', NULL, NULL, '1'),
-(145, '5136861534', 'INV', '2020-08-16', '102030000008', 'Customer debit For Invoice No -  1022 Customer UK Fresh Foods', '2880000.00', '0.00', '1', '1', '2020-08-16 15:59:11', NULL, NULL, '1'),
-(146, '5136861534', 'INVOICE', '2020-08-16', '303', 'Sale Income For Invoice NO - 1022 Customer UK Fresh Foods', '0.00', '2880000.00', '1', '1', '2020-08-16 15:59:11', NULL, NULL, '1'),
-(147, '5136861534', 'INV', '2020-08-16', '102030000008', 'Customer credit for Paid Amount For Customer Invoice NO- 1022 Customer UK Fresh Foods', '0.00', '2880000.00', '1', '1', '2020-08-16 15:59:11', NULL, NULL, '1'),
-(148, '5136861534', 'INV', '2020-08-16', '1020101', 'Cash in Hand in Sale for Invoice No - 1022 customerUK Fresh Foods', '2880000.00', '0.00', '1', '1', '2020-08-16 15:59:11', NULL, NULL, '1'),
-(149, '20200816160816', 'Purchase', '2020-08-16', '10107', 'Inventory Debit For Supplier Outsourced Supplier', '50000000.00', '0.00', '1', '1', '2020-08-16 16:08:16', NULL, NULL, '1'),
-(150, '20200816160816', 'Purchase', '2020-08-16', '502000009', 'Supplier .Outsourced Supplier', '0.00', '50000000.00', '1', '1', '2020-08-16 00:00:00', NULL, NULL, '1'),
-(151, '20200816160816', 'Purchase', '2020-08-16', '402', 'Company Credit For  Outsourced Supplier', '50000000.00', '0.00', '1', '1', '2020-08-16 16:08:16', NULL, NULL, '1'),
-(152, '20200816160816', 'Purchase', '2020-08-16', '1020101', 'Cash in Hand For Supplier Outsourced Supplier', '0.00', '50000000.00', '1', '1', '2020-08-16 16:08:16', NULL, NULL, '1'),
-(153, '20200816160816', 'Purchase', '2020-08-16', '502000009', 'Supplier .Outsourced Supplier', '50000000.00', '0.00', '1', '1', '2020-08-16 00:00:00', NULL, NULL, '1'),
-(154, 'KENULZGJNI', 'LNR', '2020-08-16', '10203020001', 'Loan for .Eve Wanja', '70000.00', '0.00', '1', '1', '2020-08-16 16:11:27', NULL, NULL, '1'),
-(155, 'KENULZGJNI', 'LNR', '2020-08-16', '1020101', 'Cash in Hand Credit For Eve Wanja', '0.00', '70000.00', '1', '1', '2020-08-16 16:11:27', NULL, NULL, '1'),
-(156, '8811673828', 'INV', '2020-08-17', '10107', 'Inventory credit For Invoice No1023', '0.00', '446400.00', '1', '1', '2020-08-17 03:34:47', NULL, NULL, '1'),
-(157, '8811673828', 'INVOICE', '2020-08-17', '303', 'Sale Income For Invoice NO - 1023 Customer ', '0.00', '2880000.00', '1', '1', '2020-08-17 03:34:47', NULL, NULL, '1'),
-(158, '8811673828', 'INV', '2020-08-17', '1020101', 'Cash in Hand in Sale for Invoice No - 1023 customer', '100000.00', '0.00', '1', '1', '2020-08-17 03:34:47', NULL, NULL, '1'),
-(159, '3492357347', 'INV', '2020-08-17', '10107', 'Inventory credit For Invoice No1024', '0.00', '998400.00', '1', '1', '2020-08-17 03:37:06', NULL, NULL, '1'),
-(160, '3492357347', 'INV', '2020-08-17', '102030000009', 'Customer debit For Invoice No -  1024 Customer James Exports', '2880000.00', '0.00', '1', '1', '2020-08-17 03:37:06', NULL, NULL, '1'),
-(161, '3492357347', 'INVOICE', '2020-08-17', '303', 'Sale Income For Invoice NO - 1024 Customer James Exports', '0.00', '2880000.00', '1', '1', '2020-08-17 03:37:06', NULL, NULL, '1'),
-(162, '3492357347', 'INV', '2020-08-17', '102030000009', 'Customer credit for Paid Amount For Customer Invoice NO- 1024 Customer James Exports', '0.00', '100000.00', '1', '1', '2020-08-17 03:37:06', NULL, NULL, '1'),
-(163, '3492357347', 'INV', '2020-08-17', '1020101', 'Cash in Hand in Sale for Invoice No - 1024 customerJames Exports', '100000.00', '0.00', '1', '1', '2020-08-17 03:37:06', NULL, NULL, '1'),
-(164, '4965586782', 'INV', '2020-08-17', '10107', 'Inventory credit For Invoice No1025', '0.00', '446400.00', '1', '1', '2020-08-17 03:43:29', NULL, NULL, '1'),
-(165, '4965586782', 'INV', '2020-08-17', '102030000010', 'Customer debit For Invoice No -  1025 Customer Maina Exporters', '1440000.00', '0.00', '1', '1', '2020-08-17 03:43:29', NULL, NULL, '1'),
-(166, '4965586782', 'INVOICE', '2020-08-17', '303', 'Sale Income For Invoice NO - 1025 Customer Maina Exporters', '0.00', '1440000.00', '1', '1', '2020-08-17 03:43:29', NULL, NULL, '1'),
-(170, '3741819148', 'INV', '2020-08-17', '10107', 'Inventory credit For Invoice No1026', '0.00', '464000.00', '1', '1', '2020-08-17 03:56:28', NULL, NULL, '1'),
-(171, '3741819148', 'INVOICE', '2020-08-17', '303', 'Sale Income For Invoice NO - 1026 Customer ', '0.00', '3461760.00', '1', '1', '2020-08-17 03:56:28', NULL, NULL, '1'),
-(172, '3741819148', 'INV', '2020-08-17', '1020101', 'Cash in Hand in Sale for Invoice No - 1026 customer', '1500000.00', '0.00', '1', '1', '2020-08-17 03:56:28', NULL, NULL, '1'),
-(173, '1893514836', 'INV', '2020-08-17', '10107', 'Inventory credit For Invoice No1027', '0.00', '1016000.00', '1', '1', '2020-08-17 03:58:29', NULL, NULL, '1'),
-(174, '1893514836', 'INV', '2020-08-17', '102030000011', 'Customer debit For Invoice No -  1027 Customer Avocado Fresh', '3461760.00', '0.00', '1', '1', '2020-08-17 03:58:29', NULL, NULL, '1'),
-(175, '1893514836', 'INVOICE', '2020-08-17', '303', 'Sale Income For Invoice NO - 1027 Customer Avocado Fresh', '0.00', '3461760.00', '1', '1', '2020-08-17 03:58:29', NULL, NULL, '1'),
-(176, 'PM-4', 'PM', '2020-08-17', '502000009', '', '85000.00', '0.00', '1', '1', '2020-08-17 04:01:55', NULL, NULL, '1'),
-(177, 'PM-4', 'PM', '2020-08-17', '1020101', 'Paid to Outsourced Supplier', '0.00', '85000.00', '1', '1', '2020-08-17 04:01:55', NULL, NULL, '1'),
-(178, 'CHV-1', 'AD', '2020-08-17', '1020101', '', '150000.00', '0.00', '1', '1', '2020-08-17 04:03:02', NULL, NULL, '1'),
-(179, 'CV-2', 'CV', '2020-08-17', '102030000010', '', '0.00', '8500000.00', '1', NULL, '2020-08-17 04:04:48', NULL, NULL, '0'),
-(180, 'CV-2', 'CV', '2020-08-17', '1020101', 'Credit Vourcher from Cash In Hand', '8500000.00', '0.00', '1', NULL, '2020-08-17 04:04:48', NULL, NULL, '0'),
-(181, 'DV-1', 'DV', '2020-08-17', '102010201', '', '50000000.00', '0.00', '1', NULL, '2020-08-17 04:05:32', NULL, NULL, '0'),
-(182, 'DV-1', 'DV', '2020-08-17', '1020101', 'Debit voucher from Cash In Hand', '0.00', '50000000.00', '1', NULL, '2020-08-17 04:05:32', NULL, NULL, '0'),
-(183, '6381852722', 'INV', '2020-08-17', '10107', 'Inventory credit For Invoice No1028', '0.00', '1016000.00', '1', '1', '2020-08-17 04:15:19', NULL, NULL, '1'),
-(184, '6381852722', 'INV', '2020-08-17', '102030000012', 'Customer debit For Invoice No -  1028 Customer Kamau Importers', '3461760.00', '0.00', '1', '1', '2020-08-17 04:15:19', NULL, NULL, '1'),
-(185, '6381852722', 'INVOICE', '2020-08-17', '303', 'Sale Income For Invoice NO - 1028 Customer Kamau Importers', '0.00', '3461760.00', '1', '1', '2020-08-17 04:15:19', NULL, NULL, '1'),
-(186, '20200817042501', 'Purchase', '2020-08-17', '10107', 'Inventory Debit For Supplier DK farm', '640000.00', '0.00', '1', '1', '2020-08-17 04:25:01', NULL, NULL, '1'),
-(187, '20200817042501', 'Purchase', '2020-08-17', '502000008', 'Supplier .DK farm', '0.00', '640000.00', '1', '1', '2020-08-17 00:00:00', NULL, NULL, '1'),
-(188, '20200817042501', 'Purchase', '2020-08-17', '402', 'Company Credit For  DK farm', '640000.00', '0.00', '1', '1', '2020-08-17 04:25:01', NULL, NULL, '1'),
-(189, '20200817045132', 'Purchase', '2020-08-17', '10107', 'Inventory Debit For Supplier Carton Manufacturers', '1000000.00', '0.00', '1', '1', '2020-08-17 04:51:32', NULL, NULL, '1'),
-(190, '20200817045132', 'Purchase', '2020-08-17', '502000013', 'Supplier .Carton Manufacturers', '0.00', '1000000.00', '1', '1', '2020-08-17 00:00:00', NULL, NULL, '1'),
-(191, '20200817045132', 'Purchase', '2020-08-17', '402', 'Company Credit For  Carton Manufacturers', '1000000.00', '0.00', '1', '1', '2020-08-17 04:51:32', NULL, NULL, '1'),
-(192, 'PM-5', 'PM', '2020-08-17', '502000013', 'Half Payment for August Delivery', '500000.00', '0.00', '1', '1', '2020-08-17 05:02:00', NULL, NULL, '1'),
-(193, 'PM-5', 'PM', '2020-08-17', '1020101', 'Paid to Carton Manufacturers', '0.00', '500000.00', '1', '1', '2020-08-17 05:02:00', NULL, NULL, '1'),
-(194, 'October 2020', 'Salary', '2020-08-17', '502040001', 'Employee Salary Generate Month ofOctober 2020', '0.00', '80000.00', '1', '1', '2020-08-17 05:24:28', NULL, NULL, '1'),
-(195, 'October 2020', 'Salary', '2020-08-17', '502040005', 'Employee Salary Generate Month ofOctober 2020', '0.00', '80500.00', '1', '1', '2020-08-17 05:24:28', NULL, NULL, '1'),
-(196, 'October 2020', 'Salary', '2020-08-17', '502040006', 'Employee Salary Generate Month ofOctober 2020', '0.00', '71152.00', '1', '1', '2020-08-17 05:24:28', NULL, NULL, '1'),
-(197, '6', 'Salary', '2020-08-17', '1020101', 'Cash in hand Credit For Employee Salary for KamauMo Farm', '0.00', '71152.00', '1', 'Mo  Farm', '2020-08-17 05:25:15', NULL, NULL, '1'),
-(198, '6', 'Salary', '2020-08-17', '403', 'Salary paid For KamauMo Farm', '71152.00', '0.00', '1', 'Mo  Farm', '2020-08-17 05:25:15', NULL, NULL, '1'),
-(199, '6', 'Salary', '2020-08-17', '502040006', 'Salary paid For KamauMo Farm', '71152.00', '0.00', '1', 'Mo  Farm', '2020-08-17 05:25:15', NULL, NULL, '1'),
-(200, '20200817054317', 'Purchase', '2020-08-17', '10107', 'Inventory Debit For Supplier Bendo Farm', '1150000.00', '0.00', '1', 'r4gXwjQyEicPMq3', '2020-08-17 05:43:17', NULL, NULL, '1'),
-(201, '20200817054317', 'Purchase', '2020-08-17', '502000007', 'Supplier .Bendo Farm', '0.00', '1150000.00', '1', 'r4gXwjQyEicPMq3', '2020-08-17 00:00:00', NULL, NULL, '1'),
-(202, '20200817054317', 'Purchase', '2020-08-17', '402', 'Company Credit For  Bendo Farm', '1150000.00', '0.00', '1', 'r4gXwjQyEicPMq3', '2020-08-17 05:43:17', NULL, NULL, '1'),
-(203, '6743592518', 'INV', '2020-08-18', '10107', 'Inventory credit For Invoice No1029', '0.00', '753000.00', '1', '1', '2020-08-18 05:08:23', NULL, NULL, '1'),
-(204, '6743592518', 'INV', '2020-08-18', '102030000013', 'Customer debit For Invoice No -  1029 Customer Tropical Millennium ', '3183360.00', '0.00', '1', '1', '2020-08-18 05:08:23', NULL, NULL, '1'),
-(205, '6743592518', 'INVOICE', '2020-08-18', '303', 'Sale Income For Invoice NO - 1029 Customer Tropical Millennium ', '0.00', '3183360.00', '1', '1', '2020-08-18 05:08:23', NULL, NULL, '1');
+(206, 'C1JY8MGQS3', 'Credit', '2021-03-27', '102030000002', 'Customer Milk Collection - C1JY8MGQS3', '300.00', '0.00', '1', '1', '2021-03-27 15:24:00', NULL, NULL, '1'),
+(207, '2RV1M22F37', 'Advance', '2021-03-27', '102030000002', 'Customer Advance For  Allan Namu', '0.00', '100.00', '1', '1', '2021-03-27 15:45:03', NULL, NULL, '1'),
+(208, '2RV1M22F37', 'Advance', '2021-03-27', '1020101', 'Cash in Hand  For Allan Namu Advance', '0.00', '100.00', '1', '1', '2021-03-27 15:45:03', NULL, NULL, '1'),
+(209, '4PGAOBXHIX', 'Advance', '2021-03-27', '102030000002', 'Customer Advance For  Allan Namu', '100.00', '0.00', '1', '1', '2021-03-27 15:46:48', NULL, NULL, '1'),
+(210, '4PGAOBXHIX', 'Advance', '2021-03-27', '1020101', 'Cash in Hand  For Allan Namu Advance', '100.00', '0.00', '1', '1', '2021-03-27 15:46:48', NULL, NULL, '1'),
+(211, '8M8QGYS9L6', 'Credit', '2021-03-27', '102030000001', 'Assigned Dr. Vet Semen units 8M8QGYS9L6', '12000.00', '0.00', '1', '1', '2021-03-27 23:30:52', NULL, NULL, '1'),
+(212, 'SESP57YR2K', 'Credit', '2021-03-28', '102030000002', 'Treated Cow and insemination SESP57YR2K', '0.00', '4800.00', '1', '1', '2021-03-28 01:05:11', NULL, NULL, '1'),
+(213, 'OWNJGK1VF6', 'Debit', '2021-03-28', '102030000001', 'Add raw material to production OWNJGK1VF6', '1200.00', '0.00', '1', '1', '2021-03-28 06:00:09', NULL, NULL, '1'),
+(214, '746OXWK7N8', 'Credit', '2021-03-28', '102030000003', 'Customer Milk Collection - 746OXWK7N8', '600.00', '0.00', '1', '1', '2021-03-28 06:20:13', NULL, NULL, '1'),
+(215, 'ZXYCPI9X91', 'Debit', '2021-03-28', '102030000001', 'Add raw material to production ZXYCPI9X91', '150.00', '0.00', '1', '1', '2021-03-28 06:21:53', NULL, NULL, '1'),
+(220, 'W4XKEQIBRY', 'Credit', '2021-03-28', '102030000002', 'Sell Product to Farmer W4XKEQIBRY', '0.00', '1500.00', '1', '1', '2021-03-28 07:39:36', NULL, NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -362,6 +151,29 @@ CREATE TABLE `bank_add` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `bookings`
+--
+
+CREATE TABLE `bookings` (
+  `id` int(11) NOT NULL,
+  `vet_id` int(11) NOT NULL,
+  `farmer_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `status` enum('Cancelled','Pending','Done') NOT NULL DEFAULT 'Pending',
+  `semen_used` int(5) NOT NULL DEFAULT 0,
+  `charges` double NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`id`, `vet_id`, `farmer_id`, `date`, `status`, `semen_used`, `charges`) VALUES
+(6, 5, 17, '2021-03-28', 'Done', 12, 3000);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `breeds`
 --
 
@@ -376,7 +188,33 @@ CREATE TABLE `breeds` (
 
 INSERT INTO `breeds` (`id`, `name`) VALUES
 (2, 'Asian'),
-(3, 'Freshian');
+(3, 'Freshian'),
+(6, 'New Breed');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `collections`
+--
+
+CREATE TABLE `collections` (
+  `id` int(11) NOT NULL,
+  `farmer_id` int(11) NOT NULL,
+  `route_id` int(11) NOT NULL,
+  `volume` double NOT NULL DEFAULT 0,
+  `period` enum('Morning','Evening') NOT NULL,
+  `buying_price` double NOT NULL DEFAULT 0,
+  `selling_price` double NOT NULL DEFAULT 0,
+  `collection_time` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `collections`
+--
+
+INSERT INTO `collections` (`id`, `farmer_id`, `route_id`, `volume`, `period`, `buying_price`, `selling_price`, `collection_time`) VALUES
+(3, 17, 1, 10, 'Morning', 30, 35, '2021-03-27 16:24:00'),
+(4, 16, 2, 20, 'Morning', 30, 35, '2021-03-28 07:20:12');
 
 -- --------------------------------------------------------
 
@@ -416,6 +254,16 @@ CREATE TABLE `cows` (
   `production` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `cows`
+--
+
+INSERT INTO `cows` (`id`, `breed_id`, `age`, `route_id`, `supplier_id`, `production`) VALUES
+(1, 2, 10, 2, 16, 'Good'),
+(2, 3, 13, 1, 17, 'Normal'),
+(3, 6, 12, 3, 16, '100ltrs'),
+(4, 3, 13, 3, 17, '20ltrs');
+
 -- --------------------------------------------------------
 
 --
@@ -443,7 +291,7 @@ INSERT INTO `currency_tbl` (`id`, `currency_name`, `icon`) VALUES
 --
 
 CREATE TABLE `customer_information` (
-  `customer_id` bigint(20) NOT NULL,
+  `customer_id` int(11) NOT NULL,
   `customer_name` varchar(255) DEFAULT NULL,
   `customer_address` varchar(255) NOT NULL,
   `address2` text NOT NULL,
@@ -451,6 +299,7 @@ CREATE TABLE `customer_information` (
   `customer_email` varchar(100) DEFAULT NULL,
   `email_address` varchar(200) DEFAULT NULL,
   `contact` varchar(100) DEFAULT NULL,
+  `route_id` int(11) NOT NULL DEFAULT 1,
   `phone` varchar(50) DEFAULT NULL,
   `fax` varchar(100) DEFAULT NULL,
   `city` text DEFAULT NULL,
@@ -458,6 +307,8 @@ CREATE TABLE `customer_information` (
   `zip` varchar(50) DEFAULT NULL,
   `country` varchar(250) DEFAULT NULL,
   `status` int(11) NOT NULL COMMENT '1=paid,2=credit',
+  `bank_account` varchar(20) DEFAULT NULL,
+  `customer_type` varchar(50) DEFAULT NULL,
   `create_date` timestamp NOT NULL DEFAULT current_timestamp(),
   `create_by` varchar(30) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -466,19 +317,10 @@ CREATE TABLE `customer_information` (
 -- Dumping data for table `customer_information`
 --
 
-INSERT INTO `customer_information` (`customer_id`, `customer_name`, `customer_address`, `address2`, `customer_mobile`, `customer_email`, `email_address`, `contact`, `phone`, `fax`, `city`, `state`, `zip`, `country`, `status`, `create_date`, `create_by`) VALUES
-(1, 'Walking Customer', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-03-02 20:23:10', NULL),
-(100, 'Spain Fruits', '43844', '43844', '', 'spain@gmail.com', 'spain@gmail.com', '', '', 'fax', 'Barcelona', 'Barcelona', '00100', 'Spaina', 1, '2020-03-02 17:23:10', NULL),
-(3, 'Fruits Expo', 'N/A', 'N/A', '07324593963', 'fruits@gmail.com', 'fruits@gmail.com', '', '', '', 'London', 'London', '00200', 'UK', 2, '2020-08-11 16:47:48', '1'),
-(4, 'England Fruits', '55137 - 00200', '', '017284660', 'EnglandFruits@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-08-11 17:16:33', NULL),
-(10, 'Maina Exporters', 'Paris,France.', '', '28745008761', 'maina@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-08-17 04:42:07', NULL),
-(6, 'France Importers', 'Paris,Francis.', '', '25784236511', 'franceimporters@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-08-13 01:26:23', NULL),
-(7, 'Kevin Kihara', '315-00900', '', '0757589568', 'kihashkevo2014@gmail.com', 'kihashkevo2014@gmail.com', '', '', '', 'Kiambu', 'Kiambu', '315-Kiambu', '', 2, '2020-08-16 10:24:37', '1'),
-(8, 'UK Fresh Foods', 'Amsterdam', '', '1485141245565', 'freshfoodss@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-08-16 16:59:03', NULL),
-(9, 'James Exports', 'Milan,Italy', '', '2547556578421', 'james@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-08-17 04:36:16', NULL),
-(11, 'Avocado Fresh', 'Barcelona, Spain', '', '254781668101', 'avocadofresh@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-08-17 04:57:49', NULL),
-(12, 'Kamau Importers', 'Wales,England', '', '25872511266', 'kamau@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-08-17 05:13:35', NULL),
-(13, 'Tropical Millennium ', 'Spain', '', '254718503', 'tropical2@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-08-18 06:06:37', NULL);
+INSERT INTO `customer_information` (`customer_id`, `customer_name`, `customer_address`, `address2`, `customer_mobile`, `customer_email`, `email_address`, `contact`, `route_id`, `phone`, `fax`, `city`, `state`, `zip`, `country`, `status`, `bank_account`, `customer_type`, `create_date`, `create_by`) VALUES
+(1, 'Next Tech Vet', '', '', '', 'nxtvet@gmail.com', NULL, '', 1, '', '', NULL, '', NULL, NULL, 2, '', NULL, '2021-03-27 16:56:29', NULL),
+(16, 'James Wingi', 'Nairobi', '', '12345678', 'jw@gmail.com', NULL, '1109', 1, '0712345678', 'A1234567891Z', NULL, 'Uthiru', NULL, NULL, 2, '1134567864', 'Weekly', '2021-03-27 12:54:37', NULL),
+(17, 'Allan Namu', 'Nakuru', '', '22334455', 'allannamu@gmail.com', NULL, '10078', 2, '0722334455', 'W2345678086Q', NULL, 'Milimani', NULL, NULL, 2, '44556677889', 'Weekly', '2021-03-27 12:56:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -525,6 +367,27 @@ CREATE TABLE `designation` (
   `designation` varchar(150) NOT NULL,
   `details` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `diseases`
+--
+
+CREATE TABLE `diseases` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `diseases`
+--
+
+INSERT INTO `diseases` (`id`, `name`) VALUES
+(1, 'Sickle Cell Anaemia'),
+(2, 'Heart Failure'),
+(3, 'Blood Cloting'),
+(4, 'New Diseases');
 
 -- --------------------------------------------------------
 
@@ -910,17 +773,17 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (26, 'manage_purchase', 'Manage Purchase', NULL),
 (27, 'add_purchase', 'Add Purchase', NULL),
 (28, 'purchase', 'Purchase', NULL),
-(29, 'paid_customer', 'Paid Customer', NULL),
-(30, 'manage_customer', 'Manage Customer', NULL),
-(31, 'add_customer', 'Add Customer', NULL),
-(32, 'customer', 'Customer', NULL),
-(33, 'supplier_payment_actual', 'Supplier Payment Ledger', NULL),
-(34, 'supplier_sales_summary', 'Supplier Sales Summary', NULL),
-(35, 'supplier_sales_details', 'Supplier Sales Details', NULL),
-(36, 'supplier_ledger', 'Supplier Ledger', NULL),
-(37, 'manage_supplier', 'Manage Supplier', NULL),
-(38, 'add_supplier', 'Add Supplier', NULL),
-(39, 'supplier', 'Supplier', NULL),
+(29, 'paid_customer', 'Paid Farmer', NULL),
+(30, 'manage_customer', 'Manage Farmer', NULL),
+(31, 'add_customer', 'Add Farmer', NULL),
+(32, 'customer', 'Farmer', NULL),
+(33, 'supplier_payment_actual', 'Farmer Payment Ledger', NULL),
+(34, 'supplier_sales_summary', 'Farmer Sales Summary', NULL),
+(35, 'supplier_sales_details', 'Farmer Sales Details', NULL),
+(36, 'supplier_ledger', 'Farmer Ledger', NULL),
+(37, 'manage_supplier', 'Manage Farmer->s', NULL),
+(38, 'add_supplier', 'Add Farmer ->s', NULL),
+(39, 'supplier', 'Farmer -> s', NULL),
 (40, 'product_statement', 'Product Statement', NULL),
 (41, 'manage_product', 'Manage Product', NULL),
 (42, 'add_product', 'Add Product', NULL),
@@ -939,12 +802,12 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (55, 'change_password', 'Change Password', NULL),
 (56, 'total_purchase', 'Total Purchase', NULL),
 (57, 'total_amount', 'Total Amount', NULL),
-(58, 'supplier_name', 'Supplier Name', NULL),
+(58, 'supplier_name', 'Farmer Name', NULL),
 (59, 'invoice_no', 'Invoice No', NULL),
 (60, 'purchase_date', 'Purchase Date', NULL),
 (61, 'todays_purchase_report', 'Todays Purchase Report', NULL),
 (62, 'total_sales', 'Total Sales', NULL),
-(63, 'customer_name', 'Customer Name', NULL),
+(63, 'customer_name', 'Farmer Name', NULL),
 (64, 'sales_date', 'Sales Date', NULL),
 (65, 'todays_sales_report', 'Todays Sales Report', NULL),
 (66, 'home', 'Home', NULL),
@@ -982,7 +845,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (98, 'save_changes', 'Save Changes', NULL),
 (99, 'save_and_add_another', 'Save And Add Another', NULL),
 (100, 'model', 'Model', NULL),
-(101, 'supplier_price', 'Supplier Price', NULL),
+(101, 'supplier_price', 'Farmer Price', NULL),
 (102, 'sell_price', 'Sale Price', NULL),
 (103, 'image', 'Image', NULL),
 (104, 'select_one', 'Select One', NULL),
@@ -1007,20 +870,20 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (123, 'in', 'In', NULL),
 (124, 'to', 'To', NULL),
 (125, 'previous_balance', 'Previous Credit Balance', NULL),
-(126, 'customer_address', 'Customer Address', NULL),
-(127, 'customer_mobile', 'Customer Mobile', NULL),
-(128, 'customer_email', 'Customer Email', NULL),
-(129, 'add_new_customer', 'Add new customer', NULL),
+(126, 'customer_address', 'Farmer Address', NULL),
+(127, 'customer_mobile', 'ID No.', NULL),
+(128, 'customer_email', 'Farmer Email', NULL),
+(129, 'add_new_customer', 'Add new Farmer', NULL),
 (130, 'balance', 'Balance', NULL),
 (131, 'mobile', 'Mobile', NULL),
-(132, 'address', 'Address', NULL),
-(133, 'manage_your_customer', 'Manage your customer', NULL),
-(134, 'customer_edit', 'Customer Edit', NULL),
-(135, 'paid_customer_list', 'Paid Customer List', NULL),
+(132, 'address', 'County', NULL),
+(133, 'manage_your_customer', 'Manage your Farmer', NULL),
+(134, 'customer_edit', 'Farmer Edit', NULL),
+(135, 'paid_customer_list', 'Paid Farmer List', NULL),
 (136, 'ammount', 'Amount', NULL),
-(137, 'customer_ledger', 'Customer Ledger', NULL),
-(138, 'manage_customer_ledger', 'Manage Customer Ledger', NULL),
-(139, 'customer_information', 'Customer Information', NULL),
+(137, 'customer_ledger', 'Farmer Ledger', NULL),
+(138, 'manage_customer_ledger', 'Manage Farmer Ledger', NULL),
+(139, 'customer_information', 'Farmer Information', NULL),
 (140, 'debit_ammount', 'Debit Amount', NULL),
 (141, 'credit_ammount', 'Credit Amount', NULL),
 (142, 'balance_ammount', 'Balance Amount', NULL),
@@ -1030,7 +893,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (146, 'credit', 'Credit', NULL),
 (147, 'item_information', 'Item Information', NULL),
 (148, 'total', 'Total', NULL),
-(149, 'please_select_supplier', 'Please Select Supplier', NULL),
+(149, 'please_select_supplier', 'Please Select Farmer', NULL),
 (150, 'submit', 'Submit', NULL),
 (151, 'submit_and_add_another', 'Submit And Add Another One', NULL),
 (152, 'add_new_item', 'Add New Item', NULL),
@@ -1092,7 +955,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (208, 'last_day_ammount', 'Last Day Amount', NULL),
 (209, 'adjustment', 'Adjustment', NULL),
 (210, 'pay_type', 'Pay Type', NULL),
-(211, 'customer_or_supplier', 'Customer,Supplier Or Others', NULL),
+(211, 'customer_or_supplier', 'Farmer Or Others', NULL),
 (212, 'transection_id', 'Transections ID', NULL),
 (213, 'accounts_summary_report', 'Accounts Summary Report', NULL),
 (214, 'bank_list', 'Bank List', NULL),
@@ -1154,17 +1017,17 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (270, 'successfully_created', 'Successfully Created.', NULL),
 (271, 'logo_not_uploaded', 'Logo not uploaded !', NULL),
 (272, 'favicon_not_uploaded', 'Favicon not uploaded !', NULL),
-(273, 'supplier_mobile', 'Supplier Mobile', NULL),
-(274, 'supplier_address', 'Supplier Address', NULL),
-(275, 'supplier_details', 'Supplier Details', NULL),
-(276, 'add_new_supplier', 'Add New Supplier', NULL),
+(273, 'supplier_mobile', 'Farmer Mobile', NULL),
+(274, 'supplier_address', 'Farmer Address', NULL),
+(275, 'supplier_details', 'Farmer Details', NULL),
+(276, 'add_new_supplier', 'Add New Farmer', NULL),
 (277, 'manage_suppiler', 'Manage Supplier', NULL),
-(278, 'manage_your_supplier', 'Manage your supplier', NULL),
-(279, 'manage_supplier_ledger', 'Manage supplier ledger', NULL),
+(278, 'manage_your_supplier', 'Manage your Farmer', NULL),
+(279, 'manage_supplier_ledger', 'Manage farmer ledger', NULL),
 (280, 'invoice_id', 'Invoice ID', NULL),
 (281, 'deposite_id', 'Deposite ID', NULL),
-(282, 'supplier_actual_ledger', 'Supplier Payment Ledger', NULL),
-(283, 'supplier_information', 'Supplier Information', NULL),
+(282, 'supplier_actual_ledger', 'Farmer Payment Ledger', NULL),
+(283, 'supplier_information', 'Farmer Information', NULL),
 (284, 'event', 'Event', NULL),
 (285, 'add_new_income', 'Add New Income', NULL),
 (286, 'add_expese', 'Add Expense', NULL),
@@ -1176,10 +1039,10 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (292, 'monthly_progress_report', 'Monthly Progress Report', NULL),
 (293, 'total_invoice', 'Total Sale', NULL),
 (294, 'account_summary', 'Account Summary', NULL),
-(295, 'total_supplier', 'Total Supplier', NULL),
-(296, 'total_product', 'Total Product', NULL),
-(297, 'total_customer', 'Total Customer', NULL),
-(298, 'supplier_edit', 'Supplier Edit', NULL),
+(295, 'total_supplier', 'Number of Farmers', NULL),
+(296, 'total_product', 'Number of  Products', NULL),
+(297, 'total_customer', 'Number of Customers', NULL),
+(298, 'supplier_edit', 'Farmer Edit', NULL),
 (299, 'add_new_invoice', 'Add New Sale', NULL),
 (300, 'add_new_purchase', 'Add new purchase', NULL),
 (301, 'currency', 'Currency', NULL),
@@ -1196,37 +1059,37 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (312, 'tax_edit', 'Tax Edit', NULL),
 (313, 'product_not_added', 'Product not added !', NULL),
 (314, 'total_tax', 'Total Tax', NULL),
-(315, 'manage_your_supplier_details', 'Manage your supplier details.', NULL),
+(315, 'manage_your_supplier_details', 'Manage your farmer details.', NULL),
 (316, 'invoice_description', 'Lorem Ipsum is sim ply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is sim ply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy Lorem Ipsum is simply dummy', NULL),
 (317, 'thank_you_for_choosing_us', 'Thank you very much for choosing us.', NULL),
 (318, 'billing_date', 'Billing Date', NULL),
 (319, 'billing_to', 'Billing To', NULL),
 (320, 'billing_from', 'Billing From', NULL),
 (321, 'you_cant_delete_this_product', 'Sorry !!  You can\'t delete this product.This product already used in calculation system!', NULL),
-(322, 'old_customer', 'Old Customer', NULL),
-(323, 'new_customer', 'New Customer', NULL),
-(324, 'new_supplier', 'New Supplier', NULL),
-(325, 'old_supplier', 'Old Supplier', NULL),
-(326, 'credit_customer', 'Credit Customer', NULL),
+(322, 'old_customer', 'Old Farmer', NULL),
+(323, 'new_customer', 'New Farmer', NULL),
+(324, 'new_supplier', 'New Farmer', NULL),
+(325, 'old_supplier', 'Old Farmer', NULL),
+(326, 'credit_customer', 'Credit Farmer', NULL),
 (327, 'account_already_exists', 'This Account Already Exists !', NULL),
 (328, 'edit_income', 'Edit Income', NULL),
 (329, 'you_are_not_access_this_part', 'You are not authorised person !', NULL),
 (330, 'account_edit', 'Account Edit', NULL),
 (331, 'due', 'Due', NULL),
 (332, 'expense_edit', 'Expense Edit', NULL),
-(333, 'please_select_customer', 'Please select customer !', NULL),
+(333, 'please_select_customer', 'Please select farmer !', NULL),
 (334, 'profit_report', 'Profit Report (Sale Wise)', NULL),
 (335, 'total_profit_report', 'Total profit report', NULL),
 (336, 'please_enter_valid_captcha', 'Please enter valid captcha.', NULL),
 (337, 'category_not_selected', 'Category not selected.', NULL),
-(338, 'supplier_not_selected', 'Supplier not selected.', NULL),
+(338, 'supplier_not_selected', 'Farmer not selected.', NULL),
 (339, 'please_select_product', 'Please select product.', NULL),
 (340, 'product_model_already_exist', 'Product model already exist !', NULL),
 (341, 'invoice_logo', 'Sale Logo', NULL),
 (342, 'available_qnty', 'Av. Qnty.', NULL),
 (343, 'you_can_not_buy_greater_than_available_cartoon', 'You can not select grater than available cartoon !', NULL),
-(344, 'customer_details', 'Customer details', NULL),
-(345, 'manage_customer_details', 'Manage customer details.', NULL),
+(344, 'customer_details', 'Farmer details', NULL),
+(345, 'manage_customer_details', 'Manage farmer details.', NULL),
 (346, 'site_key', 'Captcha Site Key', NULL),
 (347, 'secret_key', 'Captcha Secret Key', NULL),
 (348, 'captcha', 'Captcha', NULL),
@@ -1234,10 +1097,10 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (350, 'total_cartoon', 'Total Cartoon', NULL),
 (351, 'cartoon', 'Cartoon', NULL),
 (352, 'item_cartoon', 'Item/Cartoon', NULL),
-(353, 'product_and_supplier_did_not_match', 'Product and supplier did not match !', NULL),
+(353, 'product_and_supplier_did_not_match', 'Product and farmer did not match !', NULL),
 (354, 'if_you_update_purchase_first_select_supplier_then_product_and_then_quantity', 'If you update purchase,first select supplier then product and then update qnty.', NULL),
 (355, 'item', 'Item', NULL),
-(356, 'manage_your_credit_customer', 'Manage your credit customer', NULL),
+(356, 'manage_your_credit_customer', 'Manage your credit farmers', NULL),
 (357, 'total_quantity', 'Total Quantity', NULL),
 (358, 'quantity_per_cartoon', 'Quantity per cartoon', NULL),
 (359, 'barcode_qrcode_scan_here', 'Barcode or QR-code scan here', NULL),
@@ -1275,7 +1138,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (391, 'out_qnty', 'Out Qnty.', NULL),
 (392, 'stock_report_supplier_wise', 'Stock Report (Supplier Wise)', NULL),
 (393, 'all_stock_report_supplier_wise', 'Stock Report (Suppler Wise)', NULL),
-(394, 'select_supplier', 'Select Supplier', NULL),
+(394, 'select_supplier', 'Select Farmer', NULL),
 (395, 'stock_report_product_wise', 'Stock Report (Product Wise)', NULL),
 (396, 'phone', 'Phone', NULL),
 (397, 'select_product', 'Select Product', NULL),
@@ -1290,8 +1153,8 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (406, 'per_pcs_commission', 'Per PCS Commission', NULL),
 (407, 'total_commission', 'Total Commission', NULL),
 (408, 'enter', 'Enter', NULL),
-(409, 'please_add_walking_customer_for_default_customer', 'Please add \'Walking Customer\' for default customer.', NULL),
-(410, 'supplier_ammount', 'Supplier Amount', NULL),
+(409, 'please_add_walking_customer_for_default_customer', 'Please add \'Walking Farmer\' for default customer.', NULL),
+(410, 'supplier_ammount', 'Farmer Amount', NULL),
 (411, 'my_sale_ammount', 'My Sale Amount', NULL),
 (412, 'signature_pic', 'Signature Picture', NULL),
 (413, 'branch', 'Branch', NULL),
@@ -1314,7 +1177,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (430, '1000', '1000', NULL),
 (431, 'total_discount', 'Total Discount', NULL),
 (432, 'product_not_found', 'Product not found !', NULL),
-(433, 'this_is_not_credit_customer', 'This is not credit customer !', NULL),
+(433, 'this_is_not_credit_customer', 'This is not credit farmer !', NULL),
 (434, 'personal_loan', 'Personal Loan', NULL),
 (435, 'add_person', 'Add Person', NULL),
 (436, 'add_loan', 'Add Loan', NULL),
@@ -1356,7 +1219,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (472, 'payment', 'Payment', NULL),
 (473, 'cashflow', 'Daily Cash Flow', NULL),
 (474, 'signature', 'Signature', NULL),
-(475, 'supplier_reports', 'Supplier Reports', NULL),
+(475, 'supplier_reports', 'Farmer Reports', NULL),
 (476, 'generate', 'Generate', NULL),
 (477, 'todays_overview', 'Todays Overview', NULL),
 (478, 'last_sales', 'Last Sales', NULL),
@@ -1369,7 +1232,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (485, 'transaction_details_datewise', 'Transaction Details Datewise', NULL),
 (486, 'cash_closing', 'Cash Closing', NULL),
 (487, 'you_can_not_buy_greater_than_available_qnty', 'You can not buy greater than available qnty.', NULL),
-(488, 'supplier_id', 'Supplier ID', NULL),
+(488, 'supplier_id', 'Farmer ID', NULL),
 (489, 'category_id', 'Category ID', NULL),
 (490, 'select_report', 'Select Report', NULL),
 (491, 'supplier_summary', 'Supplier summary', NULL),
@@ -1425,8 +1288,8 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (541, 'transection_category', 'Select  Category', NULL),
 (542, 'transaction_categry', 'Select Category', NULL),
 (543, 'search_supplier', 'Search Supplier', NULL),
-(544, 'customer_id', 'Customer ID', NULL),
-(545, 'search_customer', 'Search Customer Invoice', NULL),
+(544, 'customer_id', 'Farmer ID', NULL),
+(545, 'search_customer', 'Search Farmer Invoice', NULL),
 (546, 'serial_no', 'SN', NULL),
 (547, 'item_discount', 'Item Discount', NULL),
 (548, 'invoice_discount', 'Sale Discount', NULL),
@@ -1445,7 +1308,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (561, 'category_wise_sales_report', 'Category wise sales report', NULL),
 (562, 'best_sale_product', 'Best Sale Product', NULL),
 (563, 'all_best_sales_product', 'All Best Sales Products', NULL),
-(564, 'todays_customer_receipt', 'Todays Customer Receipt', NULL),
+(564, 'todays_customer_receipt', 'Todays Farmer\'s Receipt', NULL),
 (565, 'not_found', 'Record not found', NULL),
 (566, 'collection', 'Collection', NULL),
 (567, 'increment', 'Increment', NULL),
@@ -1488,8 +1351,8 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (604, 'journal_voucher', 'Journal Voucher', NULL),
 (605, 'contra_voucher', 'Contra Voucher', NULL),
 (606, 'voucher_approval', 'Vouchar Approval', NULL),
-(607, 'supplier_payment', 'Supplier Payment', NULL),
-(608, 'customer_receive', 'Customer Receive', NULL),
+(607, 'supplier_payment', 'Farrmer Payment', NULL),
+(608, 'customer_receive', 'Farmer Receive', NULL),
 (609, 'gl_head', 'General Head', NULL),
 (610, 'account_code', 'Account Head', NULL),
 (611, 'opening_balance', 'Opening Balance', NULL),
@@ -1502,9 +1365,9 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (618, 'due_report', 'Due Report', NULL),
 (619, 'due_amount', 'Due Amount', NULL),
 (620, 'download_sample_file', 'Download Sample File', NULL),
-(621, 'customer_csv_upload', 'Customer Csv Upload', NULL),
-(622, 'csv_supplier', 'Csv Upload Supplier', NULL),
-(623, 'csv_upload_supplier', 'Csv Upload Supplier', NULL),
+(621, 'customer_csv_upload', 'Farmer Csv Upload', NULL),
+(622, 'csv_supplier', 'Csv Upload Farmer', NULL),
+(623, 'csv_upload_supplier', 'Csv Upload Farmer', NULL),
 (624, 'previous', 'Previous', NULL),
 (625, 'net_total', 'Net Total', NULL),
 (626, 'currency_list', 'Currency List', NULL),
@@ -1575,7 +1438,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (691, 'address_line_1', 'Address Line 1', NULL),
 (692, 'address_line_2', 'Address Line 2', NULL),
 (693, 'zip', 'Zip code', NULL),
-(694, 'city', 'City', NULL),
+(694, 'city', 'Route', NULL),
 (695, 'hour_rate_or_salary', 'Houre Rate/Salary', NULL),
 (696, 'rate_type', 'Rate Type', NULL),
 (697, 'hourly', 'Hourly', NULL),
@@ -1670,7 +1533,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (786, 'please_select_employee', 'Please Select Employee', NULL),
 (787, 'manage_service_invoice', 'Manage Service Invoice', NULL),
 (788, 'update_service_invoice', 'Update Service Invoice', NULL),
-(789, 'customer_wise_tax_report', 'Customer Wise  Tax Report', NULL),
+(789, 'customer_wise_tax_report', 'Farmer Wise  Tax Report', NULL),
 (790, 'service_id', 'Service Id', NULL),
 (791, 'invoice_wise_tax_report', 'Invoice Wise Tax Report', NULL),
 (792, 'reg_no', 'Reg No', NULL),
@@ -1685,10 +1548,10 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (801, 'expense_item_name', 'Expense Item Name', NULL),
 (802, 'stock_purchase_price', 'Stock Purchase Price', NULL),
 (803, 'purchase_price', 'Purchase Price', NULL),
-(804, 'customer_advance', 'Customer Advance', NULL),
+(804, 'customer_advance', 'Farmer Advance', NULL),
 (805, 'advance_type', 'Advance Type', NULL),
 (806, 'restore', 'Restore', NULL),
-(807, 'supplier_advance', 'Supplier Advance', NULL),
+(807, 'supplier_advance', 'Farmer Advance', NULL),
 (808, 'please_input_correct_invoice_no', 'Please Input Correct Invoice NO', NULL),
 (809, 'backup', 'Back Up', NULL),
 (810, 'app_setting', 'App Settings', NULL),
@@ -1704,7 +1567,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (820, 'transaction_head', 'Transaction Head', NULL),
 (821, 'transaction_type', 'Transaction Type', NULL),
 (822, 'return_details', 'Return Details', NULL),
-(823, 'return_to_customer', 'Return To Customer', NULL),
+(823, 'return_to_customer', 'Return To Farmer', NULL),
 (824, 'sales_and_purchase_report_summary', 'Sales And Purchase Report Summary', NULL),
 (825, 'add_person_officeloan', 'Add Person (Office Loan)', NULL),
 (826, 'add_loan_officeloan', 'Add Loan (Office Loan)', NULL),
@@ -1728,12 +1591,12 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (844, 'name_of_bank', 'Name Of Bank', NULL),
 (845, 'salary_slip', 'Salary Slip', NULL),
 (846, 'basic_salary', 'Basic Salary', NULL),
-(847, 'return_from_customer', 'Return From Customer', NULL),
+(847, 'return_from_customer', 'Return From Farmer', NULL),
 (848, 'quotation', 'Quotation', NULL),
 (849, 'add_quotation', 'Add Quotation', NULL),
 (850, 'manage_quotation', 'Manage Quotation', NULL),
 (851, 'terms', 'Terms', NULL),
-(852, 'send_to_customer', 'Sent To Customer', NULL),
+(852, 'send_to_customer', 'Sent To Farmer', NULL),
 (853, 'quotation_no', 'Quotation No', NULL),
 (854, 'quotation_date', 'Quotation Date', NULL),
 (855, 'total_service_tax', 'Total Service Tax', NULL),
@@ -1759,9 +1622,9 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (875, 'add_to_invoice', 'Add To Invoice', NULL),
 (876, 'added_to_invoice', 'Added To Invoice', NULL),
 (877, 'closing_balance', 'Closing Balance', NULL),
-(878, 'contact', 'Contact', NULL),
-(879, 'fax', 'Fax', NULL),
-(880, 'state', 'State', NULL),
+(878, 'contact', 'Member No.', NULL),
+(879, 'fax', 'KRA', NULL),
+(880, 'state', 'Location', NULL),
 (881, 'discounts', 'Discount', NULL),
 (882, 'address1', 'Address1', NULL),
 (883, 'address2', 'Address2', NULL),
@@ -1780,7 +1643,7 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (896, 'item_quotation', 'Item Quotation', NULL),
 (897, 'service_quotation', 'Service Quotation', NULL),
 (898, 'return_from', 'Return Form', NULL),
-(899, 'customer_return_list', 'Customer Return List', NULL),
+(899, 'customer_return_list', 'Farmer Return List', NULL),
 (900, 'pdf', 'Pdf', NULL),
 (901, 'note', 'Note', NULL),
 (902, 'update_debit_voucher', 'Update Debit Voucher', NULL),
@@ -1799,7 +1662,11 @@ INSERT INTO `language` (`id`, `phrase`, `english`, `bangla`) VALUES
 (915, 'update_quotation', 'Update Quotation', NULL),
 (916, 'quotation_successfully_updated', 'Quotation Successfully Updated', NULL),
 (917, 'successfully_approved', 'Successfully Approved', NULL),
-(918, 'expiry', 'Expiry', NULL);
+(918, 'expiry', 'Expiry', NULL),
+(919, 'bank_account', 'Bank Account', NULL),
+(920, 'customer_type', 'Customer Type', NULL),
+(921, 'route', 'Route', NULL),
+(922, 'customer_collections', 'Collections', NULL);
 
 -- --------------------------------------------------------
 
@@ -1855,6 +1722,47 @@ CREATE TABLE `logs` (
   `authorized` varchar(1) NOT NULL,
   `response_code` smallint(6) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `manfucturing_sales`
+--
+
+CREATE TABLE `manfucturing_sales` (
+  `id` int(11) NOT NULL,
+  `farmer_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `manfucturing_sales`
+--
+
+INSERT INTO `manfucturing_sales` (`id`, `farmer_id`, `product_id`, `quantity`, `date`) VALUES
+(5, 17, 1, 10, '2021-03-28 08:39:36');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `manufacturing`
+--
+
+CREATE TABLE `manufacturing` (
+  `product_id` int(11) NOT NULL,
+  `raw_material_id` int(11) NOT NULL,
+  `quantity` int(10) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `manufacturing`
+--
+
+INSERT INTO `manufacturing` (`product_id`, `raw_material_id`, `quantity`) VALUES
+(1, 2, 10),
+(1, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -2027,6 +1935,27 @@ INSERT INTO `pesonal_loan_information` (`id`, `person_id`, `person_name`, `perso
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `target_quantity` int(11) NOT NULL DEFAULT 0,
+  `measurement_unit` varchar(255) NOT NULL,
+  `unit_price` double NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `target_quantity`, `measurement_unit`, `unit_price`) VALUES
+(1, 'Yoghurt', 9990, 'litre', 150);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product_category`
 --
 
@@ -2103,25 +2032,6 @@ CREATE TABLE `product_purchase` (
   `bank_id` varchar(30) DEFAULT NULL,
   `payment_type` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `product_purchase`
---
-
-INSERT INTO `product_purchase` (`id`, `purchase_id`, `chalan_no`, `supplier_id`, `grand_total_amount`, `paid_amount`, `due_amount`, `total_discount`, `purchase_date`, `purchase_details`, `status`, `bank_id`, `payment_type`) VALUES
-(1, 20200811161123, '0001', 2, '500000000.00', '0.00', '99999999.99', '0.00', '2020-08-11', 'Hass Avocado', 1, '', 1),
-(3, 20200812043018, '0003', 2, '50000000.00', '0.00', '50000000.00', '0.00', '2020-08-12', '', 1, '', 1),
-(4, 20200812043935, '0023', 1, '30000.00', '0.00', '30000.00', '0.00', '2020-08-12', '', 1, '', 1),
-(5, 20200812050524, '02310', 1, '250000.00', '0.00', '250000.00', '0.00', '2020-08-12', '', 1, '', 1),
-(6, 20200812050644, '2450', 1, '1500000.00', '0.00', '1500000.00', '0.00', '2020-08-12', '', 1, '', 1),
-(7, 20200812055040, '1450', 2, '230000.00', '0.00', '230000.00', '0.00', '2020-08-12', '', 1, '', 1),
-(8, 20200813005516, '1010', 1, '259000000.00', '0.00', '99999999.99', '0.00', '2020-08-13', '', 1, '', 1),
-(9, 20200813012426, '0011', 1, '2300000000.00', '0.00', '99999999.99', '0.00', '2020-08-13', 'Crates of Hass Avocado', 1, '', 1),
-(10, 20200816155013, '1013', 6, '4940000000.00', '0.00', '99999999.99', '0.00', '2020-08-16', 'Wholesale Purchase', 1, '', 1),
-(11, 20200816160816, '1014', 3, '50000000.00', '50000000.00', '0.00', '0.00', '2020-08-16', 'Ngowe APPLE', 1, '', 1),
-(13, 20200817042501, '0100', 2, '640000.00', '0.00', '640000.00', '0.00', '2020-08-17', 'Vehicle KCN 785 G', 1, '', 1),
-(14, 20200817045132, '1110', 7, '1000000.00', '0.00', '1000000.00', '0.00', '2020-08-17', 'Cartons', 1, '', 1),
-(15, 20200817054317, '1031', 1, '1150000.00', '0.00', '1150000.00', '0.00', '2020-08-17', 'Haas', 1, '', 1);
 
 -- --------------------------------------------------------
 
@@ -2270,6 +2180,29 @@ CREATE TABLE `quot_products_used` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `raw_materials`
+--
+
+CREATE TABLE `raw_materials` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `unit_price` double NOT NULL DEFAULT 0,
+  `quantity` int(10) NOT NULL,
+  `unit_measure` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `raw_materials`
+--
+
+INSERT INTO `raw_materials` (`id`, `name`, `unit_price`, `quantity`, `unit_measure`) VALUES
+(1, 'Milk', 30, 25, 'ltr'),
+(2, 'Sugar', 120, 170, 'Kgs'),
+(3, 'Creme', 100, 188, 'kgs');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `role_permission`
 --
 
@@ -2293,6 +2226,15 @@ CREATE TABLE `routes` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `routes`
+--
+
+INSERT INTO `routes` (`id`, `name`) VALUES
+(1, 'NBI'),
+(2, 'NKR'),
+(3, 'Juja');
 
 -- --------------------------------------------------------
 
@@ -2386,6 +2328,28 @@ CREATE TABLE `service_invoice_details` (
   `discount_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
   `total` decimal(10,2) NOT NULL DEFAULT 0.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sick_cows`
+--
+
+CREATE TABLE `sick_cows` (
+  `id` int(11) NOT NULL,
+  `cow_id` int(11) NOT NULL,
+  `disease_id` int(11) NOT NULL,
+  `status` enum('Died','Sick','Improving','Healed') NOT NULL DEFAULT 'Sick'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sick_cows`
+--
+
+INSERT INTO `sick_cows` (`id`, `cow_id`, `disease_id`, `status`) VALUES
+(1, 2, 1, 'Sick'),
+(2, 2, 3, 'Sick'),
+(3, 3, 4, 'Improving');
 
 -- --------------------------------------------------------
 
@@ -2700,7 +2664,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_id`, `last_name`, `first_name`, `company_name`, `address`, `phone`, `gender`, `date_of_birth`, `logo`, `status`) VALUES
-(1, '1', '', '', 'Nexttech', '315-00900', '0714093742', 1, NULL, 'http://localhost:8080/sa/assets/dist/img/profile_picture/e7d0f10310f0e6abd230ffcd1cb94c78.jpg', 1);
+(1, '1', '', '', 'Nexttech', '315-00900', '0714093742', 1, NULL, 'assets/dist/img/profile_picture/e7d0f10310f0e6abd230ffcd1cb94c78.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -2723,7 +2687,33 @@ CREATE TABLE `user_login` (
 --
 
 INSERT INTO `user_login` (`id`, `user_id`, `username`, `password`, `user_type`, `security_code`, `status`) VALUES
-(1, '1', 'kihashkevo2014@gmail.com', '41d99b369894eb1ec3f461135132d8bb', 1, 'JON4E-ZN7HA6BM-W7OTUZQBAX9D', 1);
+(1, '1', 'kevoh@gmail.com', '41d99b369894eb1ec3f461135132d8bb', 1, 'JON4E-ZN7HA6BM-W7OTUZQBAX9D', 1),
+(2, '33', 'elvis@gmil.com', '41d99b369894eb1ec3f461135132d8bb', 1, 'JON4E-ZN7HA6BM-W7OTUZQBAX9E', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vets`
+--
+
+CREATE TABLE `vets` (
+  `id` int(10) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `location` varchar(100) NOT NULL,
+  `phone` varchar(13) NOT NULL,
+  `id_no` varchar(8) NOT NULL,
+  `route_id` int(10) NOT NULL,
+  `semen_count` int(4) NOT NULL,
+  `semen_bp` double NOT NULL DEFAULT 0,
+  `semen_sp` double NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vets`
+--
+
+INSERT INTO `vets` (`id`, `name`, `location`, `phone`, `id_no`, `route_id`, `semen_count`, `semen_bp`, `semen_sp`) VALUES
+(5, 'Dr. Vet', 'Nairobi', '0712345678', '11234567', 1, 88, 120, 150);
 
 -- --------------------------------------------------------
 
@@ -2753,7 +2743,7 @@ CREATE TABLE `web_setting` (
 --
 
 INSERT INTO `web_setting` (`setting_id`, `logo`, `invoice_logo`, `favicon`, `currency`, `timezone`, `currency_position`, `footer_text`, `language`, `rtr`, `captcha`, `site_key`, `secret_key`, `discount_type`) VALUES
-(1, 'http://localhost:8080/sa/./my-assets/image/logo/1206e551e00e501b3defafdb1416cdad.png', 'http://localhost:8080/sa/./my-assets/image/logo/b98567c5bfbbd1a6709a9b6ae5ff279a.png', 'http://localhost:8080/sa/my-assets/image/logo/0bb2ee8377d8672d55b553ef11f07d69.png', 'KES', 'Africa/Nairobi', '0', 'Copyright© 2019-2020 Nexttech. All rights reserved.', 'english', '0', 1, '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', 1);
+(1, 'my-assets/image/logo/1206e551e00e501b3defafdb1416cdad.png', 'my-assets/image/logo/1206e551e00e501b3defafdb1416cdad.png', 'my-assets/image/logo/1206e551e00e501b3defafdb1416cdad.png', 'KES', 'Africa/Nairobi', '0', 'Copyright© 2019-2020 Nexttech. All rights reserved.', 'english', '0', 1, '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', '6LdiKhsUAAAAAMV4jQRmNYdZy2kXEuFe1HrdP5tt', 1);
 
 -- --------------------------------------------------------
 
@@ -2806,10 +2796,26 @@ ALTER TABLE `bank_add`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `vet_fk` (`vet_id`),
+  ADD KEY `customer_fk` (`farmer_id`);
+
+--
 -- Indexes for table `breeds`
 --
 ALTER TABLE `breeds`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `collections`
+--
+ALTER TABLE `collections`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_index` (`farmer_id`),
+  ADD KEY `route_index` (`route_id`);
 
 --
 -- Indexes for table `cows`
@@ -2831,12 +2837,18 @@ ALTER TABLE `currency_tbl`
 --
 ALTER TABLE `customer_information`
   ADD PRIMARY KEY (`customer_id`),
-  ADD KEY `customer_id` (`customer_id`);
+  ADD KEY `route_fk` (`route_id`);
 
 --
 -- Indexes for table `designation`
 --
 ALTER TABLE `designation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `diseases`
+--
+ALTER TABLE `diseases`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2913,6 +2925,21 @@ ALTER TABLE `leave_type`
   ADD PRIMARY KEY (`leave_type_id`);
 
 --
+-- Indexes for table `manfucturing_sales`
+--
+ALTER TABLE `manfucturing_sales`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_fk` (`product_id`),
+  ADD KEY `farmer_id` (`farmer_id`);
+
+--
+-- Indexes for table `manufacturing`
+--
+ALTER TABLE `manufacturing`
+  ADD KEY `product_fk` (`product_id`),
+  ADD KEY `raw_materials_fk` (`raw_material_id`);
+
+--
 -- Indexes for table `module`
 --
 ALTER TABLE `module`
@@ -2955,6 +2982,12 @@ ALTER TABLE `person_ledger`
 ALTER TABLE `pesonal_loan_information`
   ADD PRIMARY KEY (`id`),
   ADD KEY `person_id` (`person_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `product_category`
@@ -3035,6 +3068,12 @@ ALTER TABLE `quot_products_used`
   ADD KEY `quot_id` (`quot_id`);
 
 --
+-- Indexes for table `raw_materials`
+--
+ALTER TABLE `raw_materials`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `role_permission`
 --
 ALTER TABLE `role_permission`
@@ -3085,6 +3124,14 @@ ALTER TABLE `service_invoice`
 ALTER TABLE `service_invoice_details`
   ADD PRIMARY KEY (`id`),
   ADD KEY `service_id` (`service_id`);
+
+--
+-- Indexes for table `sick_cows`
+--
+ALTER TABLE `sick_cows`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cow_fk` (`cow_id`),
+  ADD KEY `disease_fk` (`disease_id`);
 
 --
 -- Indexes for table `sms_settings`
@@ -3145,6 +3192,13 @@ ALTER TABLE `user_login`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `vets`
+--
+ALTER TABLE `vets`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `route_fk` (`route_id`);
+
+--
 -- Indexes for table `web_setting`
 --
 ALTER TABLE `web_setting`
@@ -3164,7 +3218,7 @@ ALTER TABLE `weekly_holiday`
 -- AUTO_INCREMENT for table `acc_transaction`
 --
 ALTER TABLE `acc_transaction`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
 
 --
 -- AUTO_INCREMENT for table `app_setting`
@@ -3185,16 +3239,28 @@ ALTER TABLE `bank_add`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `bookings`
+--
+ALTER TABLE `bookings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT for table `breeds`
 --
 ALTER TABLE `breeds`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `collections`
+--
+ALTER TABLE `collections`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `cows`
 --
 ALTER TABLE `cows`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `currency_tbl`
@@ -3206,13 +3272,19 @@ ALTER TABLE `currency_tbl`
 -- AUTO_INCREMENT for table `customer_information`
 --
 ALTER TABLE `customer_information`
-  MODIFY `customer_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `designation`
 --
 ALTER TABLE `designation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `diseases`
+--
+ALTER TABLE `diseases`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `email_config`
@@ -3266,7 +3338,7 @@ ALTER TABLE `invoice_details`
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=919;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=923;
 
 --
 -- AUTO_INCREMENT for table `leave_apply`
@@ -3279,6 +3351,12 @@ ALTER TABLE `leave_apply`
 --
 ALTER TABLE `leave_type`
   MODIFY `leave_type_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `manfucturing_sales`
+--
+ALTER TABLE `manfucturing_sales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `module`
@@ -3320,6 +3398,12 @@ ALTER TABLE `person_ledger`
 -- AUTO_INCREMENT for table `pesonal_loan_information`
 --
 ALTER TABLE `pesonal_loan_information`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
@@ -3377,6 +3461,12 @@ ALTER TABLE `quot_products_used`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `raw_materials`
+--
+ALTER TABLE `raw_materials`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `role_permission`
 --
 ALTER TABLE `role_permission`
@@ -3386,7 +3476,7 @@ ALTER TABLE `role_permission`
 -- AUTO_INCREMENT for table `routes`
 --
 ALTER TABLE `routes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `salary_sheet_generate`
@@ -3423,6 +3513,12 @@ ALTER TABLE `service_invoice`
 --
 ALTER TABLE `service_invoice_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sick_cows`
+--
+ALTER TABLE `sick_cows`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `sms_settings`
@@ -3476,7 +3572,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `user_login`
 --
 ALTER TABLE `user_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `vets`
+--
+ALTER TABLE `vets`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `web_setting`
@@ -3495,11 +3597,49 @@ ALTER TABLE `weekly_holiday`
 --
 
 --
+-- Constraints for table `bookings`
+--
+ALTER TABLE `bookings`
+  ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`vet_id`) REFERENCES `vets` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `collections`
+--
+ALTER TABLE `collections`
+  ADD CONSTRAINT `collections_ibfk_1` FOREIGN KEY (`route_id`) REFERENCES `routes` (`id`) ON UPDATE CASCADE;
+
+--
 -- Constraints for table `cows`
 --
 ALTER TABLE `cows`
   ADD CONSTRAINT `cows_ibfk_1` FOREIGN KEY (`breed_id`) REFERENCES `breeds` (`id`),
   ADD CONSTRAINT `cows_ibfk_2` FOREIGN KEY (`route_id`) REFERENCES `routes` (`id`);
+
+--
+-- Constraints for table `manfucturing_sales`
+--
+ALTER TABLE `manfucturing_sales`
+  ADD CONSTRAINT `manfucturing_sales_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `manufacturing`
+--
+ALTER TABLE `manufacturing`
+  ADD CONSTRAINT `manufacturing_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
+  ADD CONSTRAINT `manufacturing_ibfk_2` FOREIGN KEY (`raw_material_id`) REFERENCES `raw_materials` (`id`);
+
+--
+-- Constraints for table `sick_cows`
+--
+ALTER TABLE `sick_cows`
+  ADD CONSTRAINT `sick_cows_ibfk_1` FOREIGN KEY (`cow_id`) REFERENCES `cows` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `sick_cows_ibfk_2` FOREIGN KEY (`disease_id`) REFERENCES `diseases` (`id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `vets`
+--
+ALTER TABLE `vets`
+  ADD CONSTRAINT `vets_ibfk_1` FOREIGN KEY (`route_id`) REFERENCES `routes` (`id`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
