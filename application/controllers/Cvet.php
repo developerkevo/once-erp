@@ -72,6 +72,8 @@ class Cvet extends CI_Controller {
         $id = $this->input->post("id");
         $location = $this->input->post("location");
         $semen_count = $this->input->post("semen_count");
+        $sp = $this->input->post("sp");
+        $bp = $this->input->post("bp");
 
         $data = array(
             "name" => $name,
@@ -79,16 +81,44 @@ class Cvet extends CI_Controller {
             "route_id" => $route_id,
             "location" => $location,
             "semen_count" => $semen_count,
+            "semen_sp" => $sp,
+            "semen_bp" => $bp,
             "id_no" => $id
         );
 
         if($this->Vet->add_vet($data))
         {
+
+             $CI = &get_instance();
+    
+           
+              $transaction_id = $this->auth->generator(10);
+              $headcode = $this->Customers->get_trx_head_code(1); #represents vets
+          
+              
+              // add to transaction
+              $cosdr = array(
+                  'VNo'            =>  $transaction_id,
+                  'Vtype'          =>  'Debit',
+                  'VDate'          =>  date("Y-m-d"),
+                  'COAID'          =>  $headcode,
+                  'Narration'      =>  "Assigned $name Semen units " . $transaction_id,
+                  'Debit'          =>  $semen_count * $bp,
+                  'Credit'         => 0,
+                  'IsPosted'       => 1,
+                  'CreateBy'       => $this->session->userdata('user_id'),
+                  'CreateDate'     => date('Y-m-d H:i:s'),
+                  'IsAppove'       => 1
+              );
+
+            $CI->db->insert('acc_transaction', $cosdr);
+      
             redirect(base_url('Cvet/manage_vets'));
         }else{
             $this->session->set_flashdata('error_message', "Error Occured");
             redirect(base_url('Cvet/manage_vets'));
         }
+    
     }
 
 
@@ -190,11 +220,16 @@ class Cvet extends CI_Controller {
         $semen_used = $this->input->post('semen_used');
         $id = $this->input->post('bid');
         $status = $this->input->post('status');
+        $selling_price = $this->input->post('sp');
+        $charges = $this->input->post('charges');
+
+        $farmer_id = $this->Vet->farmer_id_from_booking($id);        
 
         $data = array(
             "id" => $id,
             "semen_used" => $semen_used,
-            "status" => $status
+            "status" => $status,
+            "charges" => $charges
         );
 
         $current_semen_count = $this->Vet->vet_by_id($vet_id)[0]->semen_count;
@@ -207,12 +242,44 @@ class Cvet extends CI_Controller {
             if($this->Vet->update_booking_status($data))
             {
                 
-                $data = array("id" => $vet_id, 
-                
-                "semen_count" => ($current_semen_count - $semen_used));
+                $data = array(
+                    "id" => $vet_id,                 
+                    "semen_count" => ($current_semen_count - $semen_used));
 
                 if($this->Vet->update_semen_count($data))
                 {
+                    #debit a customer
+
+
+                    if($semen_used > 0 or $charges > 0){
+
+                        $CI = &get_instance();
+    
+           
+                        $transaction_id = $this->auth->generator(10);
+                        $headcode = $this->Customers->get_trx_head_code($farmer_id);
+                    
+                        
+                        // add to transaction
+                        $cosdr = array(
+                            'VNo'            =>  $transaction_id,
+                            'Vtype'          =>  'Credit',
+                            'VDate'          =>  date("Y-m-d"),
+                            'COAID'          =>  $headcode,
+                            'Narration'      =>  "Treated Cow and insemination " . $transaction_id,
+                            'Debit'          =>  0,
+                            'Credit'         => ($semen_used * $selling_price) + $charges,
+                            'IsPosted'       => 1,
+                            'CreateBy'       => $this->session->userdata('user_id'),
+                            'CreateDate'     => date('Y-m-d H:i:s'),
+                            'IsAppove'       => 1
+                        );
+           
+                       $CI->db->insert('acc_transaction', $cosdr);
+
+                    }   
+                    
+
                     redirect(base_url('Cvet/manage_bookings'));
                 }else{
                     $this->session->set_flashdata('error_message', "Failed");
@@ -227,5 +294,3 @@ class Cvet extends CI_Controller {
     
 
 }
-
-?>

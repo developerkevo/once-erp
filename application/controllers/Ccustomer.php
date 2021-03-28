@@ -563,15 +563,117 @@ class Ccustomer extends CI_Controller
 
     public function collections()
     {
-        echo json_encode(["yey"=> "Mhhh"]);
+        $CI = &get_instance();
+        $CI->load->model("Route");
+        $CI->load->model("Customers");
+        $routes = $CI->Route->get_routes();
+        $collections = $CI->Customers->get_collections();
+        $farmers = $CI->Customers->farmer_name_id();
+        $data = array(
+            "routes" => $routes,
+            "collections" => $collections,
+            "farmers" => $farmers
+        );
+        // echo json_encode($collections);
+        // exit();
+        $this->template->full_admin_html_view($CI->parser->parse('customer/collections', $data, true));
     }
 
-    public function add_collections()
+    public function add_collection()
     {
-        $route_id  = $this->input->post("route_id");
-        $farmer_id = $this->input->post("farmer_id");
+
+
+        
+        $route_id  = $this->input->post("route");
+        $farmer_id = $this->input->post("farmer");
         $volume = $this->input->post("volume");
         $period = $this->input->post("period");
-        $bp = $this->input->post("buying_price");
+        $bp = $this->input->post("bp");
+        $sp = $this->input->post("sp");
+
+        $data = array(
+            "route_id" => $route_id,
+            "farmer_id" => $farmer_id,
+            "volume" => $volume,
+            "selling_price" => $sp,
+            "buying_price" => $bp,
+            "period" => $period
+        );
+       
+        $CI = &get_instance();
+
+    
+      if($CI->Customers->add_collection($data))
+      {
+        $transaction_id = $this->auth->generator(10);
+        $headcode = $this->Customers->get_trx_head_code($farmer_id);
+    
+        
+        // add to transaction
+        $cosdr = array(
+            'VNo'            =>  $transaction_id,
+            'Vtype'          =>  'Credit',
+            'VDate'          =>  date("Y-m-d"),
+            'COAID'          =>  $headcode,
+            'Narration'      =>  'Customer Milk Collection - ' . $transaction_id,
+            'Debit'          =>   $volume * $bp,
+            'Credit'         => 0,
+            'IsPosted'       => 1,
+            'CreateBy'       => $this->session->userdata('user_id'),
+            'CreateDate'     => date('Y-m-d H:i:s'),
+            'IsAppove'       => 1
+        );
+
+        $this->db->insert('acc_transaction', $cosdr);
+
+        //update milk
+        $milk_quantity = $this->Customers->get_milk_quantity();
+
+        $data = array(
+            "quantity" =>($volume + $milk_quantity)
+        );
+
+        $this->Customers->update_milk_quantity($data);
+    
+        return redirect(base_url('Ccustomer/collections'));
+      }
+        
+    }
+
+
+    public function customer_contribution_filter()
+    {
+        $route_id  = $this->input->post("route");
+        $farmer_id = $this->input->post("customer_id");
+        $from_date = $this->input->post("from_date");
+        $to_date = $this->input->post("to_date");
+
+        $data = array(
+            "from" => $from_date,
+            "to" => $to_date,
+            "farmer_id" => $farmer_id,
+            "route_id" => $route_id
+        );
+
+     
+
+        $CI = &get_instance();
+        $CI->load->model("Route");
+        $CI->load->model("Customers");
+        $routes = $CI->Route->get_routes();
+        $farmers = $CI->Customers->farmer_name_id();
+        $collections = $CI->Customers->filter_collections($data);
+        $data = array(
+            "routes" => $routes,
+            "collections" => $collections,
+            "farmers" => $farmers
+        );
+
+        // echo  $CI->db->last_query();
+
+        // echo json_encode($collections);
+        // exit();
+    
+        $this->template->full_admin_html_view($CI->parser->parse('customer/collections', $data, true));
     }
 }

@@ -110,12 +110,21 @@
                                                     Update Product
                                                 </button>
 
-                                                <button class="btn btn-xs btn-info" onclick='productDetailsModal(<?php echo $p->id; ?>)'>
+                                                <button class="btn btn-xs btn-info" onclick='productDetailsModal(<?php echo json_encode($p); ?>)'>
                                                     Details
                                                 </button>
 
                                                 <button class="btn btn-xs btn-success" onclick='getRawMaterials(<?php echo json_encode($p); ?>)'>
                                                     Add Raw Materials
+                                                </button>
+
+                                                <button class="btn btn-xs btn-warning" onclick='sellProduct(<?php echo json_encode($p); ?>)'>
+                                                    Sell Product
+                                                </button>
+
+
+                                                <button class="btn btn-xs btn-danger" onclick='sales(<?php echo json_encode($p); ?>)'>
+                                                    Sales
                                                 </button>
                                             </td>
 
@@ -271,11 +280,124 @@
                                     </div>
                                 </div>
 
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" onclick="printDiv('productDetailsSection')">Print</button>
+                                </div>
+
                             </div>
+
                         </div>
+
+
                     </div>
                     <!-- end add update modal -->
 
+
+
+
+
+                    <!-- assign Sale a product -->
+                    <div class="modal fade" id="saleProductModal" tabindex="-1" role="dialog" aria-labelledby="saleProductModalLabel" aria-hidden="true">
+                        <?php echo form_open_multipart('Cmanufucturing/sell_product/', array('id' => 'sell_product', "method" => 'post')) ?>
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="saleProductModalLabel">Sale {Product}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+
+                                        <input class="form-control" id="pids" type="hidden" name="product_id" readonly tabindex="1">
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="product_unit_price" class="form-label"><?php echo "Unit Price" ?> <i class="text-danger">*</i></label>
+                                                <input class="form-control" id="product_unit_price" type="number" name="product_unit_price" tabindex="1" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group row">
+                                                <label for="farmers" class="form-label col-sm-12"><?php echo "Farmer" ?> <i class="text-danger">*</i></label>
+                                                <div class="col-sm-12">
+                                                    <select class="form-control" name="farmer_id" id="farmers" tabindex="-1" aria-hidden="true" style="width:100%;">
+                                                        <?php
+                                                        foreach ($farmers as $f) {
+
+                                                            if ($f->customer_id != 1) {
+                                                        ?>
+
+                                                                <option value="<?php echo $f->customer_id ?>"> <?php echo $f->customer_name ?></option>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="quantitys" class="form-label"><?php echo "Quantity" ?> <i class="text-danger">*</i></label>
+                                                <input class="form-control" id="quantitys" type="number" name="quantity" tabindex="1">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Sell</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php echo form_close() ?>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end materails to products -->
+
+
+
+                    <!-- add update Modal -->
+                    <div class="modal fade" id="soldProductDetails" tabindex="-1" role="dialog" aria-labelledby="soldProductDetailsLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="soldProductDetailsLabel">Product Details</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div id="soldProductDetailsSection">
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary" onclick="printDiv('soldProductDetailsSection')">Print</button>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <!-- end add update modal -->
 
 
                 </div>
@@ -298,11 +420,13 @@
 
 
 
-    function productDetailsModal(id) {
+    function productDetailsModal(p) {
+
+        $("#productDetailsLabel").text(p.name + " Details")
 
         let html = `<div class="table-responsive">`;
 
-        html += `<table class="table table-striped table-bordered t-dt" id="rawMaterials` + id + `"> 
+        html += `<table class="table table-striped table-bordered t-dt" id="rawMaterials` + p.id + `"> 
                         <thead>
                             <th></th>
                             <th>Material Name</th>
@@ -317,7 +441,7 @@
         var base_url = $("#base_url").val();
 
         $.ajax({
-            url: base_url + "Cmanufucturing/get_product_raw_materials/" + id,
+            url: base_url + "Cmanufucturing/get_product_raw_materials/" + p.id,
             type: "GET",
             success: function(data) {
 
@@ -338,9 +462,6 @@
 
                     totalExpenditure += d.used_quantity * d.material_unit_price
                 });
-
-                console.log(totalExpenditure)
-
 
                 html += `</tbody>`
 
@@ -370,5 +491,81 @@
         $("#pId2").val(d.id);
         $("#productNameId2").val(d.name);
         $("#addProductMaterials").modal("show");
+    }
+
+
+    function sellProduct(p) {
+        $("#saleProductModalLabel").text("Sell " + p.name);
+        $("#pids").val(p.id);
+        $("#product_unit_price").val(p.unit_price);
+
+        $("#saleProductModal").modal("show");
+    }
+
+
+    function sales(p) {
+
+        $("#productDetailsLabel").text(p.name + " Details")
+
+        let html = `<div class="table-responsive">`;
+
+        html += `<table class="table table-striped table-bordered t-dt" id="rawMaterials` + p.id + `"> 
+                <thead>
+                    <th></th>
+                    <th>Farmer Name</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total Cost</th>
+                    <th>Date</th>
+                </thead>`
+
+
+        var base_url = $("#base_url").val();
+
+        $.ajax({
+            url: base_url + "Cmanufucturing/sales/" + p.id,
+            type: "GET",
+            success: function(data) {
+
+                data = JSON.parse(data);
+                html += `<tbody>`
+                let totalIncome = 0;
+                data.forEach((d, index) => {
+
+                    html += `<tr>
+                            <td>${++index}</td>
+                            <td>${d.customer_name}</td>
+                            <td>${d.name}</td>
+                            <td>${d.quantity} ${d.measurement_unit}</td>        
+                            <td>${d.unit_price}</td>              
+                            <td>Ksh. ${ new Intl.NumberFormat().format(d.quantity * d.unit_price)}</td>    
+                            <td>${d.date}</td>      
+                        </tr>`
+
+                        totalIncome +=d.quantity * d.unit_price
+                });
+
+                html += `</tbody>`
+
+                html += ` </table>`;
+                html += `</div>`
+
+                html += `<div class="mt-2">`
+                html += `<h3> Total Income Ksh. ${ new Intl.NumberFormat().format(totalIncome)}</h3>`
+                html += `</div>`
+
+                $('#soldProductDetailsSection').empty()
+                $('#soldProductDetailsSection').append(html)
+                $('#soldProductDetails').modal("show")
+
+
+            },
+
+            error: function(errorThrown) {
+                console.log(errorThrown)
+            }
+
+        });
     }
 </script>

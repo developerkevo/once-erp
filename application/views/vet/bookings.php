@@ -92,6 +92,7 @@
                                         <th><?php echo 'Date'; ?></th>
                                         <th><?php echo 'Status'; ?></th>
                                         <th><?php echo 'Semen Used'; ?></th>
+                                        <th><?php echo 'Treatment Charges'; ?></th>
                                         <th><?php echo 'Update Status'; ?></th>
 
                                     </tr>
@@ -106,6 +107,8 @@
                                             <td><?php echo $b->date; ?></td>
                                             <td><?php echo $b->status; ?></td>
                                             <td><?php echo $b->semen_used; ?></td>
+                                           
+                                            <td><?php echo "Ksh. ".number_format($b->charges + ($b->semen_sp * $b->semen_used), 2,'.',','); ?></td>
                                             <td><button class="btn btn-xs btn-primary" onclick='updateBooking(<?php echo json_encode($b); ?>)'>Update Status</button></td>
                                             <!-- <td>
                                               
@@ -117,7 +120,7 @@
 
                                 <tfoot>
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="5">
                                             <strong>Total Bookings</strong>
                                         </td>
                                         <td colspan="3">
@@ -147,6 +150,7 @@
 
                                         <input class="form-control" id="bid" name="bid" type="hidden" readonly tabindex="1">
                                         <input class="form-control" id="vetid" name="vet_id" type="hidden" readonly tabindex="1">
+                                        <input class="form-control" id="sp" name="sp" type="hidden" readonly tabindex="1">
 
                                         <div class="col-sm-12">
                                             <div class="form-group">
@@ -154,6 +158,7 @@
                                                 <input class="form-control" id="bfarmer" type="text" readonly tabindex="1">
                                             </div>
                                         </div>
+                                        
 
                                         <div class="col-sm-12">
                                             <div class="form-group">
@@ -185,10 +190,18 @@
 
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <label for="date" class="form-label"><?php echo "Semen Used" ?> <i class="text-danger">*</i></label>
+                                                <label for="semenUsed" class="form-label"><?php echo "Semen Used" ?> <i class="text-danger">*</i></label>
                                                 <input class="form-control" id="semenUsed" name="semen_used" type="number" tabindex="1" required>
                                             </div>
                                         </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="charges" class="form-label"><?php echo "Treatment Charges" ?> <i class="text-danger">*</i></label>
+                                                <input class="form-control" id="charges" name="charges" type="number" tabindex="1" required>
+                                            </div>
+                                        </div>
+
 
                                     </div>
 
@@ -283,6 +296,7 @@
     function updateBooking(b) {
         $("#bfarmer").val(b.customer_name);
         $("#bvet").val(b.vet_name);
+        $("#sp").val(b.semen_sp);
         $("#bupdateStatus").val(b.status);
         $("#cStatus").text('(' + b.status + ')')
         $("#bid").val(b.id);

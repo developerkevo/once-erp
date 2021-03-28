@@ -22,7 +22,7 @@ class Route extends CI_Model{
     {
         $this->db->select('id,name');
         $this->db->from('routes');
-        return $query = $this->db->get()->result();
+        return $this->db->get()->result();
     }
 
     public function update_route($data)

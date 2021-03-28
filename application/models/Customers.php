@@ -97,6 +97,7 @@ class Customers extends CI_Model
         $this->db->from('customer_information a');
         $this->db->join('routes r', 'r.id = a.route_id');
         $this->db->join('acc_coa b', 'a.customer_id = b.customer_id', 'left');
+        $this->db->order_by('a.create_date',"desc");
         $this->db->group_by('a.customer_id');
         if ($searchValue != '')
             $this->db->where($searchQuery);
@@ -156,9 +157,10 @@ class Customers extends CI_Model
 
     public function customer_product_buy($per_page, $page)
     {
-        $this->db->select('a.*,b.HeadName');
+        $this->db->select('a.*,b.HeadName, c.customer_name');
         $this->db->from('acc_transaction a');
         $this->db->join('acc_coa b', 'a.COAID=b.HeadCode');
+        $this->db->join('customer_information c', 'b.customer_id=c.customer_id');
         $this->db->where('b.PHeadName', 'Customer Receivable');
         $this->db->where('a.IsAppove', 1);
         $this->db->order_by('a.VDate', 'desc');
@@ -204,9 +206,10 @@ class Customers extends CI_Model
 
     public function customerledger_searchdata($customer_id, $start, $end)
     {
-        $this->db->select('a.*,b.HeadName');
+        $this->db->select('a.*,b.HeadName,c.customer_name');
         $this->db->from('acc_transaction a');
         $this->db->join('acc_coa b', 'a.COAID=b.HeadCode');
+        $this->db->join('customer_information c', 'b.customer_id=c.customer_id');
         $this->db->where(array('b.customer_id' => $customer_id, 'a.VDate >=' => $start, 'a.VDate <=' => $end));
         $this->db->where('a.IsAppove', 1);
         $this->db->order_by('a.VDate', 'desc');
@@ -707,5 +710,100 @@ class Customers extends CI_Model
             return $query->result_array();
         }
         return false;
+    }
+
+    // add collection
+
+    public function add_collection($data)
+    {
+        if($this->db->insert("collections",$data)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public function get_trx_head_code($customer_id)
+    {
+        $this->db->select("HeadCode");
+        $this->db->where("customer_id",$customer_id);
+        $this->db->limit(1);
+        $query = $this->db->get('acc_coa');
+        if($query->num_rows() == 0)
+        {
+            return 102030000001;
+        }
+
+        return  $query->row()->HeadCode;
+
+    }
+
+    //get collections
+
+    public function get_collections()
+    {
+        $this->db->select("c.customer_name, c.customer_mobile, c.contact, r.name as route, col.volume, col.period, col.buying_price, col.selling_price,col.collection_time");
+        $this->db->from("collections col");
+        $this->db->join("routes r","r.id = col.route_id");
+        $this->db->join("customer_information  c","c.customer_id = col.farmer_id");
+        $query = $this->db->get();       
+        return $query->result();
+        
+    }
+
+
+
+    public function filter_collections($data)
+    {
+        $this->db->select("c.customer_name, c.customer_mobile, c.contact, r.name as route, col.volume, col.period, col.buying_price, col.selling_price,col.collection_time");
+        $this->db->from("collections col");
+        $this->db->join("routes r","r.id = col.route_id");
+        $this->db->join("customer_information  c","c.customer_id = col.farmer_id");
+        
+
+        if($data["route_id"] != "")
+        {
+            $this->db->where("col.route_id", $data["route_id"]);
+        }
+
+        if($data["farmer_id"] != "")
+        {
+            $this->db->where("col.farmer_id", $data["farmer_id"]);
+        }
+
+        if($data["from"] != "")
+        {
+            $this->db->where("col.collection_time >= ",$data["from"]);
+        }
+
+        if ($data["to"] != "")
+        {
+            $this->db->where("col.collection_time <= ", $data["to"]);
+        }
+      
+        return $this->db->get()->result();
+        
+    }
+
+    public function farmer_name_id()
+    {
+        $this->db->select("customer_id, customer_name");
+        $this->db->from("customer_information");
+        return $this->db->get()->result();
+    }
+
+    public function get_milk_quantity()
+    {
+        $this->db->select("quantity");
+        $this->db->where("id",1);
+        $this->db->limit(1);
+        $query = $this->db->get('raw_materials');      
+        return  $query->row()->quantity;
+    }
+
+    public function update_milk_quantity($data)
+    {
+        $this->db->where('id', 1);
+        $this->db->update('raw_materials', $data);        
     }
 }

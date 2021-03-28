@@ -104,15 +104,14 @@
                                                     <div class="panel-body">
                                                         <div class="row">
 
-                                                            <div class="col-sm-12 bookingContent">
-
-
+                                                            <div class="col-sm-12 bookingContent" id= "printTable<?php echo $v->id; ?>">
 
                                                             </div>
                                                         </div>
 
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary" onclick='printDiv("printTable<?php echo $v->id; ?>")'>Print</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -199,8 +198,23 @@
 
                                         <div class="col-sm-12">
                                             <div class="form-group">
-                                                <label for="semen_count" class="form-label"><?php echo "Semen count" ?> <i class="text-danger">*</i></label>
+                                                <label for="semen_count" class="form-label"><?php echo "Semen count (units)" ?> <i class="text-danger">*</i></label>
                                                 <input class="form-control" name="semen_count" id="semen_count" type="text" required="" tabindex="1">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="bp" class="form-label"><?php echo "Semen Unit Buying Price" ?> <i class="text-danger">*</i></label>
+                                                <input class="form-control" name="bp" id="bp" type="text" required="" tabindex="1">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="sp" class="form-label"><?php echo "Semen Unit Selling Price" ?> <i class="text-danger">*</i></label>
+                                                <input class="form-control" name="sp" id="sp" type="text" required="" tabindex="1">
                                             </div>
                                         </div>
 
@@ -275,6 +289,7 @@
             <th>Booking Date</th>
             <th>Status</th>
             <th>Semen Used</th>
+            <th>Total Charges</th>
         </thead>`
 
 
@@ -288,12 +303,15 @@
 
                 data.forEach((d, index) => {
 
+                    let total_charges = new Intl.NumberFormat().format(parseFloat(d.charges) + parseFloat((d.semen_sp * d.semen_used)));
+
                     html += `<tr>
                 <td>${++index}</td>
                 <td>${d.customer_name}</td>
                 <td>${d.date}</td>
                 <td>${d.status}</td>
                 <td>${d.semen_used}</td>           
+                <td> Ksh. ${total_charges}</td>           
             </tr>`
                 });
 
@@ -320,6 +338,4 @@
 
 
     }
-
-
 </script>

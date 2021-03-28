@@ -119,6 +119,7 @@ var twelveHour = $('.timepicker-12-hr').wickedpicker();
    
  "use strict";
        function printDiv(divName) {
+         $('.toHide').addClass('d-none')
         var printContents = document.getElementById(divName).innerHTML;
         var originalContents = document.body.innerHTML;
         document.body.innerHTML = printContents;

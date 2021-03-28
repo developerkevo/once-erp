@@ -96,6 +96,54 @@ class Manfucturing extends CI_Model{
         }
     }
 
+    public function raw_material_buying_price($rm_id)
+    {
+        $this->db->select("unit_price");
+        $this->db->where("id",$rm_id);
+        $this->db->limit(1);
+        $query = $this->db->get('raw_materials');      
+        return  $query->row()->unit_price;
+    }
 
+    public function add_product_sales($data)
+    {
+        if($this->db->insert("manfucturing_sales",$data))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public function update_product_available_quantity($quantity, $id)
+    {
+       
+            $sql = " UPDATE products SET target_quantity = 	target_quantity - ? WHERE id = ?";
+            if($this->db->query($sql, array($quantity, $id)))
+            {
+                return true;
+            }else{
+               
+                return $this->db->error();
+            }
+    }
+
+    public function get_available_product_qunatity($product_id)
+    {
+        $this->db->select("target_quantity");
+        $this->db->where("id",$product_id);
+        $this->db->limit(1);
+        $query = $this->db->get('products');      
+        return  $query->row()->target_quantity;
+    }
+
+    public function get_product_sales($product_id)
+    {
+        $this->db->select("p.name, p.unit_price, p.measurement_unit, c.customer_name, ms.quantity, ms.date");
+        $this->db->from("manfucturing_sales ms");
+        $this->db->join('products p','p.id = ms.product_id');
+        $this->db->join('customer_information c','c.customer_id = ms.farmer_id');
+        $this->db->where('ms.product_id', $product_id);
+        return $this->db->get()->result();
+    }
 
 }

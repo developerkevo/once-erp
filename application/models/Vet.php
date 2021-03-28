@@ -74,7 +74,7 @@ class Vet extends CI_Model{
 
     public function bookings($vet_id)
     {
-        $this->db->select("f.customer_name, v.name as vet_name, b.date, b.id, b.status, b.semen_used");
+        $this->db->select("f.customer_name, v.name as vet_name, b.date, b.id, b.status, b.semen_used, b.charges, v.semen_sp");
         $this->db->from('bookings b');
         $this->db->join('vets v','v.id = b.vet_id');
         $this->db->join('customer_information f', 'f.customer_id = b.farmer_id');
@@ -87,7 +87,7 @@ class Vet extends CI_Model{
     {
 
 
-            $this->db->select("f.customer_name, v.name as vet_name, v.id as vet_id, b.date, b.id, b.status, b.semen_used, v.semen_count");
+            $this->db->select("f.customer_name, v.name as vet_name, v.id as vet_id, b.date, b.id, b.status, b.semen_used,b.charges, v.semen_count, v.semen_sp");
             $this->db->from('bookings b');
             $this->db->join('vets v','v.id = b.vet_id');
             $this->db->join('customer_information f', 'f.customer_id = b.farmer_id');
@@ -127,6 +127,18 @@ class Vet extends CI_Model{
         {
             return true;
         }
+    }
+
+
+    public function farmer_id_from_booking($booking_id)
+    {
+        
+        $this->db->select("farmer_id");
+        $this->db->select("farmer_id");
+        $this->db->where("id",$booking_id);
+        $this->db->limit(1);
+        $query = $this->db->get('bookings');      
+        return  $query->row()->farmer_id;
     }
 }
 
